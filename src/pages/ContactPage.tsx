@@ -66,7 +66,7 @@ const fadeUp = {
 
 function ContactHero() {
   return (
-    <section className="relative overflow-hidden bg-brand">
+    <section className="bg-brand relative overflow-hidden">
       {/* Decorative circles */}
       <div className="pointer-events-none absolute top-[-70px] right-[80px] size-[260px] rounded-[130px] bg-white/6" />
       <div className="pointer-events-none absolute bottom-0 left-[-40px] size-[180px] rounded-[90px] bg-white/5" />
@@ -74,7 +74,7 @@ function ContactHero() {
       {/* White bleed that overlaps into the next section */}
       <div className="absolute bottom-0 left-0 h-10 w-full bg-white" />
 
-      <div className="relative z-10 flex flex-col items-center justify-center px-6 pb-20 pt-16 text-center">
+      <div className="relative z-10 flex flex-col items-center justify-center px-6 pt-16 pb-20 text-center">
         {/* Badge */}
         <motion.div
           variants={fadeUp}
@@ -99,7 +99,7 @@ function ContactHero() {
           initial="hidden"
           animate="visible"
           custom={0.08}
-          className="text-[52px] font-black leading-[1.1] tracking-[-0.02em] text-white"
+          className="text-[52px] leading-[1.1] font-black tracking-[-0.02em] text-white"
         >
           Get In Touch.
         </motion.h1>
@@ -157,13 +157,15 @@ function ContactForm() {
   return (
     <div className="relative overflow-hidden rounded-2xl border border-[#eef1f5] bg-white shadow-[0px_10px_40px_0px_rgba(0,0,0,0.08),0px_4px_6px_0px_rgba(0,0,0,0.04)]">
       {/* Gradient top accent bar */}
-      <div className="absolute inset-x-0 top-0 h-1 rounded-t-2xl bg-linear-to-r from-brand to-violet" />
+      <div className="from-brand to-violet absolute inset-x-0 top-0 h-1 rounded-t-2xl bg-linear-to-r" />
 
-      <div className="px-9 pb-9 pt-10">
+      <div className="px-9 pt-10 pb-9">
         {/* Card header */}
         <div className="mb-7">
-          <h2 className="text-[22px] font-extrabold text-navy">Send Us a Message.</h2>
-          <p className="mt-1.5 text-sm text-[#9ca3af]">We&apos;ll get back to you within 24 hours.</p>
+          <h2 className="text-navy text-[22px] font-extrabold">Send Us a Message.</h2>
+          <p className="mt-1.5 text-sm text-[#9ca3af]">
+            We&apos;ll get back to you within 24 hours.
+          </p>
         </div>
 
         {submitted ? (
@@ -172,10 +174,10 @@ function ContactForm() {
             animate={{ opacity: 1, scale: 1 }}
             className="flex flex-col items-center gap-4 py-12 text-center"
           >
-            <div className="flex size-14 items-center justify-center rounded-full bg-brand/10">
+            <div className="bg-brand/10 flex size-14 items-center justify-center rounded-full">
               <CheckCircle size={28} className="text-brand" />
             </div>
-            <p className="text-[17px] font-bold text-navy">Message Sent!</p>
+            <p className="text-navy text-[17px] font-bold">Message Sent!</p>
             <p className="max-w-xs text-sm text-[#6b7280]">
               Thank you for reaching out. We&apos;ll respond within 24 hours.
             </p>
@@ -184,7 +186,7 @@ function ContactForm() {
           <form onSubmit={handleSubmit} className="space-y-[18px]">
             {/* Full Name */}
             <div className="flex flex-col gap-[7px]">
-              <label className="text-[13px] font-semibold tracking-[0.01em] text-navy">
+              <label className="text-navy text-[13px] font-semibold tracking-[0.01em]">
                 Full Name<span className="text-brand">*</span>
               </label>
               <input
@@ -194,13 +196,13 @@ function ContactForm() {
                 value={form.name}
                 onChange={handleChange}
                 placeholder="e.g. Nethmi Perera"
-                className="h-[47px] w-full rounded-[10px] border border-[#e5e7eb] bg-white px-4 text-[14px] text-navy placeholder:text-navy/50 outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/15"
+                className="text-navy placeholder:text-navy/50 focus:border-brand focus:ring-brand/15 h-[47px] w-full rounded-[10px] border border-[#e5e7eb] bg-white px-4 text-[14px] transition-colors outline-none focus:ring-2"
               />
             </div>
 
             {/* Email */}
             <div className="flex flex-col gap-[7px]">
-              <label className="text-[13px] font-semibold tracking-[0.01em] text-navy">
+              <label className="text-navy text-[13px] font-semibold tracking-[0.01em]">
                 Email Address<span className="text-brand">*</span>
               </label>
               <input
@@ -210,13 +212,13 @@ function ContactForm() {
                 value={form.email}
                 onChange={handleChange}
                 placeholder="you@example.com"
-                className="h-[47px] w-full rounded-[10px] border border-[#e5e7eb] bg-white px-4 text-[14px] text-navy placeholder:text-navy/50 outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/15"
+                className="text-navy placeholder:text-navy/50 focus:border-brand focus:ring-brand/15 h-[47px] w-full rounded-[10px] border border-[#e5e7eb] bg-white px-4 text-[14px] transition-colors outline-none focus:ring-2"
               />
             </div>
 
             {/* Subject */}
             <div className="flex flex-col gap-[7px]">
-              <label className="text-[13px] font-semibold tracking-[0.01em] text-navy">
+              <label className="text-navy text-[13px] font-semibold tracking-[0.01em]">
                 Subject<span className="text-brand">*</span>
               </label>
               <div className="relative">
@@ -225,7 +227,7 @@ function ContactForm() {
                   required
                   value={form.subject}
                   onChange={handleChange}
-                  className="h-[47px] w-full appearance-none rounded-[10px] border border-[#e5e7eb] bg-white px-4 pr-10 text-[14px] text-navy outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/15 [&:not(:has(option:checked:not([value=''])))]:text-navy/50"
+                  className="text-navy focus:border-brand focus:ring-brand/15 [&:not(:has(option:checked:not([value=''])))]:text-navy/50 h-[47px] w-full appearance-none rounded-[10px] border border-[#e5e7eb] bg-white px-4 pr-10 text-[14px] transition-colors outline-none focus:ring-2"
                 >
                   <option value="" disabled>
                     Select a subject…
@@ -238,14 +240,14 @@ function ContactForm() {
                 </select>
                 <ChevronDown
                   size={16}
-                  className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[#9ca3af]"
+                  className="pointer-events-none absolute top-1/2 right-3.5 -translate-y-1/2 text-[#9ca3af]"
                 />
               </div>
             </div>
 
             {/* Message */}
             <div className="flex flex-col gap-[7px]">
-              <label className="text-[13px] font-semibold tracking-[0.01em] text-navy">
+              <label className="text-navy text-[13px] font-semibold tracking-[0.01em]">
                 Message<span className="text-brand">*</span>
               </label>
               <textarea
@@ -255,14 +257,14 @@ function ContactForm() {
                 value={form.message}
                 onChange={handleChange}
                 placeholder="Tell us what's on your mind…"
-                className="w-full resize-none rounded-[10px] border border-[#e5e7eb] bg-white px-4 py-3 text-[14px] leading-[1.65] text-navy placeholder:text-navy/50 outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/15"
+                className="text-navy placeholder:text-navy/50 focus:border-brand focus:ring-brand/15 w-full resize-none rounded-[10px] border border-[#e5e7eb] bg-white px-4 py-3 text-[14px] leading-[1.65] transition-colors outline-none focus:ring-2"
               />
             </div>
 
             {/* Submit */}
             <button
               type="submit"
-              className="flex h-[50px] w-full items-center justify-center gap-2.5 rounded-[12px] bg-brand font-bold text-[15px] text-white shadow-[0px_4px_9px_rgba(3,126,243,0.27)] transition-all hover:bg-brand-dark hover:shadow-[0px_6px_14px_rgba(3,126,243,0.35)] active:scale-[0.98]"
+              className="bg-brand hover:bg-brand-dark flex h-[50px] w-full items-center justify-center gap-2.5 rounded-[12px] text-[15px] font-bold text-white shadow-[0px_4px_9px_rgba(3,126,243,0.27)] transition-all hover:shadow-[0px_6px_14px_rgba(3,126,243,0.35)] active:scale-[0.98]"
             >
               <Send size={15} />
               Send Message
@@ -292,14 +294,14 @@ function InfoCard({
 }) {
   return (
     <div className="flex gap-[18px] rounded-2xl border border-[#eef1f5] bg-white px-[25px] py-[23px] shadow-[0px_2px_6px_rgba(0,0,0,0.05)]">
-      <div className="flex size-[46px] shrink-0 items-center justify-center rounded-[12px] bg-brand/[0.07]">
+      <div className="bg-brand/[0.07] flex size-[46px] shrink-0 items-center justify-center rounded-[12px]">
         <Icon size={20} className="text-brand" />
       </div>
       <div>
         <p className="mb-1.5 text-[12px] font-bold tracking-[1.2px] text-[#9ca3af] uppercase">
           {label}
         </p>
-        <p className="text-[14px] font-semibold text-navy">{value}</p>
+        <p className="text-navy text-[14px] font-semibold">{value}</p>
         <p className="text-[14px] text-[#6b7280]">{sub}</p>
       </div>
     </div>
@@ -319,13 +321,13 @@ function SocialRow({ icon: Icon, name, handle, href }: SocialRowProps) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex items-center gap-3 rounded-[12px] border border-[#eef1f5] px-[17px] py-[13px] transition-all hover:border-brand/25 hover:bg-brand/3"
+      className="group hover:border-brand/25 hover:bg-brand/3 flex items-center gap-3 rounded-[12px] border border-[#eef1f5] px-[17px] py-[13px] transition-all"
     >
-      <div className="flex size-[38px] shrink-0 items-center justify-center rounded-[10px] bg-[#f3f4f6] transition-colors group-hover:bg-brand/10">
-        <Icon className="size-[18px] text-[#1a1a2e] group-hover:text-brand" />
+      <div className="group-hover:bg-brand/10 flex size-[38px] shrink-0 items-center justify-center rounded-[10px] bg-[#f3f4f6] transition-colors">
+        <Icon className="group-hover:text-brand size-[18px] text-[#1a1a2e]" />
       </div>
       <div>
-        <p className="text-[13px] font-bold leading-snug text-navy">{name}</p>
+        <p className="text-navy text-[13px] leading-snug font-bold">{name}</p>
         <p className="text-[12px] leading-snug text-[#9ca3af]">{handle}</p>
       </div>
     </a>
@@ -349,12 +351,7 @@ function ContactInfoPanel() {
           value="aiesec.colombosouth@aiesec.net"
           sub="Replies within 24 hours"
         />
-        <InfoCard
-          icon={Phone}
-          label="Phone"
-          value="+94 11 2650 301"
-          sub="Mon–Fri, 9am–5pm (IST)"
-        />
+        <InfoCard icon={Phone} label="Phone" value="+94 11 2650 301" sub="Mon–Fri, 9am–5pm (IST)" />
       </div>
 
       {/* Social Links */}
@@ -385,12 +382,12 @@ function ContactInfoPanel() {
       </div>
 
       {/* Response time note */}
-      <div className="flex items-start gap-[14px] rounded-[14px] border border-brand/13 bg-brand/3 px-[21px] py-[19px]">
-        <div className="flex size-[42px] shrink-0 items-center justify-center rounded-[12px] bg-brand/9">
+      <div className="border-brand/13 bg-brand/3 flex items-start gap-[14px] rounded-[14px] border px-[21px] py-[19px]">
+        <div className="bg-brand/9 flex size-[42px] shrink-0 items-center justify-center rounded-[12px]">
           <Clock size={20} className="text-brand" />
         </div>
         <div>
-          <p className="text-[13px] font-bold leading-normal text-navy">
+          <p className="text-navy text-[13px] leading-normal font-bold">
             We respond within 24 hours
           </p>
           <p className="mt-1 text-[12px] leading-relaxed text-[#6b7280]">
@@ -447,14 +444,14 @@ function MapSection() {
           custom={0}
           className="mb-8 flex items-center gap-3"
         >
-          <div className="flex size-10 items-center justify-center rounded-[10px] bg-brand/8">
+          <div className="bg-brand/8 flex size-10 items-center justify-center rounded-[10px]">
             <MapPin size={18} className="text-brand" />
           </div>
           <div>
             <p className="text-[11px] font-bold tracking-[1.1px] text-[#9ca3af] uppercase">
               Where to find us
             </p>
-            <h2 className="text-[20px] font-extrabold text-navy">University of Moratuwa</h2>
+            <h2 className="text-navy text-[20px] font-extrabold">University of Moratuwa</h2>
           </div>
         </motion.div>
 
@@ -480,7 +477,7 @@ function MapSection() {
               referrerPolicy="no-referrer-when-downgrade"
               className="absolute inset-0"
             />
-            <div className="pointer-events-none absolute inset-0 bg-brand/5" />
+            <div className="bg-brand/5 pointer-events-none absolute inset-0" />
           </div>
 
           {/* Info sidebar */}
@@ -490,7 +487,7 @@ function MapSection() {
                 <p className="text-[11px] font-bold tracking-[1.1px] text-[#9ca3af] uppercase">
                   Address
                 </p>
-                <p className="mt-1.5 text-[14px] font-semibold leading-relaxed text-navy">
+                <p className="text-navy mt-1.5 text-[14px] leading-relaxed font-semibold">
                   University of Moratuwa
                 </p>
                 <p className="text-[13px] leading-relaxed text-[#6b7280]">
@@ -525,7 +522,7 @@ function MapSection() {
               href="https://maps.google.com/?q=University+of+Moratuwa"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 flex items-center justify-center gap-2 rounded-[10px] bg-brand py-3 text-[14px] font-bold text-white shadow-[0px_4px_9px_rgba(3,126,243,0.27)] transition-all hover:bg-brand-dark"
+              className="bg-brand hover:bg-brand-dark mt-6 flex items-center justify-center gap-2 rounded-[10px] py-3 text-[14px] font-bold text-white shadow-[0px_4px_9px_rgba(3,126,243,0.27)] transition-all"
             >
               <MapPin size={15} />
               Get Directions
@@ -556,7 +553,7 @@ function FaqSection() {
           whileInView="visible"
           viewport={{ once: true }}
           custom={0}
-          className="mb-6 flex size-16 items-center justify-center rounded-[18px] bg-brand/[0.07]"
+          className="bg-brand/[0.07] mb-6 flex size-16 items-center justify-center rounded-[18px]"
         >
           <HelpCircle size={30} className="text-brand" />
         </motion.div>
@@ -568,7 +565,7 @@ function FaqSection() {
           whileInView="visible"
           viewport={{ once: true }}
           custom={0.07}
-          className="text-[36px] font-extrabold leading-[1.2] text-navy"
+          className="text-navy text-[36px] leading-[1.2] font-extrabold"
         >
           Have More Questions?
         </motion.h2>
@@ -597,14 +594,14 @@ function FaqSection() {
         >
           <a
             href="/about#faq"
-            className="inline-flex h-[52px] items-center gap-2 rounded-[10px] border-2 border-brand px-6 text-[15px] font-bold text-brand transition-all hover:bg-brand hover:text-white"
+            className="border-brand text-brand hover:bg-brand inline-flex h-[52px] items-center gap-2 rounded-[10px] border-2 px-6 text-[15px] font-bold transition-all hover:text-white"
           >
             View FAQ
             <ArrowRight size={15} />
           </a>
           <Link
             to="/programs/global-volunteer"
-            className="inline-flex h-[52px] items-center gap-2 rounded-[10px] bg-brand px-6 text-[15px] font-bold text-white shadow-[0px_4px_9px_rgba(3,126,243,0.27)] transition-all hover:bg-brand-dark hover:shadow-[0px_6px_14px_rgba(3,126,243,0.35)]"
+            className="bg-brand hover:bg-brand-dark inline-flex h-[52px] items-center gap-2 rounded-[10px] px-6 text-[15px] font-bold text-white shadow-[0px_4px_9px_rgba(3,126,243,0.27)] transition-all hover:shadow-[0px_6px_14px_rgba(3,126,243,0.35)]"
           >
             Explore Programs
             <ArrowRight size={15} />
@@ -622,7 +619,7 @@ function FaqSection() {
         >
           {stats.map(({ value, label }) => (
             <div key={label} className="flex flex-col items-center gap-1">
-              <span className="text-[20px] font-black leading-tight text-brand">{value}</span>
+              <span className="text-brand text-[20px] leading-tight font-black">{value}</span>
               <span className="text-[12px] font-medium text-[#9ca3af]">{label}</span>
             </div>
           ))}

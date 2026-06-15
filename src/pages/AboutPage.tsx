@@ -27,7 +27,7 @@ function AboutHero() {
         className="absolute inset-0 size-full object-cover object-center"
       />
       {/* gradient overlay */}
-      <div className="absolute inset-0 bg-linear-to-b from-navy/50 via-navy/60 to-navy/90" />
+      <div className="from-navy/50 via-navy/60 to-navy/90 absolute inset-0 bg-linear-to-b" />
 
       {/* Content — grows to fill space and centers the text block */}
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 py-16 text-center lg:px-8">
@@ -56,7 +56,7 @@ function AboutHero() {
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Link
             to="/programs/global-volunteer"
-            className="inline-flex items-center gap-2 rounded-[10px] bg-brand px-7 py-3.5 text-[15px] font-bold text-white shadow-lg transition-all duration-200 hover:bg-brand-dark hover:shadow-xl"
+            className="bg-brand hover:bg-brand-dark inline-flex items-center gap-2 rounded-[10px] px-7 py-3.5 text-[15px] font-bold text-white shadow-lg transition-all duration-200 hover:shadow-xl"
           >
             Explore Programs
             <ArrowRight size={16} />
@@ -135,7 +135,8 @@ function OurHistory() {
                 developed more than 1,000 young leaders, and earned recognition at both national and
                 regional levels. From winning the Best Entity Award at AIESEC Sri Lanka to being
                 named the Fastest Growing Local Committee in the South Asia region, our track record
-                speaks to the quality and commitment of every member who has passed through our doors.
+                speaks to the quality and commitment of every member who has passed through our
+                doors.
               </p>
               <p>
                 Today, AIESEC in Colombo South continues its mission with the same energy that
@@ -158,7 +159,7 @@ function OurHistory() {
                       <Icon size={18} className="text-brand" />
                     </div>
                     <div>
-                      <p className="text-text-primary text-[13px] font-bold leading-tight">
+                      <p className="text-text-primary text-[13px] leading-tight font-bold">
                         {a.label}
                       </p>
                       <p className="text-text-muted mt-0.5 text-[12px]">{a.sub}</p>
@@ -179,15 +180,11 @@ function OurHistory() {
                 <div key={item.year} className="relative flex gap-6 pl-8">
                   {/* Dot */}
                   <div
-                    className={`absolute left-0 top-1 flex size-6 shrink-0 items-center justify-center rounded-full border-2 ${
-                      item.highlight
-                        ? 'border-brand bg-brand'
-                        : 'border-gray-300 bg-white'
+                    className={`absolute top-1 left-0 flex size-6 shrink-0 items-center justify-center rounded-full border-2 ${
+                      item.highlight ? 'border-brand bg-brand' : 'border-gray-300 bg-white'
                     }`}
                   >
-                    {item.highlight && (
-                      <div className="size-2 rounded-full bg-white" />
-                    )}
+                    {item.highlight && <div className="size-2 rounded-full bg-white" />}
                   </div>
                   {/* Content */}
                   <div>
@@ -242,35 +239,40 @@ const coreValues = [
     color: 'text-brand',
     bg: 'bg-brand/10',
     title: 'Activating Leadership',
-    description: 'We lead by example, inspiring others and taking responsibility for the world around us.',
+    description:
+      'We lead by example, inspiring others and taking responsibility for the world around us.',
   },
   {
     icon: ShieldCheck,
     color: 'text-violet-600',
     bg: 'bg-violet-600/10',
     title: 'Demonstrating Ethics',
-    description: 'We act honestly and openly in everything we say and do, building trust at every step.',
+    description:
+      'We act honestly and openly in everything we say and do, building trust at every step.',
   },
   {
     icon: Globe,
     color: 'text-pink-600',
     bg: 'bg-pink-600/10',
     title: 'Living Diversity',
-    description: "We embrace different cultures and perspectives, learning from one another across borders.",
+    description:
+      'We embrace different cultures and perspectives, learning from one another across borders.',
   },
   {
     icon: Smile,
     color: 'text-red-500',
     bg: 'bg-red-500/10',
     title: 'Enjoying Participation',
-    description: 'We create a joyful environment where every member feels valued, included, and engaged.',
+    description:
+      'We create a joyful environment where every member feels valued, included, and engaged.',
   },
   {
     icon: Star,
     color: 'text-amber-500',
     bg: 'bg-amber-500/10',
     title: 'Striving for Excellence',
-    description: 'We constantly push beyond boundaries to deliver the highest quality in everything we do.',
+    description:
+      'We constantly push beyond boundaries to deliver the highest quality in everything we do.',
   },
   {
     icon: Leaf,
@@ -414,7 +416,7 @@ function TeamSection() {
                   className="size-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 />
                 {/* LinkedIn overlay on hover */}
-                <div className="absolute inset-0 flex items-center justify-center bg-brand/70 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover:opacity-100">
+                <div className="bg-brand/70 absolute inset-0 flex items-center justify-center opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover:opacity-100">
                   <div className="flex flex-col items-center gap-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -436,7 +438,7 @@ function TeamSection() {
               </div>
 
               {/* Bottom accent bar */}
-              <div className="h-[3px] w-full bg-brand/0 transition-all duration-300 group-hover:bg-brand" />
+              <div className="bg-brand/0 group-hover:bg-brand h-[3px] w-full transition-all duration-300" />
             </a>
           ))}
         </div>
@@ -498,7 +500,7 @@ function GlobalStructure() {
                       <div className="flex items-center gap-2">
                         <h3 className="text-text-primary text-[16px] font-bold">{item.title}</h3>
                         {i === 2 && (
-                          <span className="bg-brand text-[10px] font-bold text-white rounded-full px-2 py-0.5 uppercase tracking-wide">
+                          <span className="bg-brand rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wide text-white uppercase">
                             Us
                           </span>
                         )}
@@ -521,7 +523,7 @@ function GlobalStructure() {
             <div className="relative w-full max-w-md space-y-0">
               {/* Tier 1 — Global */}
               <div className="relative z-10">
-                <div className="border-brand/15 bg-white/80 relative overflow-hidden rounded-2xl border px-6 py-5 shadow-[0_8px_32px_rgba(3,126,243,0.08)] backdrop-blur-sm">
+                <div className="border-brand/15 relative overflow-hidden rounded-2xl border bg-white/80 px-6 py-5 shadow-[0_8px_32px_rgba(3,126,243,0.08)] backdrop-blur-sm">
                   <div className="from-brand/5 pointer-events-none absolute inset-0 bg-linear-to-br to-transparent" />
                   <div className="relative flex items-center justify-between gap-4">
                     <div className="flex items-center gap-3">
@@ -530,7 +532,9 @@ function GlobalStructure() {
                       </div>
                       <div>
                         <p className="text-text-primary text-[15px] font-bold">AIESEC Global</p>
-                        <p className="text-text-muted text-[12px]">World&apos;s largest youth-run org</p>
+                        <p className="text-text-muted text-[12px]">
+                          World&apos;s largest youth-run org
+                        </p>
                       </div>
                     </div>
                     <span className="bg-brand/10 text-brand shrink-0 rounded-full px-3 py-1 text-[12px] font-bold">
@@ -550,7 +554,7 @@ function GlobalStructure() {
 
               {/* Tier 2 — Sri Lanka */}
               <div className="relative z-20 -mt-1 px-4">
-                <div className="border-brand/25 bg-white relative overflow-hidden rounded-2xl border px-6 py-5 shadow-[0_12px_40px_rgba(3,126,243,0.12)]">
+                <div className="border-brand/25 relative overflow-hidden rounded-2xl border bg-white px-6 py-5 shadow-[0_12px_40px_rgba(3,126,243,0.12)]">
                   <div className="from-brand/8 pointer-events-none absolute inset-0 bg-linear-to-br to-transparent" />
                   <div className="relative flex items-center justify-between gap-4">
                     <div className="flex items-center gap-3">
@@ -636,7 +640,7 @@ function AboutCTA() {
 
       <div className="relative z-10 mx-auto max-w-2xl px-6">
         {/* Badge */}
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand/25 bg-brand/8 px-4 py-1.5">
+        <div className="border-brand/25 bg-brand/8 mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5">
           <Star size={13} className="text-brand" />
           <span className="text-brand text-xs font-bold tracking-widest uppercase">
             Join the Community
@@ -655,14 +659,14 @@ function AboutCTA() {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Link
             to="/programs/global-volunteer"
-            className="inline-flex items-center gap-2 rounded-[10px] bg-brand px-8 py-4 text-[15px] font-bold text-white shadow-lg shadow-brand/30 transition-all duration-200 hover:bg-brand-dark hover:shadow-xl"
+            className="bg-brand shadow-brand/30 hover:bg-brand-dark inline-flex items-center gap-2 rounded-[10px] px-8 py-4 text-[15px] font-bold text-white shadow-lg transition-all duration-200 hover:shadow-xl"
           >
             Apply to Join
             <ArrowRight size={16} />
           </Link>
           <Link
             to="/programs/global-talent"
-            className="inline-flex items-center gap-2 rounded-[10px] border-2 border-brand/40 px-8 py-4 text-[15px] font-bold text-brand transition-all duration-200 hover:border-brand hover:bg-brand/5"
+            className="border-brand/40 text-brand hover:border-brand hover:bg-brand/5 inline-flex items-center gap-2 rounded-[10px] border-2 px-8 py-4 text-[15px] font-bold transition-all duration-200"
           >
             Learn About Programs
             <ArrowRight size={16} />
