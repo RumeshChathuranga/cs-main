@@ -25,8 +25,12 @@ export interface BlogPost {
   created_by: string | null
 }
 
-export type BlogPostInsert = Omit<BlogPost, 'id' | 'created_at' | 'updated_at'>
-export type BlogPostUpdate = Partial<BlogPostInsert>
+export type BlogPostInsert = Omit<BlogPost, 'id' | 'created_at' | 'updated_at'> & {
+  id?: string
+  created_at?: string
+  updated_at?: string
+}
+export type BlogPostUpdate = Partial<BlogPost>
 
 // Supabase Database type for the client
 export interface Database {
@@ -36,10 +40,12 @@ export interface Database {
         Row: BlogPost
         Insert: BlogPostInsert
         Update: BlogPostUpdate
+        Relationships: []
       }
     }
-    Views: Record<string, never>
-    Functions: Record<string, never>
-    Enums: Record<string, never>
+    Views: Record<never, never>
+    Functions: Record<never, never>
+    Enums: Record<never, never>
+    CompositeTypes: Record<never, never>
   }
 }

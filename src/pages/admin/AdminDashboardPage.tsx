@@ -65,7 +65,7 @@ export function AdminDashboardPage() {
         .from('blog_posts')
         .select('*')
         .order('created_at', { ascending: false })
-      if (!error) setPosts(data ?? [])
+      if (!error) setPosts((data ?? []) as BlogPost[])
       setLoading(false)
     }
     void load()
@@ -80,7 +80,7 @@ export function AdminDashboardPage() {
         status: newStatus,
         published_at: newStatus === 'published' ? new Date().toISOString() : null,
         updated_at: new Date().toISOString(),
-      })
+      } as object)
       .eq('id', post.id)
 
     if (error) {

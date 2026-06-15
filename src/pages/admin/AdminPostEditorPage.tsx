@@ -5,7 +5,7 @@ import { supabase } from '../../lib/supabase'
 import { useAuth } from '../../contexts/AuthContext'
 import { RichTextEditor } from '../../components/admin/RichTextEditor'
 import { ImageUploader } from '../../components/admin/ImageUploader'
-import type { BlogPostCategory } from '../../lib/database.types'
+import type { BlogPost, BlogPostCategory } from '../../lib/database.types'
 
 const CATEGORIES: BlogPostCategory[] = [
   'Exchange Experiences',
@@ -95,18 +95,19 @@ export function AdminPostEditorPage() {
   useEffect(() => {
     if (!id) return
     async function load() {
-      const { data, error } = await supabase.from('blog_posts').select('*').eq('id', id).single()
-      if (!error && data) {
+      const { data, error } = await supabase.from('blog_posts').select('*').eq('id', id!).single()
+      const row = data as BlogPost | null
+      if (!error && row) {
         setForm({
-          title: data.title,
-          excerpt: data.excerpt ?? '',
-          content: data.content,
-          category: data.category as BlogPostCategory,
-          cover_image_url: data.cover_image_url ?? '',
-          author_name: data.author_name,
-          author_avatar_url: data.author_avatar_url ?? '',
-          read_time: data.read_time,
-          status: data.status as 'draft' | 'published',
+          title: row.title,
+          excerpt: row.excerpt ?? '',
+          content: row.content,
+          category: row.category as BlogPostCategory,
+          cover_image_url: row.cover_image_url ?? '',
+          author_name: row.author_name,
+          author_avatar_url: row.author_avatar_url ?? '',
+          read_time: row.read_time,
+          status: row.status as 'draft' | 'published',
         })
       }
       setLoadingPost(false)
@@ -136,9 +137,14 @@ export function AdminPostEditorPage() {
 
     let error
     if (isEditing) {
-      ;({ error } = await supabase.from('blog_posts').update(payload).eq('id', id!))
+      ;({ error } = await supabase
+        .from('blog_posts')
+        .update(payload as object)
+        .eq('id', id!))
     } else {
-      ;({ error } = await supabase.from('blog_posts').insert({ ...payload, created_at: now }))
+      ;({ error } = await supabase
+        .from('blog_posts')
+        .insert([{ ...payload, created_at: now }] as object[]))
     }
 
     if (error) {

@@ -45,7 +45,7 @@ export function useBlogPosts(category?: string) {
       if (error) {
         setError(error.message)
       } else {
-        setPosts(data ?? [])
+        setPosts((data ?? []) as BlogPost[])
       }
       setLoading(false)
     }
@@ -85,7 +85,7 @@ export function useBlogPost(id: string) {
       if (error) {
         setError(error.message)
       } else {
-        setPost(data)
+        setPost(data as BlogPost | null)
       }
       setLoading(false)
     }
