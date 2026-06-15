@@ -1,16 +1,8 @@
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import {
-  PenLine,
-  Trash2,
-  Eye,
-  EyeOff,
-  Plus,
-  FileText,
-  AlertCircle,
-  CheckCircle,
-} from 'lucide-react'
-import { supabase } from '../../lib/supabase'
+import { PenLine, Trash2, Eye, EyeOff, Plus, FileText } from 'lucide-react'
+import { useAdminBlogPosts } from '../../hooks/queries/useBlogQueries'
+import { useDeleteBlogPost, useToggleBlogPublish } from '../../hooks/mutations/useBlogMutations'
+import { useToastStore } from '../../stores/uiStore'
 import type { BlogPost } from '../../lib/database.types'
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -22,96 +14,41 @@ const CATEGORY_COLORS: Record<string, string> = {
   'Global Impact': '#3d5afe',
 }
 
-function Toast({ message, type }: { message: string; type: 'success' | 'error' }) {
-  return (
-    <div
-      className={[
-        'fixed right-6 bottom-6 z-50 flex items-center gap-3 rounded-xl px-5 py-3 text-[14px] font-medium text-white shadow-lg transition-all',
-        type === 'success' ? 'bg-[#00c853]' : 'bg-red-500',
-      ].join(' ')}
-    >
-      {type === 'success' ? <CheckCircle size={18} /> : <AlertCircle size={18} />}
-      {message}
-    </div>
-  )
-}
-
 export function AdminDashboardPage() {
-  const [posts, setPosts] = useState<BlogPost[]>([])
-  const [loading, setLoading] = useState(true)
-  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
-  const [deletingId, setDeletingId] = useState<string | null>(null)
-  const [togglingId, setTogglingId] = useState<string | null>(null)
-
-  const showToast = (message: string, type: 'success' | 'error') => {
-    setToast({ message, type })
-    setTimeout(() => setToast(null), 3000)
-  }
-
-  const fetchPosts = async () => {
-    setLoading(true)
-    const { data, error } = await supabase
-      .from('blog_posts')
-      .select('*')
-      .order('created_at', { ascending: false })
-    if (!error) setPosts(data ?? [])
-    setLoading(false)
-  }
-
-  useEffect(() => {
-    async function load() {
-      setLoading(true)
-      const { data, error } = await supabase
-        .from('blog_posts')
-        .select('*')
-        .order('created_at', { ascending: false })
-      if (!error) setPosts((data ?? []) as BlogPost[])
-      setLoading(false)
-    }
-    void load()
-  }, [])
+  const { data: posts = [], isLoading: loading } = useAdminBlogPosts()
+  const togglePublishMutation = useToggleBlogPublish()
+  const deletePostMutation = useDeleteBlogPost()
+  const showToast = useToastStore((s) => s.showToast)
 
   const togglePublish = async (post: BlogPost) => {
-    setTogglingId(post.id)
-    const newStatus = post.status === 'published' ? 'draft' : 'published'
-    const { error } = await supabase
-      .from('blog_posts')
-      .update({
-        status: newStatus,
-        published_at: newStatus === 'published' ? new Date().toISOString() : null,
-        updated_at: new Date().toISOString(),
-      } as object)
-      .eq('id', post.id)
-
-    if (error) {
+    try {
+      const newStatus = await togglePublishMutation.mutateAsync(post)
+      showToast(
+        newStatus === 'published' ? 'Post published!' : 'Post moved to drafts.',
+        'success',
+      )
+    } catch {
       showToast('Failed to update status.', 'error')
-    } else {
-      showToast(newStatus === 'published' ? 'Post published!' : 'Post moved to drafts.', 'success')
-      fetchPosts()
     }
-    setTogglingId(null)
   }
 
   const deletePost = async (id: string) => {
     if (!window.confirm('Are you sure you want to permanently delete this post?')) return
-    setDeletingId(id)
-    const { error } = await supabase.from('blog_posts').delete().eq('id', id)
-    if (error) {
-      showToast('Failed to delete post.', 'error')
-    } else {
+    try {
+      await deletePostMutation.mutateAsync(id)
       showToast('Post deleted.', 'success')
-      setPosts((prev) => prev.filter((p) => p.id !== id))
+    } catch {
+      showToast('Failed to delete post.', 'error')
     }
-    setDeletingId(null)
   }
 
   const published = posts.filter((p) => p.status === 'published')
   const drafts = posts.filter((p) => p.status === 'draft')
+  const togglingId = togglePublishMutation.isPending ? togglePublishMutation.variables?.id : null
+  const deletingId = deletePostMutation.isPending ? deletePostMutation.variables : null
 
   return (
     <div className="mx-auto max-w-5xl">
-      {toast && <Toast message={toast.message} type={toast.type} />}
-
       {/* Header */}
       <div className="mb-8 flex items-center justify-between">
         <div>
@@ -186,7 +123,6 @@ export function AdminDashboardPage() {
             <tbody className="divide-y divide-[#f5f7fa]">
               {posts.map((post) => (
                 <tr key={post.id} className="group transition-colors hover:bg-[#fafafa]">
-                  {/* Title */}
                   <td className="px-6 py-4">
                     <div className="flex items-start gap-3">
                       {post.cover_image_url && (
@@ -207,7 +143,6 @@ export function AdminDashboardPage() {
                     </div>
                   </td>
 
-                  {/* Category */}
                   <td className="px-4 py-4">
                     <span
                       className="inline-block rounded-full px-2.5 py-1 text-[11px] font-semibold text-white"
@@ -217,7 +152,6 @@ export function AdminDashboardPage() {
                     </span>
                   </td>
 
-                  {/* Status */}
                   <td className="px-4 py-4">
                     <span
                       className={[
@@ -237,7 +171,6 @@ export function AdminDashboardPage() {
                     </span>
                   </td>
 
-                  {/* Date */}
                   <td className="px-4 py-4 text-[13px] text-[#6b7280]">
                     {new Date(post.created_at).toLocaleDateString('en-US', {
                       month: 'short',
@@ -246,12 +179,10 @@ export function AdminDashboardPage() {
                     })}
                   </td>
 
-                  {/* Actions */}
                   <td className="px-6 py-4">
                     <div className="flex items-center justify-end gap-2">
-                      {/* Publish/Unpublish */}
                       <button
-                        onClick={() => togglePublish(post)}
+                        onClick={() => void togglePublish(post)}
                         disabled={togglingId === post.id}
                         title={post.status === 'published' ? 'Move to draft' : 'Publish'}
                         className={[
@@ -270,7 +201,6 @@ export function AdminDashboardPage() {
                         )}
                       </button>
 
-                      {/* Edit */}
                       <Link
                         to={`/admin/posts/${post.id}/edit`}
                         className="hover:bg-brand/10 hover:text-brand rounded-lg p-2 text-[#9ca3af] transition-colors"
@@ -279,9 +209,8 @@ export function AdminDashboardPage() {
                         <PenLine size={16} />
                       </Link>
 
-                      {/* Delete */}
                       <button
-                        onClick={() => deletePost(post.id)}
+                        onClick={() => void deletePost(post.id)}
                         disabled={deletingId === post.id}
                         className="rounded-lg p-2 text-[#9ca3af] transition-colors hover:bg-red-50 hover:text-red-500"
                         title="Delete"

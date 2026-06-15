@@ -1,21 +1,12 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Mail, Archive, Eye, AlertCircle, Inbox, RefreshCw, Trash2 } from 'lucide-react'
+import { useContactMessages } from '../../hooks/queries/useContactMessageQueries'
 import {
-  Mail,
-  Archive,
-  Eye,
-  AlertCircle,
-  CheckCircle,
-  Inbox,
-  RefreshCw,
-  Trash2,
-} from 'lucide-react'
-import {
-  fetchContactMessages,
-  updateMessageStatus,
-  deleteContactMessage,
-} from '../../hooks/useContactMessages'
-import { useAuth } from '../../contexts/AuthContext'
+  useDeleteContactMessage,
+  useUpdateMessageStatus,
+} from '../../hooks/mutations/useContactMessageMutations'
+import { useToastStore } from '../../stores/uiStore'
 import type { ContactMessage, ContactMessageStatus } from '../../lib/database.types'
 
 type FilterTab = 'all' | ContactMessageStatus
@@ -34,81 +25,26 @@ const STATUS_STYLES: Record<ContactMessageStatus, string> = {
   archived: 'bg-orange-50 text-[#9ca3af]',
 }
 
-function Toast({ message, type }: { message: string; type: 'success' | 'error' }) {
-  return (
-    <div
-      className={[
-        'fixed right-6 bottom-6 z-50 flex items-center gap-3 rounded-xl px-5 py-3 text-[14px] font-medium text-white shadow-lg',
-        type === 'success' ? 'bg-[#00c853]' : 'bg-red-500',
-      ].join(' ')}
-    >
-      {type === 'success' ? <CheckCircle size={18} /> : <AlertCircle size={18} />}
-      {message}
-    </div>
-  )
-}
-
 export function AdminMessagesPage() {
-  const { user } = useAuth()
-  const [messages, setMessages] = useState<ContactMessage[]>([])
-  const [loading, setLoading] = useState(true)
-  const [loadError, setLoadError] = useState<string | null>(null)
+  const { data: messages = [], isLoading: loading, error, refetch, isFetching } =
+    useContactMessages()
+  const updateStatusMutation = useUpdateMessageStatus()
+  const deleteMessageMutation = useDeleteContactMessage()
+  const showToast = useToastStore((s) => s.showToast)
+
   const [filter, setFilter] = useState<FilterTab>('all')
-  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
-  const [updatingId, setUpdatingId] = useState<string | null>(null)
-  const [deletingId, setDeletingId] = useState<string | null>(null)
 
-  const showToast = (message: string, type: 'success' | 'error') => {
-    setToast({ message, type })
-    setTimeout(() => setToast(null), 3000)
-  }
-
-  const loadMessages = useCallback(async () => {
-    setLoading(true)
-    setLoadError(null)
-    const { data, error } = await fetchContactMessages()
-    if (error) {
-      setLoadError(error)
-      showToast('Failed to load messages.', 'error')
-    } else {
-      setMessages(data)
-    }
-    setLoading(false)
-  }, [])
-
-  useEffect(() => {
-    if (!user) return
-
-    let cancelled = false
-
-    ;(async () => {
-      const { data, error } = await fetchContactMessages()
-      if (cancelled) return
-
-      if (error) {
-        setLoadError(error)
-      } else {
-        setMessages(data)
-        setLoadError(null)
-      }
-      setLoading(false)
-    })()
-
-    return () => {
-      cancelled = true
-    }
-  }, [user])
+  const loadError = error?.message ?? null
+  const updatingId = updateStatusMutation.isPending ? updateStatusMutation.variables?.id : null
+  const deletingId = deleteMessageMutation.isPending ? deleteMessageMutation.variables : null
 
   const handleStatusUpdate = async (id: string, status: ContactMessageStatus) => {
-    setUpdatingId(id)
-    const { error } = await updateMessageStatus(id, status)
-    if (error) {
-      showToast('Failed to update status.', 'error')
-    } else {
-      setMessages((prev) => prev.map((m) => (m.id === id ? { ...m, status } : m)))
+    try {
+      await updateStatusMutation.mutateAsync({ id, status })
       showToast('Status updated.', 'success')
+    } catch {
+      showToast('Failed to update status.', 'error')
     }
-    setUpdatingId(null)
   }
 
   const handleDelete = async (msg: ContactMessage) => {
@@ -116,15 +52,12 @@ export function AdminMessagesPage() {
       return
     }
 
-    setDeletingId(msg.id)
-    const { error } = await deleteContactMessage(msg.id)
-    if (error) {
-      showToast('Failed to delete message.', 'error')
-    } else {
-      setMessages((prev) => prev.filter((m) => m.id !== msg.id))
+    try {
+      await deleteMessageMutation.mutateAsync(msg.id)
       showToast('Message deleted.', 'success')
+    } catch {
+      showToast('Failed to delete message.', 'error')
     }
-    setDeletingId(null)
   }
 
   const filtered = filter === 'all' ? messages : messages.filter((m) => m.status === filter)
@@ -147,8 +80,6 @@ export function AdminMessagesPage() {
 
   return (
     <div className="mx-auto max-w-5xl">
-      {toast && <Toast message={toast.message} type={toast.type} />}
-
       <div className="mb-8 flex items-center justify-between">
         <div>
           <h1 className="text-navy text-[28px] font-extrabold">Messages</h1>
@@ -157,11 +88,11 @@ export function AdminMessagesPage() {
           </p>
         </div>
         <button
-          onClick={() => void loadMessages()}
-          disabled={loading}
+          onClick={() => void refetch()}
+          disabled={isFetching}
           className="hover:text-brand flex items-center gap-2 rounded-xl border border-[#e5e7eb] bg-white px-4 py-2.5 text-[14px] font-medium text-[#6b7280] transition-colors hover:bg-[#f5f7fa] disabled:opacity-50"
         >
-          <RefreshCw size={16} className={loading ? 'animate-spin' : ''} />
+          <RefreshCw size={16} className={isFetching ? 'animate-spin' : ''} />
           Refresh
         </button>
       </div>
@@ -180,7 +111,6 @@ export function AdminMessagesPage() {
         </div>
       )}
 
-      {/* Filter tabs */}
       <div className="mb-6 flex flex-wrap gap-2">
         {tabs.map(({ key, label }) => (
           <button
@@ -280,7 +210,7 @@ export function AdminMessagesPage() {
                     <div className="flex items-center justify-end gap-2">
                       {msg.status === 'new' && (
                         <button
-                          onClick={() => handleStatusUpdate(msg.id, 'read')}
+                          onClick={() => void handleStatusUpdate(msg.id, 'read')}
                           disabled={updatingId === msg.id}
                           title="Mark as read"
                           className="hover:text-brand rounded-lg p-2 text-[#9ca3af] transition-colors hover:bg-blue-50"
@@ -297,7 +227,7 @@ export function AdminMessagesPage() {
                       </a>
                       {msg.status !== 'archived' && (
                         <button
-                          onClick={() => handleStatusUpdate(msg.id, 'archived')}
+                          onClick={() => void handleStatusUpdate(msg.id, 'archived')}
                           disabled={updatingId === msg.id}
                           title="Archive"
                           className="rounded-lg p-2 text-[#9ca3af] transition-colors hover:bg-orange-50 hover:text-[#ff6b35]"

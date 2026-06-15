@@ -1,9 +1,8 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
 import { LayoutDashboard, PenLine, LogOut, ExternalLink, Mail } from 'lucide-react'
-import { useAuth } from '../../contexts/AuthContext'
+import { useAuth } from '../../stores/authStore'
 import { images } from '../../assets/images'
-import { getUnreadCount } from '../../hooks/useContactMessages'
+import { useUnreadMessageCount } from '../../hooks/queries/useContactMessageQueries'
 
 const navItems = [
   { to: '/admin/dashboard', icon: LayoutDashboard, label: 'All Posts' },
@@ -14,16 +13,7 @@ const navItems = [
 export function AdminLayout() {
   const { user, signOut } = useAuth()
   const navigate = useNavigate()
-  const [unreadCount, setUnreadCount] = useState(0)
-
-  useEffect(() => {
-    if (!user) return
-    async function loadUnread() {
-      const count = await getUnreadCount()
-      setUnreadCount(count)
-    }
-    void loadUnread()
-  }, [user])
+  const { data: unreadCount = 0 } = useUnreadMessageCount()
 
   const handleSignOut = async () => {
     await signOut()

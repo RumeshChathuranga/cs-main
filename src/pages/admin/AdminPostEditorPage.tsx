@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { ArrowLeft, Save, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react'
-import { supabase } from '../../lib/supabase'
-import { useAuth } from '../../contexts/AuthContext'
+import { ArrowLeft, Save, Eye, EyeOff } from 'lucide-react'
+import { useAuth } from '../../stores/authStore'
 import { RichTextEditor } from '../../components/admin/RichTextEditor'
 import { ImageUploader } from '../../components/admin/ImageUploader'
-import type { BlogPost, BlogPostCategory } from '../../lib/database.types'
+import { useAdminBlogPost } from '../../hooks/queries/useBlogQueries'
+import { useSaveBlogPost } from '../../hooks/mutations/useBlogMutations'
+import { useToastStore } from '../../stores/uiStore'
+import type { BlogPostCategory } from '../../lib/database.types'
 
 const CATEGORIES: BlogPostCategory[] = [
   'Exchange Experiences',
@@ -40,18 +42,28 @@ const EMPTY_FORM: FormData = {
   status: 'draft',
 }
 
-function Toast({ message, type }: { message: string; type: 'success' | 'error' }) {
-  return (
-    <div
-      className={[
-        'fixed right-6 bottom-6 z-50 flex items-center gap-3 rounded-xl px-5 py-3 text-[14px] font-medium text-white shadow-lg',
-        type === 'success' ? 'bg-[#00c853]' : 'bg-red-500',
-      ].join(' ')}
-    >
-      {type === 'success' ? <CheckCircle size={18} /> : <AlertCircle size={18} />}
-      {message}
-    </div>
-  )
+function postToForm(post: {
+  title: string
+  excerpt: string | null
+  content: string
+  category: BlogPostCategory
+  cover_image_url: string | null
+  author_name: string
+  author_avatar_url: string | null
+  read_time: number
+  status: 'draft' | 'published'
+}): FormData {
+  return {
+    title: post.title,
+    excerpt: post.excerpt ?? '',
+    content: post.content,
+    category: post.category,
+    cover_image_url: post.cover_image_url ?? '',
+    author_name: post.author_name,
+    author_avatar_url: post.author_avatar_url ?? '',
+    read_time: post.read_time,
+    status: post.status,
+  }
 }
 
 function Field({
@@ -80,43 +92,17 @@ export function AdminPostEditorPage() {
   const isEditing = Boolean(id)
   const navigate = useNavigate()
   const { user } = useAuth()
+  const showToast = useToastStore((s) => s.showToast)
 
-  const [form, setForm] = useState<FormData>(EMPTY_FORM)
-  const [loadingPost, setLoadingPost] = useState(isEditing)
-  const [saving, setSaving] = useState(false)
-  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
+  const { data: existingPost, isLoading: loadingPost } = useAdminBlogPost(id)
+  const saveMutation = useSaveBlogPost()
 
-  const showToast = (message: string, type: 'success' | 'error') => {
-    setToast({ message, type })
-    setTimeout(() => setToast(null), 3500)
-  }
-
-  // Load existing post when editing
-  useEffect(() => {
-    if (!id) return
-    async function load() {
-      const { data, error } = await supabase.from('blog_posts').select('*').eq('id', id!).single()
-      const row = data as BlogPost | null
-      if (!error && row) {
-        setForm({
-          title: row.title,
-          excerpt: row.excerpt ?? '',
-          content: row.content,
-          category: row.category as BlogPostCategory,
-          cover_image_url: row.cover_image_url ?? '',
-          author_name: row.author_name,
-          author_avatar_url: row.author_avatar_url ?? '',
-          read_time: row.read_time,
-          status: row.status as 'draft' | 'published',
-        })
-      }
-      setLoadingPost(false)
-    }
-    load()
-  }, [id])
+  const [draft, setDraft] = useState<FormData | null>(null)
+  const form =
+    draft ?? (isEditing && existingPost ? postToForm(existingPost) : EMPTY_FORM)
 
   const set = <K extends keyof FormData>(key: K, value: FormData[K]) =>
-    setForm((prev) => ({ ...prev, [key]: value }))
+    setDraft((prev) => ({ ...(prev ?? form), [key]: value }))
 
   const save = async (publishNow?: boolean) => {
     if (!form.title.trim() || !form.author_name.trim()) {
@@ -124,7 +110,6 @@ export function AdminPostEditorPage() {
       return
     }
 
-    setSaving(true)
     const now = new Date().toISOString()
     const status = publishNow ? 'published' : form.status
     const payload = {
@@ -135,31 +120,22 @@ export function AdminPostEditorPage() {
       created_by: user?.id ?? null,
     }
 
-    let error
-    if (isEditing) {
-      ;({ error } = await supabase
-        .from('blog_posts')
-        .update(payload as object)
-        .eq('id', id!))
-    } else {
-      ;({ error } = await supabase
-        .from('blog_posts')
-        .insert([{ ...payload, created_at: now }] as object[]))
-    }
-
-    if (error) {
-      showToast('Failed to save post. Please try again.', 'error')
-    } else {
+    try {
+      await saveMutation.mutateAsync({
+        id: isEditing ? id : undefined,
+        payload: isEditing ? payload : { ...payload, created_at: now },
+      })
       showToast(
         publishNow ? 'Post published!' : isEditing ? 'Changes saved.' : 'Post saved as draft.',
         'success',
       )
       setTimeout(() => navigate('/admin/dashboard'), 1200)
+    } catch {
+      showToast('Failed to save post. Please try again.', 'error')
     }
-    setSaving(false)
   }
 
-  if (loadingPost) {
+  if (loadingPost || (isEditing && !existingPost)) {
     return (
       <div className="flex justify-center py-20">
         <div className="border-brand size-8 animate-spin rounded-full border-4 border-t-transparent" />
@@ -169,9 +145,6 @@ export function AdminPostEditorPage() {
 
   return (
     <div className="mx-auto max-w-5xl">
-      {toast && <Toast message={toast.message} type={toast.type} />}
-
-      {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <button
@@ -191,19 +164,18 @@ export function AdminPostEditorPage() {
           </div>
         </div>
 
-        {/* Action buttons */}
         <div className="flex items-center gap-3">
           <button
-            onClick={() => save(false)}
-            disabled={saving}
+            onClick={() => void save(false)}
+            disabled={saveMutation.isPending}
             className="text-navy flex items-center gap-2 rounded-xl border border-[#e5e7eb] bg-white px-4 py-2.5 text-[14px] font-semibold transition-colors hover:bg-[#f5f7fa] disabled:opacity-60"
           >
             <Save size={16} />
             Save Draft
           </button>
           <button
-            onClick={() => save(true)}
-            disabled={saving}
+            onClick={() => void save(true)}
+            disabled={saveMutation.isPending}
             className="bg-brand hover:bg-brand-dark flex items-center gap-2 rounded-xl px-5 py-2.5 text-[14px] font-semibold text-white transition-colors disabled:opacity-60"
           >
             {form.status === 'published' ? (
@@ -222,9 +194,7 @@ export function AdminPostEditorPage() {
       </div>
 
       <div className="grid grid-cols-[1fr_320px] gap-6">
-        {/* Left: main content */}
         <div className="flex flex-col gap-5">
-          {/* Title */}
           <div className="rounded-2xl bg-white p-6 shadow-sm">
             <Field label="Post Title *">
               <input
@@ -251,7 +221,6 @@ export function AdminPostEditorPage() {
             </div>
           </div>
 
-          {/* Rich text editor */}
           <div className="rounded-2xl bg-white p-6 shadow-sm">
             <label className="text-navy mb-3 block text-[13px] font-semibold">
               Article Content *
@@ -264,9 +233,7 @@ export function AdminPostEditorPage() {
           </div>
         </div>
 
-        {/* Right: metadata sidebar */}
         <div className="flex flex-col gap-5">
-          {/* Cover image */}
           <div className="rounded-2xl bg-white p-5 shadow-sm">
             <ImageUploader
               label="Cover Image"
@@ -275,7 +242,6 @@ export function AdminPostEditorPage() {
             />
           </div>
 
-          {/* Category */}
           <div className="rounded-2xl bg-white p-5 shadow-sm">
             <Field label="Category">
               <select
@@ -292,7 +258,6 @@ export function AdminPostEditorPage() {
             </Field>
           </div>
 
-          {/* Author */}
           <div className="rounded-2xl bg-white p-5 shadow-sm">
             <p className="text-navy mb-4 text-[13px] font-semibold">Author Details</p>
             <div className="flex flex-col gap-4">
@@ -323,7 +288,6 @@ export function AdminPostEditorPage() {
             </div>
           </div>
 
-          {/* Publish status */}
           <div className="rounded-2xl bg-white p-5 shadow-sm">
             <p className="text-navy mb-3 text-[13px] font-semibold">Visibility</p>
             <div className="flex flex-col gap-2">
