@@ -56,7 +56,10 @@ export function AdminLoginPage() {
             >
               <span
                 className="pointer-events-none absolute -top-2 -right-2 size-3/4 rounded-full"
-                style={{ background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25), transparent 70%)' }}
+                style={{
+                  background:
+                    'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25), transparent 70%)',
+                }}
               />
               <img
                 src={images.logo}

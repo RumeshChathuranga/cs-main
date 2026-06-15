@@ -32,7 +32,10 @@ export function AdminLayout() {
           >
             <span
               className="pointer-events-none absolute -top-1 -right-1 size-3/4 rounded-full"
-              style={{ background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25), transparent 70%)' }}
+              style={{
+                background:
+                  'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25), transparent 70%)',
+              }}
             />
             <img
               src={images.logo}
@@ -41,14 +44,14 @@ export function AdminLayout() {
             />
           </div>
           <div>
-            <p className="text-[12px] font-extrabold tracking-[0.96px] text-navy">AIESEC</p>
-            <p className="text-[9px] font-medium tracking-[0.36px] text-brand">IN COLOMBO SOUTH</p>
+            <p className="text-navy text-[12px] font-extrabold tracking-[0.96px]">AIESEC</p>
+            <p className="text-brand text-[9px] font-medium tracking-[0.36px]">IN COLOMBO SOUTH</p>
           </div>
         </div>
 
         {/* Label */}
-        <div className="px-6 pb-2 pt-5">
-          <p className="text-[10px] font-semibold uppercase tracking-[1.2px] text-[#9ca3af]">
+        <div className="px-6 pt-5 pb-2">
+          <p className="text-[10px] font-semibold tracking-[1.2px] text-[#9ca3af] uppercase">
             Content Admin
           </p>
         </div>
@@ -64,7 +67,7 @@ export function AdminLayout() {
                   'flex items-center gap-3 rounded-lg px-3 py-2.5 text-[14px] font-medium transition-colors',
                   isActive
                     ? 'bg-brand/10 text-brand'
-                    : 'text-[#6b7280] hover:bg-[#f5f7fa] hover:text-navy',
+                    : 'hover:text-navy text-[#6b7280] hover:bg-[#f5f7fa]',
                 ].join(' ')
               }
             >
@@ -80,18 +83,18 @@ export function AdminLayout() {
             href="/blog"
             target="_blank"
             rel="noopener noreferrer"
-            className="mb-2 flex items-center gap-2 rounded-lg px-3 py-2 text-[13px] text-[#6b7280] hover:bg-[#f5f7fa] hover:text-navy transition-colors"
+            className="hover:text-navy mb-2 flex items-center gap-2 rounded-lg px-3 py-2 text-[13px] text-[#6b7280] transition-colors hover:bg-[#f5f7fa]"
           >
             <ExternalLink size={15} />
             View Blog
           </a>
           <div className="mb-2 rounded-lg bg-[#f5f7fa] px-3 py-2">
-            <p className="truncate text-[12px] font-medium text-navy">{user?.email}</p>
+            <p className="text-navy truncate text-[12px] font-medium">{user?.email}</p>
             <p className="text-[11px] text-[#9ca3af]">Editor</p>
           </div>
           <button
             onClick={handleSignOut}
-            className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-[13px] text-[#ef4444] hover:bg-red-50 transition-colors"
+            className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-[13px] text-[#ef4444] transition-colors hover:bg-red-50"
           >
             <LogOut size={15} />
             Sign out

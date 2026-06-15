@@ -18,9 +18,9 @@ async function uploadToSupabase(file: File): Promise<string> {
 
   if (error) throw new Error(error.message)
 
-  const { data: { publicUrl } } = supabase.storage
-    .from('blog-images')
-    .getPublicUrl(data.path)
+  const {
+    data: { publicUrl },
+  } = supabase.storage.from('blog-images').getPublicUrl(data.path)
 
   return publicUrl
 }
@@ -52,7 +52,7 @@ export function ImageUploader({ value, onChange, label = 'Image' }: ImageUploade
       setError(
         err instanceof Error && err.message.includes('bucket')
           ? 'Storage bucket "blog-images" not found. See SUPABASE_SETUP.md Step 6.'
-          : 'Upload failed. Please check your Supabase storage settings.'
+          : 'Upload failed. Please check your Supabase storage settings.',
       )
     }
     setUploading(false)
@@ -77,7 +77,7 @@ export function ImageUploader({ value, onChange, label = 'Image' }: ImageUploade
 
   return (
     <div>
-      <label className="mb-2 block text-[13px] font-semibold text-navy">{label}</label>
+      <label className="text-navy mb-2 block text-[13px] font-semibold">{label}</label>
 
       {/* Tab toggle */}
       <div className="mb-3 flex rounded-lg border border-[#e5e7eb] bg-[#f5f7fa] p-1">
@@ -86,9 +86,7 @@ export function ImageUploader({ value, onChange, label = 'Image' }: ImageUploade
           onClick={() => setMode('upload')}
           className={[
             'flex flex-1 items-center justify-center gap-2 rounded-md py-1.5 text-[13px] font-medium transition-colors',
-            mode === 'upload'
-              ? 'bg-white text-navy shadow-sm'
-              : 'text-[#9ca3af] hover:text-navy',
+            mode === 'upload' ? 'text-navy bg-white shadow-sm' : 'hover:text-navy text-[#9ca3af]',
           ].join(' ')}
         >
           <Upload size={13} />
@@ -99,9 +97,7 @@ export function ImageUploader({ value, onChange, label = 'Image' }: ImageUploade
           onClick={() => setMode('url')}
           className={[
             'flex flex-1 items-center justify-center gap-2 rounded-md py-1.5 text-[13px] font-medium transition-colors',
-            mode === 'url'
-              ? 'bg-white text-navy shadow-sm'
-              : 'text-[#9ca3af] hover:text-navy',
+            mode === 'url' ? 'text-navy bg-white shadow-sm' : 'hover:text-navy text-[#9ca3af]',
           ].join(' ')}
         >
           <Link2 size={13} />
@@ -112,7 +108,10 @@ export function ImageUploader({ value, onChange, label = 'Image' }: ImageUploade
       {/* Upload mode */}
       {mode === 'upload' && (
         <div
-          onDragOver={(e) => { e.preventDefault(); setDragging(true) }}
+          onDragOver={(e) => {
+            e.preventDefault()
+            setDragging(true)
+          }}
           onDragLeave={() => setDragging(false)}
           onDrop={handleDrop}
           onClick={() => !uploading && fileRef.current?.click()}
@@ -120,7 +119,7 @@ export function ImageUploader({ value, onChange, label = 'Image' }: ImageUploade
             'flex cursor-pointer flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed py-8 transition-colors',
             dragging
               ? 'border-brand bg-brand/5'
-              : 'border-[#e5e7eb] bg-[#fafafa] hover:border-brand/60 hover:bg-brand/5',
+              : 'hover:border-brand/60 hover:bg-brand/5 border-[#e5e7eb] bg-[#fafafa]',
             uploading ? 'cursor-wait' : '',
           ].join(' ')}
         >
@@ -133,21 +132,19 @@ export function ImageUploader({ value, onChange, label = 'Image' }: ImageUploade
           />
           {uploading ? (
             <>
-              <Loader2 size={28} className="animate-spin text-brand" />
+              <Loader2 size={28} className="text-brand animate-spin" />
               <p className="text-[13px] text-[#6b7280]">Uploading…</p>
             </>
           ) : (
             <>
-              <div className="flex size-12 items-center justify-center rounded-full bg-brand/10">
+              <div className="bg-brand/10 flex size-12 items-center justify-center rounded-full">
                 <ImageIcon size={22} className="text-brand" />
               </div>
               <div className="text-center">
-                <p className="text-[14px] font-semibold text-navy">
+                <p className="text-navy text-[14px] font-semibold">
                   Drop image here or <span className="text-brand">browse</span>
                 </p>
-                <p className="mt-1 text-[12px] text-[#9ca3af]">
-                  JPG, PNG, WebP, GIF · Max 10 MB
-                </p>
+                <p className="mt-1 text-[12px] text-[#9ca3af]">JPG, PNG, WebP, GIF · Max 10 MB</p>
               </div>
             </>
           )}
@@ -164,12 +161,12 @@ export function ImageUploader({ value, onChange, label = 'Image' }: ImageUploade
             onBlur={handleUrlCommit}
             onKeyDown={(e) => e.key === 'Enter' && handleUrlCommit()}
             placeholder="https://example.com/image.jpg"
-            className="h-[44px] flex-1 rounded-xl border border-[#e5e7eb] bg-[#fafafa] px-4 text-[14px] text-navy placeholder:text-[#9ca3af] focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+            className="text-navy focus:border-brand focus:ring-brand/20 h-[44px] flex-1 rounded-xl border border-[#e5e7eb] bg-[#fafafa] px-4 text-[14px] placeholder:text-[#9ca3af] focus:ring-2 focus:outline-none"
           />
           <button
             type="button"
             onClick={handleUrlCommit}
-            className="h-[44px] rounded-xl bg-brand px-4 text-[14px] font-semibold text-white hover:bg-brand-dark transition-colors"
+            className="bg-brand hover:bg-brand-dark h-[44px] rounded-xl px-4 text-[14px] font-semibold text-white transition-colors"
           >
             Use
           </button>
@@ -177,9 +174,7 @@ export function ImageUploader({ value, onChange, label = 'Image' }: ImageUploade
       )}
 
       {/* Error */}
-      {error && (
-        <p className="mt-2 text-[12px] text-red-500">{error}</p>
-      )}
+      {error && <p className="mt-2 text-[12px] text-red-500">{error}</p>}
 
       {/* Preview */}
       {value && (
@@ -194,8 +189,11 @@ export function ImageUploader({ value, onChange, label = 'Image' }: ImageUploade
           />
           <button
             type="button"
-            onClick={() => { onChange(''); setUrlInput('') }}
-            className="absolute right-2 top-2 flex size-7 items-center justify-center rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+            onClick={() => {
+              onChange('')
+              setUrlInput('')
+            }}
+            className="absolute top-2 right-2 flex size-7 items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-black/70"
             aria-label="Remove image"
           >
             <X size={14} />

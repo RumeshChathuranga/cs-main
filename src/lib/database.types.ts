@@ -12,14 +12,14 @@ export interface BlogPost {
   id: string
   title: string
   excerpt: string
-  content: string              // rich HTML from TipTap
+  content: string // rich HTML from TipTap
   category: BlogPostCategory
   cover_image_url: string | null
   author_name: string
   author_avatar_url: string | null
-  read_time: number            // minutes
+  read_time: number // minutes
   status: BlogPostStatus
-  published_at: string | null  // ISO timestamp
+  published_at: string | null // ISO timestamp
   created_at: string
   updated_at: string
   created_by: string | null

@@ -22,9 +22,10 @@ export function useBlogPosts(category?: string) {
 
       if (!isSupabaseConfigured()) {
         // Filter static data to match category if provided
-        const filtered = category && category !== 'All'
-          ? STATIC_BLOG_POSTS.filter(p => p.category === category)
-          : STATIC_BLOG_POSTS
+        const filtered =
+          category && category !== 'All'
+            ? STATIC_BLOG_POSTS.filter((p) => p.category === category)
+            : STATIC_BLOG_POSTS
         setPosts(filtered as unknown as BlogPost[])
         setLoading(false)
         return
@@ -68,7 +69,7 @@ export function useBlogPost(id: string) {
       setError(null)
 
       if (!isSupabaseConfigured()) {
-        const found = STATIC_BLOG_POSTS.find(p => String(p.id) === id) ?? null
+        const found = STATIC_BLOG_POSTS.find((p) => String(p.id) === id) ?? null
         setPost(found as unknown as BlogPost)
         setLoading(false)
         return

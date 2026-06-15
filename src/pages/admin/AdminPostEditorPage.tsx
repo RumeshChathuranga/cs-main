@@ -44,7 +44,7 @@ function Toast({ message, type }: { message: string; type: 'success' | 'error' }
   return (
     <div
       className={[
-        'fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-xl px-5 py-3 shadow-lg text-[14px] font-medium text-white',
+        'fixed right-6 bottom-6 z-50 flex items-center gap-3 rounded-xl px-5 py-3 text-[14px] font-medium text-white shadow-lg',
         type === 'success' ? 'bg-[#00c853]' : 'bg-red-500',
       ].join(' ')}
     >
@@ -65,7 +65,7 @@ function Field({
 }) {
   return (
     <div>
-      <label className="mb-1.5 block text-[13px] font-semibold text-navy">{label}</label>
+      <label className="text-navy mb-1.5 block text-[13px] font-semibold">{label}</label>
       {hint && <p className="mb-1.5 text-[12px] text-[#9ca3af]">{hint}</p>}
       {children}
     </div>
@@ -95,11 +95,7 @@ export function AdminPostEditorPage() {
   useEffect(() => {
     if (!id) return
     async function load() {
-      const { data, error } = await supabase
-        .from('blog_posts')
-        .select('*')
-        .eq('id', id)
-        .single()
+      const { data, error } = await supabase.from('blog_posts').select('*').eq('id', id).single()
       if (!error && data) {
         setForm({
           title: data.title,
@@ -142,21 +138,15 @@ export function AdminPostEditorPage() {
     if (isEditing) {
       ;({ error } = await supabase.from('blog_posts').update(payload).eq('id', id!))
     } else {
-      ;({ error } = await supabase
-        .from('blog_posts')
-        .insert({ ...payload, created_at: now }))
+      ;({ error } = await supabase.from('blog_posts').insert({ ...payload, created_at: now }))
     }
 
     if (error) {
       showToast('Failed to save post. Please try again.', 'error')
     } else {
       showToast(
-        publishNow
-          ? 'Post published!'
-          : isEditing
-          ? 'Changes saved.'
-          : 'Post saved as draft.',
-        'success'
+        publishNow ? 'Post published!' : isEditing ? 'Changes saved.' : 'Post saved as draft.',
+        'success',
       )
       setTimeout(() => navigate('/admin/dashboard'), 1200)
     }
@@ -166,7 +156,7 @@ export function AdminPostEditorPage() {
   if (loadingPost) {
     return (
       <div className="flex justify-center py-20">
-        <div className="size-8 animate-spin rounded-full border-4 border-brand border-t-transparent" />
+        <div className="border-brand size-8 animate-spin rounded-full border-4 border-t-transparent" />
       </div>
     )
   }
@@ -180,13 +170,13 @@ export function AdminPostEditorPage() {
         <div className="flex items-center gap-4">
           <button
             onClick={() => navigate('/admin/dashboard')}
-            className="flex items-center gap-2 rounded-lg px-3 py-2 text-[14px] text-[#6b7280] hover:bg-white hover:text-navy transition-colors"
+            className="hover:text-navy flex items-center gap-2 rounded-lg px-3 py-2 text-[14px] text-[#6b7280] transition-colors hover:bg-white"
           >
             <ArrowLeft size={16} />
             Back
           </button>
           <div>
-            <h1 className="text-[24px] font-extrabold text-navy">
+            <h1 className="text-navy text-[24px] font-extrabold">
               {isEditing ? 'Edit Post' : 'New Post'}
             </h1>
             <p className="text-[13px] text-[#9ca3af]">
@@ -200,7 +190,7 @@ export function AdminPostEditorPage() {
           <button
             onClick={() => save(false)}
             disabled={saving}
-            className="flex items-center gap-2 rounded-xl border border-[#e5e7eb] bg-white px-4 py-2.5 text-[14px] font-semibold text-navy hover:bg-[#f5f7fa] disabled:opacity-60 transition-colors"
+            className="text-navy flex items-center gap-2 rounded-xl border border-[#e5e7eb] bg-white px-4 py-2.5 text-[14px] font-semibold transition-colors hover:bg-[#f5f7fa] disabled:opacity-60"
           >
             <Save size={16} />
             Save Draft
@@ -208,7 +198,7 @@ export function AdminPostEditorPage() {
           <button
             onClick={() => save(true)}
             disabled={saving}
-            className="flex items-center gap-2 rounded-xl bg-brand px-5 py-2.5 text-[14px] font-semibold text-white hover:bg-brand-dark disabled:opacity-60 transition-colors"
+            className="bg-brand hover:bg-brand-dark flex items-center gap-2 rounded-xl px-5 py-2.5 text-[14px] font-semibold text-white transition-colors disabled:opacity-60"
           >
             {form.status === 'published' ? (
               <>
@@ -249,7 +239,7 @@ export function AdminPostEditorPage() {
                   onChange={(e) => set('excerpt', e.target.value)}
                   rows={3}
                   placeholder="A brief description of what this post is about…"
-                  className="w-full resize-none rounded-xl border border-[#e5e7eb] bg-[#fafafa] px-4 py-3 text-[14px] text-navy placeholder:text-[#9ca3af] focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+                  className="text-navy focus:border-brand focus:ring-brand/20 w-full resize-none rounded-xl border border-[#e5e7eb] bg-[#fafafa] px-4 py-3 text-[14px] placeholder:text-[#9ca3af] focus:ring-2 focus:outline-none"
                 />
               </Field>
             </div>
@@ -257,7 +247,7 @@ export function AdminPostEditorPage() {
 
           {/* Rich text editor */}
           <div className="rounded-2xl bg-white p-6 shadow-sm">
-            <label className="mb-3 block text-[13px] font-semibold text-navy">
+            <label className="text-navy mb-3 block text-[13px] font-semibold">
               Article Content *
             </label>
             <RichTextEditor
@@ -298,7 +288,7 @@ export function AdminPostEditorPage() {
 
           {/* Author */}
           <div className="rounded-2xl bg-white p-5 shadow-sm">
-            <p className="mb-4 text-[13px] font-semibold text-navy">Author Details</p>
+            <p className="text-navy mb-4 text-[13px] font-semibold">Author Details</p>
             <div className="flex flex-col gap-4">
               <Field label="Author Name *">
                 <input
@@ -329,7 +319,7 @@ export function AdminPostEditorPage() {
 
           {/* Publish status */}
           <div className="rounded-2xl bg-white p-5 shadow-sm">
-            <p className="mb-3 text-[13px] font-semibold text-navy">Visibility</p>
+            <p className="text-navy mb-3 text-[13px] font-semibold">Visibility</p>
             <div className="flex flex-col gap-2">
               {(['draft', 'published'] as const).map((s) => (
                 <label
@@ -350,11 +340,9 @@ export function AdminPostEditorPage() {
                     className="accent-brand"
                   />
                   <div>
-                    <p className="text-[13px] font-semibold capitalize text-navy">{s}</p>
+                    <p className="text-navy text-[13px] font-semibold capitalize">{s}</p>
                     <p className="text-[11px] text-[#9ca3af]">
-                      {s === 'draft'
-                        ? 'Only visible to admins'
-                        : 'Visible to everyone on the blog'}
+                      {s === 'draft' ? 'Only visible to admins' : 'Visible to everyone on the blog'}
                     </p>
                   </div>
                 </label>

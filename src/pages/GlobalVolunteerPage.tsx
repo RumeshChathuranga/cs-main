@@ -214,16 +214,15 @@ export function GlobalVolunteerPage() {
         <div
           className="absolute inset-0"
           style={{
-            background:
-              'linear-gradient(146.99deg, rgba(2,80,160,0.75) 0%, rgba(0,0,0,0.6) 100%)',
+            background: 'linear-gradient(146.99deg, rgba(2,80,160,0.75) 0%, rgba(0,0,0,0.6) 100%)',
           }}
         />
 
         {/* Decorative floating dots */}
-        <div className="pointer-events-none absolute top-[150px] left-[123px] size-[10px] rounded-[5px] bg-teal-gv opacity-30" />
-        <div className="pointer-events-none absolute top-[250px] right-[161px] size-[7px] rounded-[3.5px] bg-teal-gv opacity-25" />
-        <div className="pointer-events-none absolute bottom-[208px] left-[215px] size-[6px] rounded-[3px] bg-teal-gv opacity-20" />
-        <div className="pointer-events-none absolute right-[135px] bottom-[313px] size-[12px] rounded-[6px] bg-teal-gv opacity-20" />
+        <div className="bg-teal-gv pointer-events-none absolute top-[150px] left-[123px] size-[10px] rounded-[5px] opacity-30" />
+        <div className="bg-teal-gv pointer-events-none absolute top-[250px] right-[161px] size-[7px] rounded-[3.5px] opacity-25" />
+        <div className="bg-teal-gv pointer-events-none absolute bottom-[208px] left-[215px] size-[6px] rounded-[3px] opacity-20" />
+        <div className="bg-teal-gv pointer-events-none absolute right-[135px] bottom-[313px] size-[12px] rounded-[6px] opacity-20" />
 
         {/* Content */}
         <div className="relative z-10 mx-auto w-full max-w-[684px] px-6 text-center">
@@ -286,7 +285,7 @@ export function GlobalVolunteerPage() {
         <div className="mx-auto grid max-w-[1280px] items-start gap-16 px-8 lg:grid-cols-2">
           {/* Left column */}
           <div>
-            <span className="inline-block rounded-full bg-[rgba(0,191,165,0.1)] px-4 py-[6px] text-[11px] font-bold tracking-[1.32px] text-teal-gv uppercase">
+            <span className="text-teal-gv inline-block rounded-full bg-[rgba(0,191,165,0.1)] px-4 py-[6px] text-[11px] font-bold tracking-[1.32px] uppercase">
               What is Global Volunteer?
             </span>
             <h2 className="text-navy mt-5 text-[40px] leading-[1.2] font-extrabold tracking-[-0.4px]">
@@ -322,7 +321,7 @@ export function GlobalVolunteerPage() {
                 { val: '5,000+', label: 'Sri Lankan Alumni' },
               ].map((s) => (
                 <div key={s.label}>
-                  <p className="text-brand text-[26px] font-black leading-none">{s.val}</p>
+                  <p className="text-brand text-[26px] leading-none font-black">{s.val}</p>
                   <p className="mt-1 text-xs font-medium text-[#9ca3af]">{s.label}</p>
                 </div>
               ))}
@@ -368,7 +367,7 @@ export function GlobalVolunteerPage() {
                 height: 151,
               }}
             >
-              <p className="text-3xl font-black leading-none text-white">128</p>
+              <p className="text-3xl leading-none font-black text-white">128</p>
               <p className="mt-1 text-center text-[11px] leading-[1.4] text-[rgba(255,255,255,0.85)]">
                 Sri Lankan
                 <br />
@@ -387,7 +386,7 @@ export function GlobalVolunteerPage() {
         <div className="mx-auto max-w-[1280px] px-8">
           {/* Header */}
           <div className="mx-auto mb-14 max-w-[640px] text-center">
-            <span className="inline-block rounded-full bg-[rgba(0,191,165,0.1)] px-4 py-[6px] text-[11px] font-bold tracking-[1.32px] text-teal-gv uppercase">
+            <span className="text-teal-gv inline-block rounded-full bg-[rgba(0,191,165,0.1)] px-4 py-[6px] text-[11px] font-bold tracking-[1.32px] uppercase">
               SDG-Aligned Opportunities
             </span>
             <h2 className="text-navy mt-5 text-[40px] font-extrabold tracking-[-0.4px]">
@@ -408,9 +407,7 @@ export function GlobalVolunteerPage() {
                   key={p.sdg}
                   className={`flex gap-4 rounded-2xl border-l-4 ${p.border} ${p.bg} p-6 shadow-[0_2px_8px_rgba(0,0,0,0.05)]`}
                 >
-                  <div
-                    className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-white shadow-[0_2px_6px_rgba(0,0,0,0.08)]"
-                  >
+                  <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-white shadow-[0_2px_6px_rgba(0,0,0,0.08)]">
                     <Icon size={22} className={p.iconColor} />
                   </div>
                   <div>
@@ -435,7 +432,7 @@ export function GlobalVolunteerPage() {
         <div className="mx-auto max-w-[1280px] px-8">
           {/* Header */}
           <div className="mb-16 text-center">
-            <span className="inline-block rounded-full bg-[rgba(0,191,165,0.1)] px-4 py-[6px] text-[11px] font-bold tracking-[1.32px] text-teal-gv uppercase">
+            <span className="text-teal-gv inline-block rounded-full bg-[rgba(0,191,165,0.1)] px-4 py-[6px] text-[11px] font-bold tracking-[1.32px] uppercase">
               For Students
             </span>
             <h2 className="text-navy mt-5 text-[40px] font-extrabold tracking-[-0.4px]">
@@ -444,7 +441,7 @@ export function GlobalVolunteerPage() {
           </div>
 
           {/* Steps row */}
-          <div className="relative grid grid-cols-2 gap-y-12 gap-x-6 lg:grid-cols-4">
+          <div className="relative grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-4">
             {/* Gradient connecting line — desktop only */}
             <div
               className="pointer-events-none absolute top-9 right-[12.5%] left-[12.5%] z-0 hidden h-[3px] rounded lg:block"
@@ -471,7 +468,7 @@ export function GlobalVolunteerPage() {
                       <Icon size={28} className="text-white" />
                     </div>
                     {/* Step number badge */}
-                    <div className="absolute -top-1 -right-1 flex size-[22px] items-center justify-center rounded-[11px] border-2 border-white bg-navy text-[11px] font-extrabold text-white">
+                    <div className="bg-navy absolute -top-1 -right-1 flex size-[22px] items-center justify-center rounded-[11px] border-2 border-white text-[11px] font-extrabold text-white">
                       {step.num}
                     </div>
                   </div>
@@ -496,10 +493,7 @@ export function GlobalVolunteerPage() {
       </section>
 
       {/* ══════════════════ HOST A VOLUNTEER ══════════════════ */}
-      <section
-        className="relative overflow-hidden py-20"
-        style={{ background: '#00bfa5' }}
-      >
+      <section className="relative overflow-hidden py-20" style={{ background: '#00bfa5' }}>
         {/* Decorative circles */}
         <div className="pointer-events-none absolute -top-20 right-[1296px] size-[320px] rounded-[160px] bg-[rgba(255,255,255,0.07)]" />
         <div className="pointer-events-none absolute -bottom-10 -left-10 size-[200px] rounded-[100px] bg-[rgba(255,255,255,0.05)]" />
@@ -510,7 +504,7 @@ export function GlobalVolunteerPage() {
             <span className="inline-block rounded-full bg-[rgba(255,255,255,0.18)] px-4 py-[6px] text-[11px] font-bold tracking-[1.32px] text-white uppercase">
               For Organizations
             </span>
-            <h2 className="mt-5 text-[38px] font-extrabold leading-[1.2] text-white">
+            <h2 className="mt-5 text-[38px] leading-[1.2] font-extrabold text-white">
               Host a Global Volunteer
             </h2>
 
@@ -554,7 +548,7 @@ export function GlobalVolunteerPage() {
         <div className="mx-auto max-w-[1280px] px-8">
           {/* Header */}
           <div className="mx-auto mb-14 max-w-[700px] text-center">
-            <span className="inline-block rounded-full bg-[rgba(0,191,165,0.15)] px-4 py-[6px] text-[11px] font-bold tracking-[1.32px] text-teal-gv uppercase">
+            <span className="text-teal-gv inline-block rounded-full bg-[rgba(0,191,165,0.15)] px-4 py-[6px] text-[11px] font-bold tracking-[1.32px] uppercase">
               GV Alumni Voices
             </span>
             <h2 className="mt-5 text-[38px] font-extrabold text-white">
@@ -609,7 +603,7 @@ export function GlobalVolunteerPage() {
         <div className="mx-auto max-w-[768px] px-8">
           {/* Header */}
           <div className="mb-14 text-center">
-            <span className="inline-block rounded-full bg-[rgba(0,191,165,0.1)] px-4 py-[6px] text-[11px] font-bold tracking-[1.32px] text-teal-gv uppercase">
+            <span className="text-teal-gv inline-block rounded-full bg-[rgba(0,191,165,0.1)] px-4 py-[6px] text-[11px] font-bold tracking-[1.32px] uppercase">
               Support
             </span>
             <h2 className="text-navy mt-5 text-[38px] font-extrabold tracking-[-0.4px]">
@@ -628,7 +622,7 @@ export function GlobalVolunteerPage() {
                     className="flex w-full items-center justify-between py-5 text-left"
                   >
                     <span className="text-navy pr-8 text-[16px] font-semibold">{faq.q}</span>
-                    <div className="flex size-8 shrink-0 items-center justify-center rounded-2xl bg-surface">
+                    <div className="bg-surface flex size-8 shrink-0 items-center justify-center rounded-2xl">
                       {isOpen ? (
                         <ChevronUp size={16} className="text-[#1a1a2e]" />
                       ) : (
@@ -650,16 +644,15 @@ export function GlobalVolunteerPage() {
       <section
         className="relative overflow-hidden py-24"
         style={{
-          background:
-            'linear-gradient(159.9deg, #00bfa5 0%, #037ef3 50%, #0250a0 100%)',
+          background: 'linear-gradient(159.9deg, #00bfa5 0%, #037ef3 50%, #0250a0 100%)',
         }}
       >
         {/* Decorative circles */}
         <div className="pointer-events-none absolute top-[-60px] left-[-60px] size-[240px] rounded-[120px] bg-[rgba(255,255,255,0.06)]" />
         <div className="pointer-events-none absolute right-0 bottom-[90px] size-[280px] rounded-[140px] bg-[rgba(255,255,255,0.05)]" />
         {/* Decorative dots */}
-        <div className="pointer-events-none absolute right-[259px] top-[169px] size-[8px] rounded-[4px] bg-[rgba(255,255,255,0.4)]" />
-        <div className="pointer-events-none absolute left-[230px] bottom-[96px] size-[10px] rounded-[5px] bg-[rgba(255,255,255,0.3)]" />
+        <div className="pointer-events-none absolute top-[169px] right-[259px] size-[8px] rounded-[4px] bg-[rgba(255,255,255,0.4)]" />
+        <div className="pointer-events-none absolute bottom-[96px] left-[230px] size-[10px] rounded-[5px] bg-[rgba(255,255,255,0.3)]" />
 
         <div className="relative z-10 mx-auto max-w-[640px] px-8 text-center">
           {/* Top badge */}
@@ -670,7 +663,7 @@ export function GlobalVolunteerPage() {
             </span>
           </div>
 
-          <h2 className="text-[48px] font-black leading-[1.15] tracking-[-0.48px] text-white">
+          <h2 className="text-[48px] leading-[1.15] font-black tracking-[-0.48px] text-white">
             Ready to Volunteer Abroad?
           </h2>
           <p className="mx-auto mt-6 max-w-[560px] text-[17px] leading-[1.7] text-[rgba(255,255,255,0.85)]">

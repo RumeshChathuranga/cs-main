@@ -26,7 +26,7 @@ function Toast({ message, type }: { message: string; type: 'success' | 'error' }
   return (
     <div
       className={[
-        'fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-xl px-5 py-3 shadow-lg text-[14px] font-medium text-white transition-all',
+        'fixed right-6 bottom-6 z-50 flex items-center gap-3 rounded-xl px-5 py-3 text-[14px] font-medium text-white shadow-lg transition-all',
         type === 'success' ? 'bg-[#00c853]' : 'bg-red-500',
       ].join(' ')}
     >
@@ -77,10 +77,7 @@ export function AdminDashboardPage() {
     if (error) {
       showToast('Failed to update status.', 'error')
     } else {
-      showToast(
-        newStatus === 'published' ? 'Post published!' : 'Post moved to drafts.',
-        'success'
-      )
+      showToast(newStatus === 'published' ? 'Post published!' : 'Post moved to drafts.', 'success')
       fetchPosts()
     }
     setTogglingId(null)
@@ -109,14 +106,14 @@ export function AdminDashboardPage() {
       {/* Header */}
       <div className="mb-8 flex items-center justify-between">
         <div>
-          <h1 className="text-[28px] font-extrabold text-navy">Blog Posts</h1>
+          <h1 className="text-navy text-[28px] font-extrabold">Blog Posts</h1>
           <p className="mt-1 text-[14px] text-[#6b7280]">
             {published.length} published · {drafts.length} drafts
           </p>
         </div>
         <Link
           to="/admin/posts/new"
-          className="flex items-center gap-2 rounded-xl bg-brand px-5 py-2.5 text-[14px] font-semibold text-white hover:bg-brand-dark transition-colors"
+          className="bg-brand hover:bg-brand-dark flex items-center gap-2 rounded-xl px-5 py-2.5 text-[14px] font-semibold text-white transition-colors"
         >
           <Plus size={18} />
           New Post
@@ -140,16 +137,16 @@ export function AdminDashboardPage() {
       {/* Posts list */}
       {loading ? (
         <div className="flex justify-center py-20">
-          <div className="size-8 animate-spin rounded-full border-4 border-brand border-t-transparent" />
+          <div className="border-brand size-8 animate-spin rounded-full border-4 border-t-transparent" />
         </div>
       ) : posts.length === 0 ? (
         <div className="flex flex-col items-center gap-4 rounded-2xl bg-white py-20 text-center shadow-sm">
           <FileText size={40} className="text-[#e5e7eb]" />
-          <p className="text-[18px] font-semibold text-navy">No posts yet</p>
+          <p className="text-navy text-[18px] font-semibold">No posts yet</p>
           <p className="text-[14px] text-[#6b7280]">Create your first post to get started.</p>
           <Link
             to="/admin/posts/new"
-            className="mt-2 flex items-center gap-2 rounded-xl bg-brand px-5 py-2.5 text-[14px] font-semibold text-white hover:bg-brand-dark transition-colors"
+            className="bg-brand hover:bg-brand-dark mt-2 flex items-center gap-2 rounded-xl px-5 py-2.5 text-[14px] font-semibold text-white transition-colors"
           >
             <Plus size={16} />
             Create Post
@@ -160,26 +157,26 @@ export function AdminDashboardPage() {
           <table className="w-full">
             <thead>
               <tr className="border-b border-[#f0f1f5]">
-                <th className="px-6 py-4 text-left text-[12px] font-semibold uppercase tracking-wider text-[#9ca3af]">
+                <th className="px-6 py-4 text-left text-[12px] font-semibold tracking-wider text-[#9ca3af] uppercase">
                   Title
                 </th>
-                <th className="px-4 py-4 text-left text-[12px] font-semibold uppercase tracking-wider text-[#9ca3af]">
+                <th className="px-4 py-4 text-left text-[12px] font-semibold tracking-wider text-[#9ca3af] uppercase">
                   Category
                 </th>
-                <th className="px-4 py-4 text-left text-[12px] font-semibold uppercase tracking-wider text-[#9ca3af]">
+                <th className="px-4 py-4 text-left text-[12px] font-semibold tracking-wider text-[#9ca3af] uppercase">
                   Status
                 </th>
-                <th className="px-4 py-4 text-left text-[12px] font-semibold uppercase tracking-wider text-[#9ca3af]">
+                <th className="px-4 py-4 text-left text-[12px] font-semibold tracking-wider text-[#9ca3af] uppercase">
                   Date
                 </th>
-                <th className="px-6 py-4 text-right text-[12px] font-semibold uppercase tracking-wider text-[#9ca3af]">
+                <th className="px-6 py-4 text-right text-[12px] font-semibold tracking-wider text-[#9ca3af] uppercase">
                   Actions
                 </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#f5f7fa]">
               {posts.map((post) => (
-                <tr key={post.id} className="group hover:bg-[#fafafa] transition-colors">
+                <tr key={post.id} className="group transition-colors hover:bg-[#fafafa]">
                   {/* Title */}
                   <td className="px-6 py-4">
                     <div className="flex items-start gap-3">
@@ -191,7 +188,7 @@ export function AdminDashboardPage() {
                         />
                       )}
                       <div>
-                        <p className="line-clamp-1 text-[14px] font-semibold text-navy">
+                        <p className="text-navy line-clamp-1 text-[14px] font-semibold">
                           {post.title}
                         </p>
                         <p className="mt-0.5 text-[12px] text-[#9ca3af]">
@@ -267,7 +264,7 @@ export function AdminDashboardPage() {
                       {/* Edit */}
                       <Link
                         to={`/admin/posts/${post.id}/edit`}
-                        className="rounded-lg p-2 text-[#9ca3af] hover:bg-brand/10 hover:text-brand transition-colors"
+                        className="hover:bg-brand/10 hover:text-brand rounded-lg p-2 text-[#9ca3af] transition-colors"
                         title="Edit"
                       >
                         <PenLine size={16} />
@@ -277,7 +274,7 @@ export function AdminDashboardPage() {
                       <button
                         onClick={() => deletePost(post.id)}
                         disabled={deletingId === post.id}
-                        className="rounded-lg p-2 text-[#9ca3af] hover:bg-red-50 hover:text-red-500 transition-colors"
+                        className="rounded-lg p-2 text-[#9ca3af] transition-colors hover:bg-red-50 hover:text-red-500"
                         title="Delete"
                       >
                         {deletingId === post.id ? (

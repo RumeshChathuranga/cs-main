@@ -6,7 +6,8 @@ export const STATIC_BLOG_POSTS = [
     title: 'My 6 Weeks in Germany: A Global Volunteer Story That Changed My Life',
     excerpt:
       'I arrived in Berlin with just a suitcase and a heart full of nerves. Six weeks later, I left with friendships that span continents, skills I never expected, and a completely new perspective on what it means to contribute to the world.',
-    content: '<p>I arrived in Berlin with just a suitcase and a heart full of nerves. Six weeks later, I left with friendships that span continents, skills I never expected, and a completely new perspective on what it means to contribute to the world.</p>',
+    content:
+      '<p>I arrived in Berlin with just a suitcase and a heart full of nerves. Six weeks later, I left with friendships that span continents, skills I never expected, and a completely new perspective on what it means to contribute to the world.</p>',
     category: 'Exchange Experiences',
     cover_image_url: images.blogGvGermany,
     author_name: 'Dilini Perera',
@@ -23,7 +24,8 @@ export const STATIC_BLOG_POSTS = [
     title: 'What AIESEC Taught Me About Leading Without Authority',
     excerpt:
       "Leadership isn't about a title — it's about influence, empathy, and the courage to act when no one is watching. Here's how two years in AIESEC reshaped my entire understanding of what it means to lead.",
-    content: "<p>Leadership isn't about a title — it's about influence, empathy, and the courage to act when no one is watching.</p>",
+    content:
+      "<p>Leadership isn't about a title — it's about influence, empathy, and the courage to act when no one is watching.</p>",
     category: 'Leadership',
     cover_image_url: images.blogLeadingAuthority,
     author_name: 'Tharindu Silva',
@@ -40,7 +42,8 @@ export const STATIC_BLOG_POSTS = [
     title: 'Breaking Out of My Comfort Zone: The Exchange That Redefined Who I Am',
     excerpt:
       "I used to think I was too introverted for international experiences. Then I applied for AIESEC's Global Volunteer program almost on a whim — and spent 8 weeks in Costa Rica that fundamentally changed my relationship with discomfort.",
-    content: "<p>I used to think I was too introverted for international experiences. Then I applied for AIESEC's Global Volunteer program almost on a whim.</p>",
+    content:
+      "<p>I used to think I was too introverted for international experiences. Then I applied for AIESEC's Global Volunteer program almost on a whim.</p>",
     category: 'Personal Development',
     cover_image_url: images.blogComfortZone,
     author_name: 'Nimasha Fernando',
@@ -56,8 +59,9 @@ export const STATIC_BLOG_POSTS = [
     id: '4',
     title: 'LEAD Summit 2026: Highlights From Our Biggest Event of the Year',
     excerpt:
-      "Over 300 students. 18 speakers. Two days of workshops, panels, and collaborative projects. LEAD Summit 2026 was more than an event — it was a movement.",
-    content: '<p>Over 300 students. 18 speakers. Two days of workshops, panels, and collaborative projects.</p>',
+      'Over 300 students. 18 speakers. Two days of workshops, panels, and collaborative projects. LEAD Summit 2026 was more than an event — it was a movement.',
+    content:
+      '<p>Over 300 students. 18 speakers. Two days of workshops, panels, and collaborative projects.</p>',
     category: 'Events & Announcements',
     cover_image_url: images.blogLeadSummit,
     author_name: 'Kaveen Jayawardena',
@@ -74,7 +78,8 @@ export const STATIC_BLOG_POSTS = [
     title: 'From Freshman to Team Leader: My Unexpected Journey With AIESEC CS',
     excerpt:
       "I joined AIESEC in my first week of university because a senior told me to. I had no idea what I was signing up for. Two years and four roles later, I'm leading a team of 12.",
-    content: "<p>I joined AIESEC in my first week of university because a senior told me to. I had no idea what I was signing up for.</p>",
+    content:
+      '<p>I joined AIESEC in my first week of university because a senior told me to. I had no idea what I was signing up for.</p>',
     category: 'Member Stories',
     cover_image_url: images.blogFreshmanLeader,
     author_name: 'Isuri Wickramasinghe',

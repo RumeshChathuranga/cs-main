@@ -7,7 +7,7 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string
 if (!supabaseUrl || supabaseUrl === 'https://your-project-id.supabase.co') {
   console.warn(
     '[Supabase] VITE_SUPABASE_URL is not configured. ' +
-      'Create a project at https://supabase.com and update .env.local'
+      'Create a project at https://supabase.com and update .env.local',
   )
 }
 

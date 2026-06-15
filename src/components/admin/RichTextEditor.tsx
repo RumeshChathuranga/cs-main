@@ -55,7 +55,7 @@ function ToolbarButton({ onClick, active, disabled, title, children }: ToolbarBu
         'flex size-8 items-center justify-center rounded-lg text-[14px] transition-colors',
         active
           ? 'bg-brand text-white'
-          : 'text-[#6b7280] hover:bg-surface hover:text-navy disabled:opacity-40',
+          : 'hover:bg-surface hover:text-navy text-[#6b7280] disabled:opacity-40',
       ].join(' ')}
     >
       {children}
@@ -114,9 +114,9 @@ export function RichTextEditor({ content, onChange, placeholder }: RichTextEdito
         .from('blog-images')
         .upload(path, file, { contentType: file.type, upsert: false })
       if (!error && data) {
-        const { data: { publicUrl } } = supabase.storage
-          .from('blog-images')
-          .getPublicUrl(data.path)
+        const {
+          data: { publicUrl },
+        } = supabase.storage.from('blog-images').getPublicUrl(data.path)
         editor.chain().focus().setImage({ src: publicUrl }).run()
       }
     } finally {
@@ -306,13 +306,17 @@ export function RichTextEditor({ content, onChange, placeholder }: RichTextEdito
           title="Upload image from device"
           disabled={uploadingImage}
         >
-          {uploadingImage ? <Loader2 size={15} className="animate-spin" /> : <ImageIcon size={15} />}
+          {uploadingImage ? (
+            <Loader2 size={15} className="animate-spin" />
+          ) : (
+            <ImageIcon size={15} />
+          )}
         </ToolbarButton>
 
         {/* Image — paste URL */}
         <ToolbarButton onClick={addImageByUrl} title="Insert image by URL">
           <svg viewBox="0 0 15 15" className="size-[15px] fill-current" aria-hidden="true">
-            <path d="M7.5 1a6.5 6.5 0 1 0 0 13A6.5 6.5 0 0 0 7.5 1ZM0 7.5a7.5 7.5 0 1 1 15 0 7.5 7.5 0 0 1-15 0Zm7.5-3a.5.5 0 0 1 .5.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2h-2a.5.5 0 0 1 0-1h2v-2a.5.5 0 0 1 .5-.5Z"/>
+            <path d="M7.5 1a6.5 6.5 0 1 0 0 13A6.5 6.5 0 0 0 7.5 1ZM0 7.5a7.5 7.5 0 1 1 15 0 7.5 7.5 0 0 1-15 0Zm7.5-3a.5.5 0 0 1 .5.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2h-2a.5.5 0 0 1 0-1h2v-2a.5.5 0 0 1 .5-.5Z" />
           </svg>
         </ToolbarButton>
       </div>
@@ -320,7 +324,7 @@ export function RichTextEditor({ content, onChange, placeholder }: RichTextEdito
       {/* Editor area */}
       <EditorContent
         editor={editor}
-        className="prose prose-slate max-w-none px-6 py-5 [&_.ProseMirror]:min-h-[320px] [&_.ProseMirror]:outline-none [&_.ProseMirror_p.is-editor-empty:first-child::before]:pointer-events-none [&_.ProseMirror_p.is-editor-empty:first-child::before]:float-left [&_.ProseMirror_p.is-editor-empty:first-child::before]:h-0 [&_.ProseMirror_p.is-editor-empty:first-child::before]:text-[#9ca3af] [&_.ProseMirror_p.is-editor-empty:first-child::before]:content-[attr(data-placeholder)] [&_.ProseMirror_blockquote]:border-l-4 [&_.ProseMirror_blockquote]:border-brand [&_.ProseMirror_blockquote]:bg-[#ebf5ff] [&_.ProseMirror_blockquote]:px-8 [&_.ProseMirror_blockquote]:py-5 [&_.ProseMirror_blockquote]:rounded-r-xl [&_.ProseMirror_blockquote]:not-italic [&_.ProseMirror_blockquote]:text-[#45455b] [&_.ProseMirror_blockquote]:my-6"
+        className="prose prose-slate [&_.ProseMirror_blockquote]:border-brand max-w-none px-6 py-5 [&_.ProseMirror]:min-h-[320px] [&_.ProseMirror]:outline-none [&_.ProseMirror_blockquote]:my-6 [&_.ProseMirror_blockquote]:rounded-r-xl [&_.ProseMirror_blockquote]:border-l-4 [&_.ProseMirror_blockquote]:bg-[#ebf5ff] [&_.ProseMirror_blockquote]:px-8 [&_.ProseMirror_blockquote]:py-5 [&_.ProseMirror_blockquote]:text-[#45455b] [&_.ProseMirror_blockquote]:not-italic [&_.ProseMirror_p.is-editor-empty:first-child::before]:pointer-events-none [&_.ProseMirror_p.is-editor-empty:first-child::before]:float-left [&_.ProseMirror_p.is-editor-empty:first-child::before]:h-0 [&_.ProseMirror_p.is-editor-empty:first-child::before]:text-[#9ca3af] [&_.ProseMirror_p.is-editor-empty:first-child::before]:content-[attr(data-placeholder)]"
       />
     </div>
   )
