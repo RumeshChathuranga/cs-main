@@ -10,8 +10,11 @@ import {
   HelpCircle,
   ArrowRight,
   CheckCircle,
+  AlertCircle,
+  Loader2,
 } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { submitContactMessage } from '../hooks/useContactMessages'
 
 // ─── Icon helpers (reuse identical SVGs from Footer) ─────────────────────────
 
@@ -132,6 +135,9 @@ const subjectOptions = [
   'Other',
 ]
 
+const COOLDOWN_KEY = 'contact_form_last_submit'
+const COOLDOWN_MS = 60_000
+
 function ContactForm() {
   const [form, setForm] = useState({
     name: '',
@@ -140,6 +146,8 @@ function ContactForm() {
     message: '',
   })
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
@@ -147,8 +155,35 @@ function ContactForm() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
+    setError(null)
+
+    const lastSubmit = localStorage.getItem(COOLDOWN_KEY)
+    if (lastSubmit && Date.now() - Number(lastSubmit) < COOLDOWN_MS) {
+      setError('Please wait a moment before sending another message.')
+      return
+    }
+
+    setSubmitting(true)
+    const { error: submitError } = await submitContactMessage({
+      name: form.name.trim(),
+      email: form.email.trim(),
+      subject: form.subject,
+      message: form.message.trim(),
+    })
+    setSubmitting(false)
+
+    if (submitError) {
+      setError(
+        submitError.includes('Too many messages')
+          ? 'You have sent several messages recently. Please try again later.'
+          : 'Something went wrong. Please try again or email us directly.',
+      )
+      return
+    }
+
+    localStorage.setItem(COOLDOWN_KEY, String(Date.now()))
     setSubmitted(true)
     setForm({ name: '', email: '', subject: '', message: '' })
     setTimeout(() => setSubmitted(false), 4000)
@@ -184,6 +219,13 @@ function ContactForm() {
           </motion.div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-[18px]">
+            {error && (
+              <div className="flex items-start gap-2 rounded-[10px] border border-red-200 bg-red-50 px-4 py-3 text-[13px] text-red-600">
+                <AlertCircle size={16} className="mt-0.5 shrink-0" />
+                {error}
+              </div>
+            )}
+
             {/* Full Name */}
             <div className="flex flex-col gap-[7px]">
               <label className="text-navy text-[13px] font-semibold tracking-[0.01em]">
@@ -264,10 +306,11 @@ function ContactForm() {
             {/* Submit */}
             <button
               type="submit"
-              className="bg-brand hover:bg-brand-dark flex h-[50px] w-full items-center justify-center gap-2.5 rounded-[12px] text-[15px] font-bold text-white shadow-[0px_4px_9px_rgba(3,126,243,0.27)] transition-all hover:shadow-[0px_6px_14px_rgba(3,126,243,0.35)] active:scale-[0.98]"
+              disabled={submitting}
+              className="bg-brand hover:bg-brand-dark flex h-[50px] w-full items-center justify-center gap-2.5 rounded-[12px] text-[15px] font-bold text-white shadow-[0px_4px_9px_rgba(3,126,243,0.27)] transition-all hover:shadow-[0px_6px_14px_rgba(3,126,243,0.35)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
             >
-              <Send size={15} />
-              Send Message
+              {submitting ? <Loader2 size={15} className="animate-spin" /> : <Send size={15} />}
+              {submitting ? 'Sending…' : 'Send Message'}
             </button>
 
             <p className="text-center text-[12px] leading-relaxed text-[#9ca3af]">
