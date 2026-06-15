@@ -17,6 +17,7 @@ import {
 import { images } from '../assets/images'
 import { Reveal } from '../components/motion/Reveal'
 import { Stagger, StaggerItem } from '../components/motion/Stagger'
+import { CountUp } from '../components/motion/CountUp'
 
 // ─── About Hero ──────────────────────────────────────────────────────────────
 
@@ -230,9 +231,14 @@ function AboutStatsBar() {
   return (
     <section className="bg-brand py-16">
       <Stagger className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-white/25 px-6 lg:grid-cols-4 lg:px-8">
-        {aboutStats.map((s) => (
+        {aboutStats.map((s, index) => (
           <StaggerItem key={s.label} className="flex flex-col items-center gap-2 px-4 py-4 text-center">
-            <span className="text-5xl font-extrabold tracking-tight text-white">{s.value}</span>
+            <CountUp
+              value={s.value}
+              delay={index * 0.06}
+              duration={1}
+              className="text-5xl font-extrabold tracking-tight text-white tabular-nums"
+            />
             <span className="text-[15px] font-medium text-white/85">{s.label}</span>
           </StaggerItem>
         ))}
