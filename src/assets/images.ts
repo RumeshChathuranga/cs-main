@@ -35,6 +35,14 @@ import gtaProfessionals from './images/gta-professionals.jpg'
 import gtaAlumniRavindu from './images/gta-alumni-ravindu.jpg'
 import gtaAlumniMihara from './images/gta-alumni-mihara.jpg'
 import gtaAlumniDilshan from './images/gta-alumni-dilshan.jpg'
+import gvHeroBg from './images/gv-hero-bg.jpg'
+import gvVolunteer1 from './images/gv-volunteer-1.jpg'
+import gvVolunteer2 from './images/gv-volunteer-2.jpg'
+import gvVolunteer3 from './images/gv-volunteer-3.jpg'
+import gvHostImage from './images/gv-host-image.jpg'
+import gvAlumniNethmi from './images/gv-alumni-nethmi.jpg'
+import gvAlumniAsel from './images/gv-alumni-asel.jpg'
+import gvAlumniSithara from './images/gv-alumni-sithara.jpg'
 
 export const images = {
   logo,
@@ -74,4 +82,12 @@ export const images = {
   gtaAlumniRavindu,
   gtaAlumniMihara,
   gtaAlumniDilshan,
+  gvHeroBg,
+  gvVolunteer1,
+  gvVolunteer2,
+  gvVolunteer3,
+  gvHostImage,
+  gvAlumniNethmi,
+  gvAlumniAsel,
+  gvAlumniSithara,
 } as const
