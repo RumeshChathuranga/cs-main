@@ -5,6 +5,7 @@ import { AboutPage } from '../pages/AboutPage'
 import { BlogPage } from '../pages/BlogPage'
 import { GlobalVolunteerPage } from '../pages/GlobalVolunteerPage'
 import { GlobalTalentPage } from '../pages/GlobalTalentPage'
+import { GlobalTeacherPage } from '../pages/GlobalTeacherPage'
 import { NotFoundPage } from '../pages/NotFoundPage'
 
 export const router = createBrowserRouter([
@@ -16,6 +17,7 @@ export const router = createBrowserRouter([
       { path: '/blog', element: <BlogPage /> },
       { path: '/programs/global-volunteer', element: <GlobalVolunteerPage /> },
       { path: '/programs/global-talent', element: <GlobalTalentPage /> },
+      { path: '/programs/global-teacher', element: <GlobalTeacherPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

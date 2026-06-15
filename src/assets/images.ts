@@ -24,6 +24,12 @@ import iconLinkedin from './images/icon-linkedin.png'
 import iconLocation from './images/icon-location.png'
 import iconEmail from './images/icon-email.png'
 import iconPhone from './images/icon-phone.png'
+import gtHeroClassroom from './images/gt-hero-classroom.jpg'
+import gtVolunteerTeaching from './images/gt-volunteer-teaching.jpg'
+import gtSchoolStudents from './images/gt-school-students.jpg'
+import gtAlumniSanduni from './images/gt-alumni-sanduni.jpg'
+import gtAlumniAsel from './images/gt-alumni-asel.jpg'
+import gtSchoolPrincipal from './images/gt-school-principal.jpg'
 
 export const images = {
   logo,
@@ -52,4 +58,10 @@ export const images = {
   iconLocation,
   iconEmail,
   iconPhone,
+  gtHeroClassroom,
+  gtVolunteerTeaching,
+  gtSchoolStudents,
+  gtAlumniSanduni,
+  gtAlumniAsel,
+  gtSchoolPrincipal,
 } as const
