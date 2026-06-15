@@ -52,6 +52,16 @@ import blogNepalTeaching from './images/blog-nepal-teaching.jpg'
 import blogAvatarDilini from './images/blog-avatar-dilini.jpg'
 import blogAvatarTharindu from './images/blog-avatar-tharindu.jpg'
 import blogAvatarNimasha from './images/blog-avatar-nimasha.jpg'
+import aboutHeroBg from './images/about-hero-bg.jpg'
+import teamNethmi from './images/team-nethmi.jpg'
+import teamKavinda from './images/team-kavinda.jpg'
+import teamDilani from './images/team-dilani.jpg'
+import teamRavindu from './images/team-ravindu.jpg'
+import teamSithara from './images/team-sithara.jpg'
+import teamAsel from './images/team-asel.jpg'
+import teamDanidu from './images/team-danidu.jpg'
+import teamHiruni from './images/team-hiruni.jpg'
+import teamTharindu from './images/team-tharindu.jpg'
 
 export const images = {
   logo,
@@ -108,4 +118,14 @@ export const images = {
   blogAvatarDilini,
   blogAvatarTharindu,
   blogAvatarNimasha,
+  aboutHeroBg,
+  teamNethmi,
+  teamKavinda,
+  teamDilani,
+  teamRavindu,
+  teamSithara,
+  teamAsel,
+  teamDanidu,
+  teamHiruni,
+  teamTharindu,
 } as const
