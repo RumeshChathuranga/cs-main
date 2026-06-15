@@ -32,6 +32,24 @@ export type BlogPostInsert = Omit<BlogPost, 'id' | 'created_at' | 'updated_at'> 
 }
 export type BlogPostUpdate = Partial<BlogPost>
 
+export type ContactMessageStatus = 'new' | 'read' | 'replied' | 'archived'
+
+export interface ContactMessage {
+  id: string
+  name: string
+  email: string
+  subject: string
+  message: string
+  status: ContactMessageStatus
+  created_at: string
+  replied_at: string | null
+}
+
+export type ContactMessageInsert = Pick<ContactMessage, 'name' | 'email' | 'subject' | 'message'>
+export type ContactMessageUpdate = Partial<
+  Pick<ContactMessage, 'status' | 'replied_at'>
+>
+
 // Supabase Database type for the client
 export interface Database {
   public: {
@@ -40,6 +58,12 @@ export interface Database {
         Row: BlogPost
         Insert: BlogPostInsert
         Update: BlogPostUpdate
+        Relationships: []
+      }
+      contact_messages: {
+        Row: ContactMessage
+        Insert: ContactMessageInsert
+        Update: ContactMessageUpdate
         Relationships: []
       }
     }

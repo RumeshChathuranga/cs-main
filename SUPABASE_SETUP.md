@@ -141,3 +141,101 @@ After running this SQL, editors can:
 | `/admin/dashboard`      | Manage all posts         |
 | `/admin/posts/new`      | Write a new post         |
 | `/admin/posts/:id/edit` | Edit an existing post    |
+| `/admin/messages`       | Contact message inbox    |
+| `/admin/messages/:id`   | View a contact message   |
+
+---
+
+## 7. Set Up Contact Messages Inbox
+
+Run this in **SQL Editor** to store contact form submissions and let admins manage them:
+
+```sql
+-- Contact messages from the public contact form
+CREATE TABLE contact_messages (
+  id          uuid        PRIMARY KEY DEFAULT gen_random_uuid(),
+  name        text        NOT NULL,
+  email       text        NOT NULL,
+  subject     text        NOT NULL,
+  message     text        NOT NULL,
+  status      text        NOT NULL DEFAULT 'new',  -- new | read | replied | archived
+  created_at  timestamptz NOT NULL DEFAULT now(),
+  replied_at  timestamptz
+);
+
+ALTER TABLE contact_messages ENABLE ROW LEVEL SECURITY;
+
+-- Public can submit messages (contact form)
+CREATE POLICY "Anyone can submit contact messages"
+  ON contact_messages FOR INSERT
+  TO anon, authenticated
+  WITH CHECK (true);
+
+-- Only logged-in admins can read/update
+CREATE POLICY "Admins can read contact messages"
+  ON contact_messages FOR SELECT
+  TO authenticated
+  USING (true);
+
+CREATE POLICY "Admins can update contact messages"
+  ON contact_messages FOR UPDATE
+  TO authenticated
+  USING (true)
+  WITH CHECK (true);
+
+CREATE POLICY "Admins can delete contact messages"
+  ON contact_messages FOR DELETE
+  TO authenticated
+  USING (true);
+
+-- Optional: limit spam — max 3 submissions per email per hour
+CREATE OR REPLACE FUNCTION check_contact_message_rate_limit()
+RETURNS trigger AS $$
+BEGIN
+  IF (
+    SELECT COUNT(*)
+    FROM contact_messages
+    WHERE email = NEW.email
+      AND created_at > now() - interval '1 hour'
+  ) >= 3 THEN
+    RAISE EXCEPTION 'Too many messages from this email. Please try again later.';
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER contact_message_rate_limit
+  BEFORE INSERT ON contact_messages
+  FOR EACH ROW
+  EXECUTE FUNCTION check_contact_message_rate_limit();
+```
+
+**Already created the table?** Run this to fix policies if messages save but the admin inbox stays empty:
+
+```sql
+DROP POLICY IF EXISTS "Anyone can submit contact messages" ON contact_messages;
+DROP POLICY IF EXISTS "Admins can read contact messages" ON contact_messages;
+DROP POLICY IF EXISTS "Admins can update contact messages" ON contact_messages;
+DROP POLICY IF EXISTS "Admins can delete contact messages" ON contact_messages;
+
+CREATE POLICY "Anyone can submit contact messages"
+  ON contact_messages FOR INSERT
+  TO anon, authenticated
+  WITH CHECK (true);
+
+CREATE POLICY "Admins can read contact messages"
+  ON contact_messages FOR SELECT
+  TO authenticated
+  USING (true);
+
+CREATE POLICY "Admins can update contact messages"
+  ON contact_messages FOR UPDATE
+  TO authenticated
+  USING (true)
+  WITH CHECK (true);
+
+CREATE POLICY "Admins can delete contact messages"
+  ON contact_messages FOR DELETE
+  TO authenticated
+  USING (true);
+```
