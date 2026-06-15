@@ -43,10 +43,7 @@ export function NavbarSection() {
       <MobileNav>
         <MobileNavHeader>
           <Logo />
-          <MobileNavToggle
-            isOpen={mobileOpen}
-            onClick={() => setMobileOpen(!mobileOpen)}
-          />
+          <MobileNavToggle isOpen={mobileOpen} onClick={() => setMobileOpen(!mobileOpen)} />
         </MobileNavHeader>
 
         <MobileNavMenu isOpen={mobileOpen} onClose={() => setMobileOpen(false)}>
@@ -55,7 +52,7 @@ export function NavbarSection() {
               key={item.name}
               href={item.link}
               onClick={() => setMobileOpen(false)}
-              className="w-full rounded-xl px-4 py-3 text-[14px] font-medium text-[#3a3a52] transition-colors hover:bg-brand/8 hover:text-brand"
+              className="hover:bg-brand/8 hover:text-brand w-full rounded-xl px-4 py-3 text-[14px] font-medium text-[#3a3a52] transition-colors"
             >
               {item.name}
             </a>

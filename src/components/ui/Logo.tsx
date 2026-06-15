@@ -28,8 +28,11 @@ export function Logo({ variant = 'default', size = 'md' }: LogoProps) {
       >
         {/* Subtle inner highlight arc */}
         <span
-          className="pointer-events-none absolute -right-2 -top-2 size-3/4 rounded-full"
-          style={{ background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25), transparent 70%)' }}
+          className="pointer-events-none absolute -top-2 -right-2 size-3/4 rounded-full"
+          style={{
+            background:
+              'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25), transparent 70%)',
+          }}
         />
 
         {/* AIESEC CS logo mark */}
@@ -44,14 +47,14 @@ export function Logo({ variant = 'default', size = 'md' }: LogoProps) {
       <div className="flex flex-col leading-none">
         <span
           className={`font-extrabold tracking-[1.1px] transition-colors ${
-            isWhite ? 'text-white' : 'text-[#1a1a2e] group-hover:text-brand'
+            isWhite ? 'text-white' : 'group-hover:text-brand text-[#1a1a2e]'
           }`}
           style={{ fontSize: dims.title }}
         >
           AIESEC
         </span>
         <span
-          className="font-semibold tracking-[0.5px] text-brand"
+          className="text-brand font-semibold tracking-[0.5px]"
           style={{ fontSize: dims.sub, marginTop: 2 }}
         >
           IN COLOMBO SOUTH

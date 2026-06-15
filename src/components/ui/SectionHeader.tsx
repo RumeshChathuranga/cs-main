@@ -18,10 +18,8 @@ export function SectionHeader({
   return (
     <header className={isCenter ? 'text-center' : 'text-left'}>
       <span
-        className={`inline-block rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-widest ${
-          dark
-            ? 'bg-brand/15 text-brand'
-            : 'bg-brand/10 text-brand'
+        className={`inline-block rounded-full px-4 py-1.5 text-xs font-bold tracking-widest uppercase ${
+          dark ? 'bg-brand/15 text-brand' : 'bg-brand/10 text-brand'
         }`}
       >
         {badge}

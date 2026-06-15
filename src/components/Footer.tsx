@@ -11,7 +11,15 @@ function FacebookIcon() {
 
 function InstagramIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-[16px]">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="size-[16px]"
+    >
       <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
       <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
       <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
@@ -51,17 +59,15 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer id="contact" className="border-t border-white/6 bg-navy">
+    <footer id="contact" className="bg-navy border-t border-white/6">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-
           {/* Col 1 — Logo + about + social */}
           <div>
             <Logo variant="white" />
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-white/55">
-              Developing the leadership potential of youth since 1948. AIESEC in
-              Colombo South — the local chapter at the University of Moratuwa,
-              Sri Lanka.
+              Developing the leadership potential of youth since 1948. AIESEC in Colombo South — the
+              local chapter at the University of Moratuwa, Sri Lanka.
             </p>
             <div className="mt-6 flex gap-3">
               {socialLinks.map(({ icon: Icon, label, href }) => (
@@ -69,7 +75,7 @@ export function Footer() {
                   key={label}
                   href={href}
                   aria-label={label}
-                  className="flex size-10 items-center justify-center rounded-full border border-white/10 bg-white/8 text-white/70 transition-all hover:bg-brand hover:border-brand hover:text-white"
+                  className="hover:bg-brand hover:border-brand flex size-10 items-center justify-center rounded-full border border-white/10 bg-white/8 text-white/70 transition-all hover:text-white"
                 >
                   <Icon />
                 </a>
@@ -79,9 +85,7 @@ export function Footer() {
 
           {/* Col 2 — Quick Links */}
           <div>
-            <h4 className="text-[15px] font-bold tracking-wide text-white">
-              Quick Links
-            </h4>
+            <h4 className="text-[15px] font-bold tracking-wide text-white">Quick Links</h4>
             <ul className="mt-5 space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.label}>
@@ -98,9 +102,7 @@ export function Footer() {
 
           {/* Col 3 — Programs */}
           <div>
-            <h4 className="text-[15px] font-bold tracking-wide text-white">
-              Programs
-            </h4>
+            <h4 className="text-[15px] font-bold tracking-wide text-white">Programs</h4>
             <ul className="mt-5 space-y-3">
               {programLinks.map((link) => (
                 <li key={link.label}>
@@ -117,12 +119,10 @@ export function Footer() {
 
           {/* Col 4 — Contact Info */}
           <div>
-            <h4 className="text-[15px] font-bold tracking-wide text-white">
-              Contact Info
-            </h4>
+            <h4 className="text-[15px] font-bold tracking-wide text-white">Contact Info</h4>
             <ul className="mt-5 space-y-4">
               <li className="flex gap-3">
-                <MapPin size={16} className="mt-0.5 shrink-0 text-brand" />
+                <MapPin size={16} className="text-brand mt-0.5 shrink-0" />
                 <span className="text-sm leading-relaxed text-white/55">
                   University of Moratuwa,
                   <br />
@@ -130,7 +130,7 @@ export function Footer() {
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <Mail size={16} className="shrink-0 text-brand" />
+                <Mail size={16} className="text-brand shrink-0" />
                 <a
                   href="mailto:colombosouth@aiesec.net"
                   className="text-sm text-white/55 transition-colors hover:text-white"
@@ -139,7 +139,7 @@ export function Footer() {
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Phone size={16} className="shrink-0 text-brand" />
+                <Phone size={16} className="text-brand shrink-0" />
                 <a
                   href="tel:+94700000000"
                   className="text-sm text-white/55 transition-colors hover:text-white"
@@ -149,14 +149,12 @@ export function Footer() {
               </li>
             </ul>
           </div>
-
         </div>
       </div>
 
       <div className="border-t border-white/8 py-5 text-center">
         <p className="text-[13px] text-white/35">
-          © 2026 AIESEC in Colombo South. All rights reserved. | University of
-          Moratuwa, Sri Lanka
+          © 2026 AIESEC in Colombo South. All rights reserved. | University of Moratuwa, Sri Lanka
         </p>
       </div>
     </footer>

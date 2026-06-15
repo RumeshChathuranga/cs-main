@@ -57,16 +57,16 @@ export function Blog() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <header>
-            <span className="inline-block rounded-full bg-brand/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand">
+            <span className="bg-brand/10 text-brand inline-block rounded-full px-4 py-1.5 text-xs font-bold tracking-widest uppercase">
               From Our Members
             </span>
-            <h2 className="mt-4 text-3xl font-extrabold text-text-primary md:text-4xl">
+            <h2 className="text-text-primary mt-4 text-3xl font-extrabold md:text-4xl">
               Latest Stories
             </h2>
           </header>
           <a
             href="#"
-            className="border-b-2 border-brand pb-1.5 text-[15px] font-bold text-brand transition-colors hover:text-brand-dark"
+            className="border-brand text-brand hover:text-brand-dark border-b-2 pb-1.5 text-[15px] font-bold transition-colors"
           >
             View All →
           </a>
@@ -85,35 +85,33 @@ export function Blog() {
                   className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <span
-                  className={`absolute left-3.5 top-3.5 rounded-full px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide ${post.categoryBg} ${post.categoryColor}`}
+                  className={`absolute top-3.5 left-3.5 rounded-full px-2.5 py-1 text-[11px] font-bold tracking-wide uppercase ${post.categoryBg} ${post.categoryColor}`}
                 >
                   {post.category}
                 </span>
               </div>
 
               <div className="p-6">
-                <h3 className="text-[17px] font-bold leading-snug text-text-primary">
+                <h3 className="text-text-primary text-[17px] leading-snug font-bold">
                   {post.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-text-muted">
-                  {post.excerpt}
-                </p>
+                <p className="text-text-muted mt-3 text-sm leading-relaxed">{post.excerpt}</p>
 
-                <div className="mt-5 flex items-center gap-2.5 border-t border-surface pt-4">
+                <div className="border-surface mt-5 flex items-center gap-2.5 border-t pt-4">
                   <img
                     src={post.avatar}
                     alt={post.author}
-                    className="size-[34px] rounded-full border-2 border-brand object-cover"
+                    className="border-brand size-[34px] rounded-full border-2 object-cover"
                   />
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-[13px] font-semibold text-text-primary">
+                    <p className="text-text-primary truncate text-[13px] font-semibold">
                       {post.author}
                     </p>
-                    <p className="text-xs text-text-faint">{post.date}</p>
+                    <p className="text-text-faint text-xs">{post.date}</p>
                   </div>
                   <a
                     href="#"
-                    className="shrink-0 text-[13px] font-semibold text-brand hover:text-brand-dark"
+                    className="text-brand hover:text-brand-dark shrink-0 text-[13px] font-semibold"
                   >
                     Read →
                   </a>

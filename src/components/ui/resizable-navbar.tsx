@@ -1,11 +1,6 @@
 import { cn } from '../../lib/utils'
 import { IconMenu2, IconX } from '@tabler/icons-react'
-import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useMotionValueEvent,
-} from 'motion/react'
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'motion/react'
 import React, { useRef, useState } from 'react'
 
 interface NavbarProps {
@@ -53,19 +48,13 @@ export const Navbar = ({ children, className }: NavbarProps) => {
   })
 
   return (
-    <motion.div
-      ref={ref}
-      className={cn('sticky inset-x-0 top-0 z-50 w-full', className)}
-    >
+    <motion.div ref={ref} className={cn('sticky inset-x-0 top-0 z-50 w-full', className)}>
       {/* Brand accent line */}
-      <div className="h-[3px] w-full bg-gradient-to-r from-brand via-sky-400 to-brand" />
+      <div className="from-brand to-brand h-[3px] w-full bg-gradient-to-r via-sky-400" />
 
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
-          ? React.cloneElement(
-              child as React.ReactElement<{ visible?: boolean }>,
-              { visible },
-            )
+          ? React.cloneElement(child as React.ReactElement<{ visible?: boolean }>, { visible })
           : child,
       )}
     </motion.div>
@@ -113,13 +102,10 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
           href={item.link}
           onMouseEnter={() => setHovered(idx)}
           onClick={onItemClick}
-          className="relative px-4 py-2 text-[13.5px] font-medium text-[#3a3a52] transition-colors hover:text-brand"
+          className="hover:text-brand relative px-4 py-2 text-[13.5px] font-medium text-[#3a3a52] transition-colors"
         >
           {hovered === idx && (
-            <motion.div
-              layoutId="hovered"
-              className="absolute inset-0 rounded-xl bg-brand/8"
-            />
+            <motion.div layoutId="hovered" className="bg-brand/8 absolute inset-0 rounded-xl" />
           )}
           <span className="relative z-20">{item.name}</span>
         </a>
@@ -172,7 +158,7 @@ export const MobileNavMenu = ({ children, className, isOpen }: MobileNavMenuProp
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.2 }}
           className={cn(
-            'absolute inset-x-0 top-full z-50 flex w-full flex-col items-start gap-2 rounded-b-2xl border-t border-brand/10 bg-white px-4 py-5 shadow-[0_16px_48px_rgba(3,126,243,0.10)]',
+            'border-brand/10 absolute inset-x-0 top-full z-50 flex w-full flex-col items-start gap-2 rounded-b-2xl border-t bg-white px-4 py-5 shadow-[0_16px_48px_rgba(3,126,243,0.10)]',
             className,
           )}
         >
@@ -183,13 +169,7 @@ export const MobileNavMenu = ({ children, className, isOpen }: MobileNavMenuProp
   )
 }
 
-export const MobileNavToggle = ({
-  isOpen,
-  onClick,
-}: {
-  isOpen: boolean
-  onClick: () => void
-}) => {
+export const MobileNavToggle = ({ isOpen, onClick }: { isOpen: boolean; onClick: () => void }) => {
   return isOpen ? (
     <IconX className="cursor-pointer text-[#1a1a2e]" onClick={onClick} size={22} />
   ) : (
@@ -210,10 +190,7 @@ export const NavbarButton = ({
   children: React.ReactNode
   className?: string
   variant?: 'primary' | 'secondary' | 'dark' | 'gradient'
-} & (
-  | React.ComponentPropsWithoutRef<'a'>
-  | React.ComponentPropsWithoutRef<'button'>
-)) => {
+} & (React.ComponentPropsWithoutRef<'a'> | React.ComponentPropsWithoutRef<'button'>)) => {
   const base =
     'px-5 py-2.5 rounded-xl text-[13px] font-semibold relative cursor-pointer hover:-translate-y-px transition duration-200 inline-flex items-center justify-center'
 
@@ -228,11 +205,7 @@ export const NavbarButton = ({
   }
 
   return (
-    <Tag
-      href={href ?? undefined}
-      className={cn(base, variants[variant], className)}
-      {...props}
-    >
+    <Tag href={href ?? undefined} className={cn(base, variants[variant], className)} {...props}>
       {children}
     </Tag>
   )

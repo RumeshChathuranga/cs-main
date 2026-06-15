@@ -43,13 +43,11 @@ export function Testimonials() {
           {testimonials.map((item) => (
             <article
               key={item.name}
-              className="flex flex-col gap-6 rounded-[20px] border border-white/6 bg-navy-card p-8 shadow-[0_4px_10px_rgba(0,0,0,0.2)]"
+              className="bg-navy-card flex flex-col gap-6 rounded-[20px] border border-white/6 p-8 shadow-[0_4px_10px_rgba(0,0,0,0.2)]"
             >
-              <span className="text-7xl font-bold leading-none text-brand opacity-80">
-                &ldquo;
-              </span>
+              <span className="text-brand text-7xl leading-none font-bold opacity-80">&ldquo;</span>
 
-              <p className="flex-1 text-[15px] italic leading-relaxed text-white/90">
+              <p className="flex-1 text-[15px] leading-relaxed text-white/90 italic">
                 {item.quote}
               </p>
 
@@ -58,15 +56,13 @@ export function Testimonials() {
                   <img
                     src={item.avatar}
                     alt={item.name}
-                    className="size-[52px] rounded-full border-2 border-brand object-cover"
+                    className="border-brand size-[52px] rounded-full border-2 object-cover"
                   />
-                  <span className="absolute -bottom-1 -right-1 text-base">
-                    {item.flag}
-                  </span>
+                  <span className="absolute -right-1 -bottom-1 text-base">{item.flag}</span>
                 </div>
                 <div>
                   <p className="text-[15px] font-bold text-white">{item.name}</p>
-                  <p className="text-[13px] text-text-subtle">{item.role}</p>
+                  <p className="text-text-subtle text-[13px]">{item.role}</p>
                 </div>
               </div>
             </article>

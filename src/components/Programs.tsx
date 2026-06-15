@@ -95,7 +95,7 @@ export function Programs() {
                   className={`absolute inset-0 bg-gradient-to-t ${program.gradient} to-transparent to-60%`}
                 />
                 <span
-                  className={`absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide ${program.tagBg} ${program.tagColor}`}
+                  className={`absolute top-4 left-4 rounded-full px-3 py-1 text-xs font-bold tracking-wide uppercase ${program.tagBg} ${program.tagColor}`}
                 >
                   {program.tag}
                 </span>
@@ -105,20 +105,14 @@ export function Programs() {
                 <div className="flex items-center gap-3">
                   <span className="text-[28px]">{program.emoji}</span>
                   <div>
-                    <h3 className="text-xl font-extrabold text-text-primary">
-                      {program.title}
-                    </h3>
-                    <p
-                      className={`text-[13px] font-semibold ${program.subtitleColor}`}
-                    >
+                    <h3 className="text-text-primary text-xl font-extrabold">{program.title}</h3>
+                    <p className={`text-[13px] font-semibold ${program.subtitleColor}`}>
                       {program.subtitle}
                     </p>
                   </div>
                 </div>
 
-                <p className="text-sm leading-relaxed text-text-secondary">
-                  {program.description}
-                </p>
+                <p className="text-text-secondary text-sm leading-relaxed">{program.description}</p>
 
                 <div className="flex flex-wrap gap-2.5">
                   {program.badges.map((badge) => (
@@ -133,7 +127,7 @@ export function Programs() {
 
                 <a
                   href="#"
-                  className="text-sm font-bold text-brand transition-colors hover:text-brand-dark"
+                  className="text-brand hover:text-brand-dark text-sm font-bold transition-colors"
                 >
                   Learn More →
                 </a>

@@ -1,12 +1,5 @@
 import type { LucideIcon } from 'lucide-react'
-import {
-  Star,
-  ShieldCheck,
-  Zap,
-  Leaf,
-  Globe,
-  Smile,
-} from 'lucide-react'
+import { Star, ShieldCheck, Zap, Leaf, Globe, Smile } from 'lucide-react'
 import { SectionHeader } from './ui/SectionHeader'
 
 interface Value {
@@ -47,8 +40,7 @@ const values: Value[] = [
     iconColor: 'text-emerald-600',
     iconBg: 'bg-emerald-600/10',
     title: 'Acting Sustainably',
-    description:
-      'We act in a way that is sustainable for our organization and society as a whole.',
+    description: 'We act in a way that is sustainable for our organization and society as a whole.',
   },
   {
     icon: Globe,
@@ -91,12 +83,8 @@ export function Values() {
                 >
                   <Icon size={30} className={value.iconColor} strokeWidth={1.8} />
                 </div>
-                <h3 className="mt-5 text-[17px] font-bold text-text-primary">
-                  {value.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-text-muted">
-                  {value.description}
-                </p>
+                <h3 className="text-text-primary mt-5 text-[17px] font-bold">{value.title}</h3>
+                <p className="text-text-muted mt-3 text-sm leading-relaxed">{value.description}</p>
               </article>
             )
           })}
