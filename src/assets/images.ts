@@ -62,6 +62,14 @@ import teamAsel from './images/team-asel.jpg'
 import teamDanidu from './images/team-danidu.jpg'
 import teamHiruni from './images/team-hiruni.jpg'
 import teamTharindu from './images/team-tharindu.jpg'
+import galleryVolunteer1 from './images/gallery/gv-volunteer-1.jpg'
+import galleryVolunteer2 from './images/gallery/gv-volunteer-2.jpg'
+import galleryVolunteer3 from './images/gallery/gv-volunteer-3.jpg'
+import galleryHost from './images/gallery/gv-host-image.jpg'
+import galleryLeadSummit from './images/gallery/blog-lead-summit.jpg'
+import galleryTeaching from './images/gallery/gt-volunteer-teaching.jpg'
+import galleryTeam from './images/gallery/about-team.jpg'
+import galleryProfessionals from './images/gallery/gta-professionals.jpg'
 
 export const images = {
   logo,
@@ -128,4 +136,14 @@ export const images = {
   teamDanidu,
   teamHiruni,
   teamTharindu,
+  gallery: {
+    volunteer1: galleryVolunteer1,
+    volunteer2: galleryVolunteer2,
+    volunteer3: galleryVolunteer3,
+    host: galleryHost,
+    leadSummit: galleryLeadSummit,
+    teaching: galleryTeaching,
+    team: galleryTeam,
+    professionals: galleryProfessionals,
+  },
 } as const

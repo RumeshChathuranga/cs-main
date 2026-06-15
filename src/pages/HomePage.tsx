@@ -1,4 +1,5 @@
 import { Hero } from '../components/Hero'
+import { Gallery } from '../components/Gallery'
 import { About } from '../components/About'
 import { StatsBar } from '../components/StatsBar'
 import { Values } from '../components/Values'
@@ -11,6 +12,7 @@ export function HomePage() {
   return (
     <>
       <Hero />
+      <Gallery />
       <About />
       <StatsBar />
       <Values />
