@@ -42,10 +42,7 @@ export function WorldMap({
     return { x, y }
   }
 
-  const createCurvedPath = (
-    start: { x: number; y: number },
-    end: { x: number; y: number },
-  ) => {
+  const createCurvedPath = (start: { x: number; y: number }, end: { x: number; y: number }) => {
     const midX = (start.x + end.x) / 2
     const midY = Math.min(start.y, end.y) - 50
     return `M ${start.x} ${start.y} Q ${midX} ${midY} ${end.x} ${end.y}`
@@ -61,7 +58,7 @@ export function WorldMap({
       {/* Dotted map background */}
       <img
         src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
-        className="pointer-events-none h-full w-full select-none object-cover mask-[linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)]"
+        className="pointer-events-none h-full w-full mask-[linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] object-cover select-none"
         alt="world map"
         draggable={false}
       />
@@ -107,11 +104,7 @@ export function WorldMap({
                 stroke="url(#gt-path-gradient)"
                 strokeWidth="1"
                 initial={{ pathLength: 0 }}
-                animate={
-                  loop
-                    ? { pathLength: [0, 0, 1, 1, 0] }
-                    : { pathLength: 1 }
-                }
+                animate={loop ? { pathLength: [0, 0, 1, 1, 0] } : { pathLength: 1 }}
                 transition={
                   loop
                     ? {
@@ -162,9 +155,7 @@ export function WorldMap({
             <g key={`points-group-${i}`}>
               {/* Start point */}
               <motion.g
-                onHoverStart={() =>
-                  setHoveredLocation(dot.start.label ?? `Location ${i + 1}`)
-                }
+                onHoverStart={() => setHoveredLocation(dot.start.label ?? `Location ${i + 1}`)}
                 onHoverEnd={() => setHoveredLocation(null)}
                 className="cursor-pointer"
                 whileHover={{ scale: 1.2 }}
@@ -178,8 +169,22 @@ export function WorldMap({
                   filter="url(#gt-glow)"
                 />
                 <circle cx={startPoint.x} cy={startPoint.y} r="3" fill={lineColor} opacity="0.5">
-                  <animate attributeName="r" from="3" to="12" dur="2s" begin="0s" repeatCount="indefinite" />
-                  <animate attributeName="opacity" from="0.6" to="0" dur="2s" begin="0s" repeatCount="indefinite" />
+                  <animate
+                    attributeName="r"
+                    from="3"
+                    to="12"
+                    dur="2s"
+                    begin="0s"
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="opacity"
+                    from="0.6"
+                    to="0"
+                    dur="2s"
+                    begin="0s"
+                    repeatCount="indefinite"
+                  />
                 </circle>
               </motion.g>
               {showLabels && dot.start.label && (
@@ -189,7 +194,12 @@ export function WorldMap({
                   transition={{ delay: 0.5 * i + 0.3, duration: 0.5 }}
                   className="pointer-events-none"
                 >
-                  <foreignObject x={startPoint.x - 50} y={startPoint.y - 35} width="100" height="30">
+                  <foreignObject
+                    x={startPoint.x - 50}
+                    y={startPoint.y - 35}
+                    width="100"
+                    height="30"
+                  >
                     <div className="flex h-full items-center justify-center">
                       <span className="rounded-md border border-gray-200 bg-white/95 px-2 py-0.5 text-xs font-medium text-black shadow-sm">
                         {dot.start.label}
@@ -201,9 +211,7 @@ export function WorldMap({
 
               {/* End point */}
               <motion.g
-                onHoverStart={() =>
-                  setHoveredLocation(dot.end.label ?? `Destination ${i + 1}`)
-                }
+                onHoverStart={() => setHoveredLocation(dot.end.label ?? `Destination ${i + 1}`)}
                 onHoverEnd={() => setHoveredLocation(null)}
                 className="cursor-pointer"
                 whileHover={{ scale: 1.2 }}
@@ -217,8 +225,22 @@ export function WorldMap({
                   filter="url(#gt-glow)"
                 />
                 <circle cx={endPoint.x} cy={endPoint.y} r="3" fill={lineColor} opacity="0.5">
-                  <animate attributeName="r" from="3" to="12" dur="2s" begin="0.5s" repeatCount="indefinite" />
-                  <animate attributeName="opacity" from="0.6" to="0" dur="2s" begin="0.5s" repeatCount="indefinite" />
+                  <animate
+                    attributeName="r"
+                    from="3"
+                    to="12"
+                    dur="2s"
+                    begin="0.5s"
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="opacity"
+                    from="0.6"
+                    to="0"
+                    dur="2s"
+                    begin="0.5s"
+                    repeatCount="indefinite"
+                  />
                 </circle>
               </motion.g>
               {showLabels && dot.end.label && (

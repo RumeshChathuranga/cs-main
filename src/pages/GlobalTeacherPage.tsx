@@ -68,7 +68,7 @@ const schoolBenefits = [
   },
   {
     icon: GraduationCap,
-    text: "Receive a motivated, enthusiastic teacher whose fresh energy and cross-cultural lens re-energises your classrooms.",
+    text: 'Receive a motivated, enthusiastic teacher whose fresh energy and cross-cultural lens re-energises your classrooms.',
   },
   {
     icon: Heart,
@@ -161,23 +161,23 @@ export function GlobalTeacherPage() {
           }}
         />
         {/* Decorative rings */}
-        <div className="absolute left-[7%] top-[14%] size-44 rounded-full border-2 border-[rgba(255,171,0,0.6)] opacity-[0.07]" />
-        <div className="absolute right-[17%] top-[22%] size-28 rounded-3xl border-2 border-[rgba(255,171,0,0.6)] opacity-[0.09]" />
+        <div className="absolute top-[14%] left-[7%] size-44 rounded-full border-2 border-[rgba(255,171,0,0.6)] opacity-[0.07]" />
+        <div className="absolute top-[22%] right-[17%] size-28 rounded-3xl border-2 border-[rgba(255,171,0,0.6)] opacity-[0.09]" />
         <div className="absolute bottom-[18%] left-[12%] size-24 rounded-[50px] border-2 border-[rgba(255,171,0,0.6)] opacity-[0.06]" />
-        <div className="absolute bottom-[25%] right-[17%] size-40 rounded-[80px] border-2 border-[rgba(255,171,0,0.6)] opacity-[0.07]" />
+        <div className="absolute right-[17%] bottom-[25%] size-40 rounded-[80px] border-2 border-[rgba(255,171,0,0.6)] opacity-[0.07]" />
 
         {/* Content */}
         <div className="relative z-10 mx-auto w-full max-w-[664px] px-6 text-center">
           {/* Badge */}
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-2">
-            <BookOpen size={14} className="shrink-0 text-navy" />
-            <span className="text-xs font-extrabold tracking-[1.56px] text-navy uppercase">
+          <div className="bg-gold mb-8 inline-flex items-center gap-2 rounded-full px-6 py-2">
+            <BookOpen size={14} className="text-navy shrink-0" />
+            <span className="text-navy text-xs font-extrabold tracking-[1.56px] uppercase">
               Global Teacher
             </span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-[clamp(38px,5vw,62px)] font-black leading-[1.1] tracking-[-0.02em] text-white">
+          <h1 className="text-[clamp(38px,5vw,62px)] leading-[1.1] font-black tracking-[-0.02em] text-white">
             Teach Abroad.
             <br />
             Transform Lives —
@@ -195,7 +195,7 @@ export function GlobalTeacherPage() {
           <div className="mt-11 flex flex-wrap items-center justify-center gap-4">
             <a
               href="mailto:colombosouth@aiesec.net"
-              className="inline-flex items-center gap-2 rounded-[10px] bg-gold px-9 py-[17px] text-base font-extrabold text-navy shadow-[0_4px_8px_rgba(255,171,0,0.27)] transition-all hover:-translate-y-px hover:shadow-[0_6px_16px_rgba(255,171,0,0.4)]"
+              className="bg-gold text-navy inline-flex items-center gap-2 rounded-[10px] px-9 py-[17px] text-base font-extrabold shadow-[0_4px_8px_rgba(255,171,0,0.27)] transition-all hover:-translate-y-px hover:shadow-[0_6px_16px_rgba(255,171,0,0.4)]"
             >
               Apply to Teach <ArrowRight size={16} />
             </a>
@@ -215,7 +215,7 @@ export function GlobalTeacherPage() {
               { val: 'SDG 4', label: 'Quality Education' },
             ].map((s) => (
               <div key={s.label} className="text-center">
-                <p className="text-2xl font-black tracking-tight text-gold">{s.val}</p>
+                <p className="text-gold text-2xl font-black tracking-tight">{s.val}</p>
                 <p className="mt-1 text-xs font-medium tracking-[0.36px] text-[rgba(255,255,255,0.6)]">
                   {s.label}
                 </p>
@@ -233,9 +233,8 @@ export function GlobalTeacherPage() {
             <span className="inline-block rounded-full bg-[rgba(255,171,0,0.09)] px-4 py-[6px] text-[11px] font-bold tracking-[1.32px] text-[#cc8800] uppercase">
               About the Program
             </span>
-            <h2 className="mt-5 text-[40px] font-extrabold leading-[1.2] tracking-[-0.4px] text-navy">
-              Education Is the{' '}
-              <span className="text-gold">Most Powerful Tool</span>
+            <h2 className="text-navy mt-5 text-[40px] leading-[1.2] font-extrabold tracking-[-0.4px]">
+              Education Is the <span className="text-gold">Most Powerful Tool</span>
               <br />
               in the World.
             </h2>
@@ -251,7 +250,7 @@ export function GlobalTeacherPage() {
                       <Icon size={20} className={item.iconColor} />
                     </div>
                     <div>
-                      <p className="text-[15px] font-bold text-navy">{item.title}</p>
+                      <p className="text-navy text-[15px] font-bold">{item.title}</p>
                       <p className="mt-1.5 text-sm leading-[1.78] text-[#6b7280]">{item.body}</p>
                     </div>
                   </div>
@@ -266,7 +265,7 @@ export function GlobalTeacherPage() {
                 <p className="text-[11px] font-bold tracking-[0.88px] text-[#cc8800] uppercase">
                   UN Sustainable Development Goal
                 </p>
-                <p className="mt-0.5 text-sm font-bold text-navy">SDG 4 — Quality Education</p>
+                <p className="text-navy mt-0.5 text-sm font-bold">SDG 4 — Quality Education</p>
               </div>
             </div>
           </div>
@@ -274,12 +273,12 @@ export function GlobalTeacherPage() {
           {/* Right column — image with floating badges */}
           <div className="relative mt-4">
             {/* Floating top-left badge */}
-            <div className="absolute -left-5 -top-4 z-10 flex items-center gap-2.5 rounded-2xl border border-[#f0f1f5] bg-white px-4 py-3.5 shadow-[0_8px_14px_rgba(0,0,0,0.12)]">
+            <div className="absolute -top-4 -left-5 z-10 flex items-center gap-2.5 rounded-2xl border border-[#f0f1f5] bg-white px-4 py-3.5 shadow-[0_8px_14px_rgba(0,0,0,0.12)]">
               <div className="flex size-9 items-center justify-center rounded-[10px] bg-[rgba(255,171,0,0.09)]">
                 <MapPin size={18} className="text-gold" />
               </div>
               <div>
-                <p className="text-[17px] font-black leading-none text-navy">20+</p>
+                <p className="text-navy text-[17px] leading-none font-black">20+</p>
                 <p className="mt-0.5 text-[11px] text-[#9ca3af]">Countries</p>
               </div>
             </div>
@@ -294,10 +293,10 @@ export function GlobalTeacherPage() {
             </div>
 
             {/* Floating bottom-right badge */}
-            <div className="absolute -bottom-3 right-4 flex items-center gap-2.5 rounded-2xl bg-gold px-5 py-3 shadow-[0_8px_14px_rgba(255,171,0,0.33)]">
-              <Clock size={20} className="shrink-0 text-navy" />
+            <div className="bg-gold absolute right-4 -bottom-3 flex items-center gap-2.5 rounded-2xl px-5 py-3 shadow-[0_8px_14px_rgba(255,171,0,0.33)]">
+              <Clock size={20} className="text-navy shrink-0" />
               <div>
-                <p className="text-xl font-black leading-none text-navy">6–8 wks</p>
+                <p className="text-navy text-xl leading-none font-black">6–8 wks</p>
                 <p className="mt-0.5 text-[11px] font-semibold text-[rgba(26,26,46,0.7)]">
                   Duration
                 </p>
@@ -315,7 +314,7 @@ export function GlobalTeacherPage() {
             <span className="inline-block rounded-full bg-[rgba(255,171,0,0.09)] px-4 py-[6px] text-[11px] font-bold tracking-[1.32px] text-[#cc8800] uppercase">
               Your Role
             </span>
-            <h2 className="mt-5 text-[40px] font-extrabold tracking-[-0.4px] text-navy">
+            <h2 className="text-navy mt-5 text-[40px] font-extrabold tracking-[-0.4px]">
               Your Role as a Global Teacher.
             </h2>
             <p className="mt-4 text-base leading-[1.7] text-[#6b7280]">
@@ -336,7 +335,7 @@ export function GlobalTeacherPage() {
                   <div className="flex size-[60px] items-center justify-center rounded-2xl bg-[rgba(255,171,0,0.1)]">
                     <Icon size={28} className="text-gold" />
                   </div>
-                  <h3 className="text-lg font-bold text-navy">{card.title}</h3>
+                  <h3 className="text-navy text-lg font-bold">{card.title}</h3>
                   <p className="text-sm leading-[1.8] text-[#6b7280]">{card.body}</p>
                 </div>
               )
@@ -346,19 +345,19 @@ export function GlobalTeacherPage() {
       </section>
 
       {/* ══════════════════ FOR SCHOOLS ══════════════════ */}
-      <section className="relative overflow-hidden bg-gold py-20">
+      <section className="bg-gold relative overflow-hidden py-20">
         {/* Decorative rings */}
-        <div className="pointer-events-none absolute right-[-20px] top-[-80px] size-80 rounded-[160px] border-2 border-[rgba(26,26,46,0.08)]" />
+        <div className="pointer-events-none absolute top-[-80px] right-[-20px] size-80 rounded-[160px] border-2 border-[rgba(26,26,46,0.08)]" />
         <div className="pointer-events-none absolute bottom-[80px] left-[-20px] size-52 rounded-[110px] border-2 border-[rgba(26,26,46,0.06)]" />
-        <div className="pointer-events-none absolute left-[69%] top-[40%] size-2.5 rounded bg-[rgba(26,26,46,0.15)]" />
+        <div className="pointer-events-none absolute top-[40%] left-[69%] size-2.5 rounded bg-[rgba(26,26,46,0.15)]" />
 
         <div className="relative mx-auto grid max-w-[1280px] items-center gap-16 px-8 lg:grid-cols-2">
           {/* Left */}
           <div>
-            <span className="inline-block rounded-full bg-[rgba(26,26,46,0.12)] px-4 py-[6px] text-[11px] font-bold tracking-[1.32px] text-navy uppercase">
+            <span className="text-navy inline-block rounded-full bg-[rgba(26,26,46,0.12)] px-4 py-[6px] text-[11px] font-bold tracking-[1.32px] uppercase">
               For Schools &amp; Organisations
             </span>
-            <h2 className="mt-5 text-[38px] font-extrabold leading-[1.2] tracking-[-0.38px] text-navy">
+            <h2 className="text-navy mt-5 text-[38px] leading-[1.2] font-extrabold tracking-[-0.38px]">
               Bring the World Into
               <br />
               Your Classroom.
@@ -380,7 +379,7 @@ export function GlobalTeacherPage() {
 
             <a
               href="mailto:colombosouth@aiesec.net?subject=Partner With AIESEC - Host a Teacher"
-              className="mt-10 inline-flex items-center gap-2 rounded-[10px] border-2 border-navy px-6 py-3 text-[15px] font-bold text-navy transition-all hover:bg-navy hover:text-gold"
+              className="border-navy text-navy hover:bg-navy hover:text-gold mt-10 inline-flex items-center gap-2 rounded-[10px] border-2 px-6 py-3 text-[15px] font-bold transition-all"
             >
               Partner With Us <ArrowRight size={15} />
             </a>
@@ -405,7 +404,7 @@ export function GlobalTeacherPage() {
             <span className="inline-block rounded-full bg-[rgba(255,171,0,0.09)] px-4 py-[6px] text-[11px] font-bold tracking-[1.32px] text-[#cc8800] uppercase">
               Teaching Destinations
             </span>
-            <h2 className="mt-5 text-[40px] font-extrabold tracking-[-0.4px] text-navy">
+            <h2 className="text-navy mt-5 text-[40px] font-extrabold tracking-[-0.4px]">
               Where Will You Teach?
             </h2>
             <p className="mt-4 text-base leading-[1.7] text-[#6b7280]">
@@ -459,7 +458,7 @@ export function GlobalTeacherPage() {
                 className="flex items-center gap-2 rounded-full border border-[#e5e7eb] bg-white px-4 py-2.5 shadow-sm"
               >
                 <span className="text-lg">{d.flag}</span>
-                <span className="text-[15px] font-semibold text-navy">{d.name}</span>
+                <span className="text-navy text-[15px] font-semibold">{d.name}</span>
               </div>
             ))}
           </div>
@@ -477,7 +476,7 @@ export function GlobalTeacherPage() {
             <span className="inline-block rounded-full bg-[rgba(255,171,0,0.09)] px-4 py-[6px] text-[11px] font-bold tracking-[1.32px] text-[#cc8800] uppercase">
               The Process
             </span>
-            <h2 className="mt-5 text-[40px] font-extrabold tracking-[-0.4px] text-navy">
+            <h2 className="text-navy mt-5 text-[40px] font-extrabold tracking-[-0.4px]">
               How It Works.
             </h2>
           </div>
@@ -485,23 +484,26 @@ export function GlobalTeacherPage() {
           {/* Steps */}
           <div className="relative grid grid-cols-2 gap-8 lg:grid-cols-4">
             {/* Connecting line (desktop) — sits behind icon circles */}
-            <div className="absolute left-[12.5%] right-[12.5%] top-[37px] z-0 hidden h-[3px] rounded bg-[rgba(255,171,0,0.35)] lg:block" />
+            <div className="absolute top-[37px] right-[12.5%] left-[12.5%] z-0 hidden h-[3px] rounded bg-[rgba(255,171,0,0.35)] lg:block" />
 
             {steps.map((step) => {
               const Icon = step.icon
               return (
-                <div key={step.title} className="relative z-10 flex flex-col items-center text-center">
+                <div
+                  key={step.title}
+                  className="relative z-10 flex flex-col items-center text-center"
+                >
                   {/* Icon circle */}
                   <div className="relative mb-6">
-                    <div className="relative z-10 flex size-[74px] items-center justify-center rounded-[37px] border-2 border-gold bg-surface">
+                    <div className="border-gold bg-surface relative z-10 flex size-[74px] items-center justify-center rounded-[37px] border-2">
                       <Icon size={28} className="text-gold" />
                     </div>
                     {/* Step number badge */}
-                    <div className="absolute -right-1.5 -top-2 flex size-6 items-center justify-center rounded-xl border-2 border-white bg-navy text-[11px] font-extrabold text-white">
+                    <div className="bg-navy absolute -top-2 -right-1.5 flex size-6 items-center justify-center rounded-xl border-2 border-white text-[11px] font-extrabold text-white">
                       {step.num}
                     </div>
                   </div>
-                  <h3 className="text-[15px] font-bold text-navy">{step.title}</h3>
+                  <h3 className="text-navy text-[15px] font-bold">{step.title}</h3>
                   <p className="mt-2.5 text-[13.5px] leading-[1.75] text-[#6b7280]">{step.body}</p>
                 </div>
               )
@@ -512,7 +514,7 @@ export function GlobalTeacherPage() {
           <div className="mt-16 text-center">
             <a
               href="mailto:colombosouth@aiesec.net?subject=Start Application - Global Teacher"
-              className="inline-flex items-center gap-2 rounded-[10px] bg-gold px-8 py-3.5 text-[15px] font-extrabold text-navy shadow-[0_4px_9px_rgba(255,171,0,0.27)] transition-all hover:-translate-y-px hover:shadow-[0_6px_16px_rgba(255,171,0,0.4)]"
+              className="bg-gold text-navy inline-flex items-center gap-2 rounded-[10px] px-8 py-3.5 text-[15px] font-extrabold shadow-[0_4px_9px_rgba(255,171,0,0.27)] transition-all hover:-translate-y-px hover:shadow-[0_6px_16px_rgba(255,171,0,0.4)]"
             >
               Start Your Application <ArrowRight size={16} />
             </a>
@@ -525,13 +527,13 @@ export function GlobalTeacherPage() {
         <div className="mx-auto max-w-[1280px] px-8">
           {/* Header */}
           <div className="mx-auto mb-14 max-w-[675px] text-center">
-            <span className="inline-block rounded-full bg-[rgba(255,171,0,0.13)] px-4 py-[6px] text-[11px] font-bold tracking-[1.32px] text-gold uppercase">
+            <span className="text-gold inline-block rounded-full bg-[rgba(255,171,0,0.13)] px-4 py-[6px] text-[11px] font-bold tracking-[1.32px] uppercase">
               GTE Alumni &amp; Schools
             </span>
             <h2 className="mt-5 text-[38px] font-extrabold text-white">
               Stories From the Classroom.
             </h2>
-            <p className="mt-4 text-base text-text-subtle">
+            <p className="text-text-subtle mt-4 text-base">
               Real words from teachers who went abroad — and the schools that welcomed them.
             </p>
           </div>
@@ -541,23 +543,23 @@ export function GlobalTeacherPage() {
             {testimonials.map((t) => (
               <div
                 key={t.name}
-                className="flex flex-col rounded-[20px] border border-[rgba(255,255,255,0.06)] bg-navy-card p-8 shadow-[0_4px_10px_rgba(0,0,0,0.2)]"
+                className="bg-navy-card flex flex-col rounded-[20px] border border-[rgba(255,255,255,0.06)] p-8 shadow-[0_4px_10px_rgba(0,0,0,0.2)]"
               >
                 {/* Badge */}
                 <div className="mb-6 inline-flex w-fit items-center gap-1.5 rounded-full bg-[rgba(255,171,0,0.13)] px-3 py-1">
                   <BookOpen size={12} className="text-gold" />
-                  <span className="text-[10px] font-bold tracking-[1px] text-gold uppercase">
+                  <span className="text-gold text-[10px] font-bold tracking-[1px] uppercase">
                     {t.badge}
                   </span>
                 </div>
 
                 {/* Opening quote mark */}
-                <span className="font-serif text-[64px] font-bold leading-none text-gold opacity-90">
+                <span className="text-gold font-serif text-[64px] leading-none font-bold opacity-90">
                   &ldquo;
                 </span>
 
                 {/* Quote */}
-                <p className="mt-1 flex-1 text-[15px] italic leading-[1.85] text-[rgba(255,255,255,0.9)]">
+                <p className="mt-1 flex-1 text-[15px] leading-[1.85] text-[rgba(255,255,255,0.9)] italic">
                   {t.quote}
                 </p>
 
@@ -566,11 +568,11 @@ export function GlobalTeacherPage() {
                   <img
                     src={t.avatar}
                     alt={t.name}
-                    className="size-[52px] shrink-0 rounded-full border-2 border-gold object-cover"
+                    className="border-gold size-[52px] shrink-0 rounded-full border-2 object-cover"
                   />
                   <div>
                     <p className="text-[15px] font-bold text-white">{t.name}</p>
-                    <p className="mt-0.5 text-[13px] text-text-subtle">{t.role}</p>
+                    <p className="text-text-subtle mt-0.5 text-[13px]">{t.role}</p>
                   </div>
                 </div>
               </div>
@@ -583,14 +585,13 @@ export function GlobalTeacherPage() {
       <section
         className="relative overflow-hidden py-36"
         style={{
-          background:
-            'linear-gradient(159.96deg, #ffab00 0%, #f97316 40%, #037ef3 100%)',
+          background: 'linear-gradient(159.96deg, #ffab00 0%, #f97316 40%, #037ef3 100%)',
         }}
       >
         {/* Decorative blobs */}
-        <div className="pointer-events-none absolute -left-16 -top-16 size-60 rounded-[120px] bg-white/10 opacity-[0.08]" />
-        <div className="pointer-events-none absolute bottom-[90px] right-[-20px] size-[280px] rounded-[140px] bg-white/10 opacity-[0.07]" />
-        <div className="pointer-events-none absolute right-[19%] top-[49%] size-3 rounded-md bg-white/50 opacity-[0.35]" />
+        <div className="pointer-events-none absolute -top-16 -left-16 size-60 rounded-[120px] bg-white/10 opacity-[0.08]" />
+        <div className="pointer-events-none absolute right-[-20px] bottom-[90px] size-[280px] rounded-[140px] bg-white/10 opacity-[0.07]" />
+        <div className="pointer-events-none absolute top-[49%] right-[19%] size-3 rounded-md bg-white/50 opacity-[0.35]" />
         <div className="pointer-events-none absolute bottom-[32%] left-[14%] size-2.5 rounded bg-white/50 opacity-[0.30]" />
 
         <div className="relative mx-auto max-w-[640px] px-8 text-center">
@@ -603,7 +604,7 @@ export function GlobalTeacherPage() {
           </div>
 
           {/* Headline */}
-          <h2 className="text-[48px] font-black leading-[1.15] tracking-[-0.48px] text-white">
+          <h2 className="text-[48px] leading-[1.15] font-black tracking-[-0.48px] text-white">
             Ready to Make an Impact?
           </h2>
 
@@ -617,7 +618,7 @@ export function GlobalTeacherPage() {
           {/* Button */}
           <a
             href="mailto:colombosouth@aiesec.net?subject=Apply Now - Global Teacher"
-            className="mt-10 inline-flex items-center gap-2 rounded-xl bg-white px-10 py-4 text-base font-extrabold text-navy shadow-[0_6px_12px_rgba(0,0,0,0.16)] transition-all hover:-translate-y-px hover:shadow-[0_8px_20px_rgba(0,0,0,0.22)]"
+            className="text-navy mt-10 inline-flex items-center gap-2 rounded-xl bg-white px-10 py-4 text-base font-extrabold shadow-[0_6px_12px_rgba(0,0,0,0.16)] transition-all hover:-translate-y-px hover:shadow-[0_8px_20px_rgba(0,0,0,0.22)]"
           >
             Apply Now <ArrowRight size={17} />
           </a>

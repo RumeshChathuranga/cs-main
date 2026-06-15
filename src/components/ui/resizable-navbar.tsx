@@ -107,7 +107,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
           className={({ isActive }) =>
             cn(
               'relative px-4 py-2 text-[13.5px] font-medium transition-colors',
-              isActive ? 'text-brand' : 'text-[#3a3a52] hover:text-brand',
+              isActive ? 'text-brand' : 'hover:text-brand text-[#3a3a52]',
             )
           }
         >

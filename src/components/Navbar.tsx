@@ -58,7 +58,7 @@ export function NavbarSection() {
                 `w-full rounded-xl px-4 py-3 text-[14px] font-medium transition-colors ${
                   isActive
                     ? 'bg-brand/10 text-brand'
-                    : 'text-[#3a3a52] hover:bg-brand/8 hover:text-brand'
+                    : 'hover:bg-brand/8 hover:text-brand text-[#3a3a52]'
                 }`
               }
             >
