@@ -19,6 +19,7 @@ const navItems = [
   { name: 'Global Teacher', link: '/programs/global-teacher' },
   { name: 'Blog', link: '/blog' },
   { name: 'About Us', link: '/about' },
+  { name: 'Contact', link: '/contact' },
 ]
 
 export function NavbarSection() {
@@ -31,10 +32,7 @@ export function NavbarSection() {
         <Logo />
         <NavItems items={navItems} />
         <div className="flex items-center gap-3">
-          <NavbarButton variant="secondary" as={NavLink} to="/about">
-            Join Us
-          </NavbarButton>
-          <NavbarButton variant="primary" as={NavLink} to="/about#contact">
+          <NavbarButton variant="primary" as={NavLink} to="/contact">
             Contact Us
           </NavbarButton>
         </div>
@@ -67,16 +65,9 @@ export function NavbarSection() {
           ))}
           <div className="mt-1 flex w-full flex-col gap-2 border-t border-gray-100 pt-3">
             <NavbarButton
-              as="button"
-              variant="secondary"
-              onClick={() => setMobileOpen(false)}
-              className="w-full"
-            >
-              Join Us
-            </NavbarButton>
-            <NavbarButton
-              as="button"
+              as={NavLink}
               variant="primary"
+              to="/contact"
               onClick={() => setMobileOpen(false)}
               className="w-full"
             >

@@ -9,6 +9,7 @@ import { BlogArticlePage } from '../pages/BlogArticlePage'
 import { GlobalVolunteerPage } from '../pages/GlobalVolunteerPage'
 import { GlobalTalentPage } from '../pages/GlobalTalentPage'
 import { GlobalTeacherPage } from '../pages/GlobalTeacherPage'
+import { ContactPage } from '../pages/ContactPage'
 import { NotFoundPage } from '../pages/NotFoundPage'
 import { AdminLoginPage } from '../pages/admin/AdminLoginPage'
 import { AdminDashboardPage } from '../pages/admin/AdminDashboardPage'
@@ -26,6 +27,7 @@ export const router = createBrowserRouter([
       { path: '/programs/global-volunteer', element: <GlobalVolunteerPage /> },
       { path: '/programs/global-talent', element: <GlobalTalentPage /> },
       { path: '/programs/global-teacher', element: <GlobalTeacherPage /> },
+      { path: '/contact', element: <ContactPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

@@ -1,4 +1,5 @@
 import { MapPin, Mail, Phone } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { Logo } from './ui/Logo'
 
 function FacebookIcon() {
@@ -38,11 +39,10 @@ function LinkedinIcon() {
 }
 
 const quickLinks = [
-  { label: 'Home', href: '#' },
-  { label: 'About Us', href: '#about' },
-  { label: 'Blog', href: '#blog' },
-  { label: 'Contact Us', href: '#contact' },
-  { label: 'Join Us', href: '#contact' },
+  { label: 'Home', href: '/' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact Us', href: '/contact' },
 ]
 
 const programLinks = [
@@ -89,12 +89,12 @@ export function Footer() {
             <ul className="mt-5 space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="text-sm text-white/55 transition-colors hover:text-white"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
