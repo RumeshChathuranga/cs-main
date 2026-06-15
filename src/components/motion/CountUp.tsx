@@ -32,9 +32,7 @@ export function CountUp({ value, className, delay = 0, duration = 1.1 }: CountUp
   const isInView = useInView(ref, { once: true, margin: '-60px' })
   const reducedMotion = useReducedMotion()
   const { target, suffix, useGrouping } = parseStatValue(value)
-  const [animatedDisplay, setAnimatedDisplay] = useState(() =>
-    formatCount(0, suffix, useGrouping),
-  )
+  const [animatedDisplay, setAnimatedDisplay] = useState(() => formatCount(0, suffix, useGrouping))
   const controlsRef = useRef<ReturnType<typeof animate> | undefined>(undefined)
 
   useEffect(() => {
