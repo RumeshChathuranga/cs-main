@@ -32,34 +32,30 @@ export function CountUp({ value, className, delay = 0, duration = 1.1 }: CountUp
   const isInView = useInView(ref, { once: true, margin: '-60px' })
   const reducedMotion = useReducedMotion()
   const { target, suffix, useGrouping } = parseStatValue(value)
-  const [display, setDisplay] = useState(() =>
-    reducedMotion ? value : formatCount(0, suffix, useGrouping),
+  const [animatedDisplay, setAnimatedDisplay] = useState(() =>
+    formatCount(0, suffix, useGrouping),
   )
+  const controlsRef = useRef<ReturnType<typeof animate> | undefined>(undefined)
 
   useEffect(() => {
-    if (!isInView) return
+    if (!isInView || reducedMotion) return
 
-    if (reducedMotion) {
-      setDisplay(value)
-      return
-    }
-
-    let timeoutId: ReturnType<typeof setTimeout>
-    let controls: ReturnType<typeof animate> | undefined
-
-    timeoutId = setTimeout(() => {
-      controls = animate(0, target, {
+    const timeoutId = setTimeout(() => {
+      controlsRef.current = animate(0, target, {
         duration,
         ease: EASE_OUT,
-        onUpdate: (latest) => setDisplay(formatCount(latest, suffix, useGrouping)),
+        onUpdate: (latest) => setAnimatedDisplay(formatCount(latest, suffix, useGrouping)),
       })
     }, delay * 1000)
 
     return () => {
       clearTimeout(timeoutId)
-      controls?.stop()
+      controlsRef.current?.stop()
+      controlsRef.current = undefined
     }
-  }, [isInView, target, suffix, useGrouping, value, reducedMotion, delay, duration])
+  }, [isInView, target, suffix, useGrouping, reducedMotion, delay, duration])
+
+  const display = reducedMotion ? value : animatedDisplay
 
   return (
     <span ref={ref} className={className}>
