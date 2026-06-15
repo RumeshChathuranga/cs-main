@@ -26,6 +26,8 @@ import {
   ArrowRight,
 } from 'lucide-react'
 import { images } from '../assets/images'
+import { Reveal } from '../components/motion/Reveal'
+import { Stagger, StaggerItem } from '../components/motion/Stagger'
 
 /* ─── Data ──────────────────────────────────────────────────── */
 
@@ -244,75 +246,82 @@ export function GlobalTalentPage() {
         />
 
         {/* Content */}
-        <div className="relative z-10 mx-auto flex w-full max-w-[664px] flex-1 flex-col items-center justify-center px-6 py-24 text-center">
-          {/* Badge */}
-          <div
-            className="mb-8 inline-flex items-center gap-2 rounded-full px-6 py-2"
-            style={{
-              background: '#6b4eff',
-              boxShadow: '0 4px 8px rgba(107,78,255,0.35)',
-            }}
-          >
-            <Briefcase size={14} className="shrink-0 text-white" />
-            <span className="text-xs font-extrabold tracking-[1.56px] text-white uppercase">
-              Global Talent
-            </span>
-          </div>
-
-          {/* Headline */}
-          <h1 className="text-[clamp(38px,5vw,64px)] leading-[1.1] font-black tracking-[-0.02em] text-white">
-            Kickstart Your Career
-            <br />
-            Internationally.
-          </h1>
-
-          {/* Sub-text */}
-          <p className="mx-auto mt-8 max-w-[600px] text-lg leading-[1.65] text-[rgba(255,255,255,0.83)]">
-            Professional internships abroad — gain real work experience, global exposure, and a
-            career edge that sets you apart for life.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="mt-11 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="mailto:colombosouth@aiesec.net?subject=Apply as an Intern - Global Talent"
-              className="inline-flex items-center gap-2 rounded-[10px] px-9 py-[17px] text-base font-extrabold text-white transition-all hover:-translate-y-px"
+        <Stagger
+          inView={false}
+          className="relative z-10 mx-auto flex w-full max-w-[664px] flex-1 flex-col items-center justify-center px-6 py-24 text-center"
+        >
+          <StaggerItem>
+            <div
+              className="mb-8 inline-flex items-center gap-2 rounded-full px-6 py-2"
               style={{
                 background: '#6b4eff',
                 boxShadow: '0 4px 8px rgba(107,78,255,0.35)',
               }}
             >
-              Apply as an Intern <ArrowRight size={16} />
-            </a>
-            <a
-              href="mailto:colombosouth@aiesec.net?subject=Hire Global Talent"
-              className="inline-flex items-center rounded-[10px] border-2 border-[rgba(255,255,255,0.75)] px-9 py-[17px] text-base font-bold text-white transition-all hover:bg-white/10"
-            >
-              Hire Global Talent
-            </a>
-          </div>
-        </div>
+              <Briefcase size={14} className="shrink-0 text-white" />
+              <span className="text-xs font-extrabold tracking-[1.56px] text-white uppercase">
+                Global Talent
+              </span>
+            </div>
+          </StaggerItem>
+
+          <StaggerItem>
+            <h1 className="text-[clamp(38px,5vw,64px)] leading-[1.1] font-black tracking-[-0.02em] text-white">
+              Kickstart Your Career
+              <br />
+              Internationally.
+            </h1>
+          </StaggerItem>
+
+          <StaggerItem>
+            <p className="mx-auto mt-8 max-w-[600px] text-lg leading-[1.65] text-[rgba(255,255,255,0.83)]">
+              Professional internships abroad — gain real work experience, global exposure, and a
+              career edge that sets you apart for life.
+            </p>
+          </StaggerItem>
+
+          <StaggerItem>
+            <div className="mt-11 flex flex-wrap items-center justify-center gap-4">
+              <a
+                href="mailto:colombosouth@aiesec.net?subject=Apply as an Intern - Global Talent"
+                className="inline-flex items-center gap-2 rounded-[10px] px-9 py-[17px] text-base font-extrabold text-white transition-all hover:-translate-y-px"
+                style={{
+                  background: '#6b4eff',
+                  boxShadow: '0 4px 8px rgba(107,78,255,0.35)',
+                }}
+              >
+                Apply as an Intern <ArrowRight size={16} />
+              </a>
+              <a
+                href="mailto:colombosouth@aiesec.net?subject=Hire Global Talent"
+                className="inline-flex items-center rounded-[10px] border-2 border-[rgba(255,255,255,0.75)] px-9 py-[17px] text-base font-bold text-white transition-all hover:bg-white/10"
+              >
+                Hire Global Talent
+              </a>
+            </div>
+          </StaggerItem>
+        </Stagger>
 
         <div className="relative z-10 border-t border-white/10 bg-black/35">
-          <div className="mx-auto grid max-w-5xl grid-cols-1 divide-y divide-white/20 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+          <Stagger className="mx-auto grid max-w-5xl grid-cols-1 divide-y divide-white/20 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
             {[
               { value: '70+', label: 'Countries' },
               { value: '6–12', label: 'Month Internships' },
               { value: '500+', label: 'Partner Companies' },
             ].map((stat) => (
-              <div key={stat.label} className="flex flex-col items-center gap-1.5 px-4 py-6">
+              <StaggerItem key={stat.label} className="flex flex-col items-center gap-1.5 px-4 py-6">
                 <span className="text-4xl font-extrabold text-white">{stat.value}</span>
                 <span className="text-[13px] font-medium tracking-wide text-white/75">
                   {stat.label}
                 </span>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
       {/* ══════════════════ ABOUT THE PROGRAM ══════════════════ */}
-      <section className="bg-white py-24">
+      <Reveal as="section" className="bg-white py-24">
         <div className="mx-auto grid max-w-[1280px] items-start gap-16 px-8 lg:grid-cols-2">
           {/* Left column */}
           <div>
@@ -323,11 +332,12 @@ export function GlobalTalentPage() {
               Work Abroad. <span className="text-violet">Grow Professionally.</span>
             </h2>
 
-            <div className="mt-8 space-y-6">
+            <Stagger className="mt-8 space-y-6">
               {aboutItems.map((item) => {
                 const Icon = item.icon
                 return (
-                  <div key={item.title} className="flex gap-4">
+                  <StaggerItem key={item.title}>
+                    <div className="flex gap-4">
                     <div
                       className={`flex size-11 shrink-0 items-center justify-center rounded-xl ${item.iconBg}`}
                     >
@@ -337,10 +347,11 @@ export function GlobalTalentPage() {
                       <p className="text-navy text-[15px] font-bold">{item.title}</p>
                       <p className="mt-1.5 text-sm leading-[1.78] text-[#6b7280]">{item.body}</p>
                     </div>
-                  </div>
+                    </div>
+                  </StaggerItem>
                 )
               })}
-            </div>
+            </Stagger>
 
             {/* Stats bar */}
             <div className="mt-10 flex items-center gap-8 border-t border-[#f0f1f5] pt-8">
@@ -394,10 +405,10 @@ export function GlobalTalentPage() {
             </div>
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* ══════════════════ WHY GLOBAL TALENT? ══════════════════ */}
-      <section className="bg-surface py-24">
+      <Reveal as="section" className="bg-surface py-24">
         <div className="mx-auto max-w-[1280px] px-8">
           {/* Header */}
           <div className="mx-auto mb-14 max-w-[600px] text-center">
@@ -410,8 +421,9 @@ export function GlobalTalentPage() {
           </div>
 
           {/* Two benefit cards */}
-          <div className="grid gap-6 lg:grid-cols-2">
+          <Stagger className="grid gap-6 lg:grid-cols-2">
             {/* For Interns */}
+            <StaggerItem>
             <div className="overflow-hidden rounded-2xl bg-white shadow-[0_4px_14px_rgba(0,0,0,0.07)]">
               {/* Card header */}
               <div
@@ -448,8 +460,10 @@ export function GlobalTalentPage() {
                 })}
               </div>
             </div>
+            </StaggerItem>
 
             {/* For Organisations */}
+            <StaggerItem>
             <div className="overflow-hidden rounded-2xl bg-white shadow-[0_4px_14px_rgba(0,0,0,0.07)]">
               {/* Card header */}
               <div
@@ -484,12 +498,13 @@ export function GlobalTalentPage() {
                 })}
               </div>
             </div>
-          </div>
+            </StaggerItem>
+          </Stagger>
         </div>
-      </section>
+      </Reveal>
 
       {/* ══════════════════ HOW IT WORKS ══════════════════ */}
-      <section className="bg-white py-24">
+      <Reveal as="section" className="bg-white py-24">
         <div className="mx-auto max-w-[1280px] px-8">
           {/* Header */}
           <div className="mb-16 text-center">
@@ -597,10 +612,10 @@ export function GlobalTalentPage() {
             </div>
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* ══════════════════ INTERNSHIP FIELDS ══════════════════ */}
-      <section className="bg-surface py-24">
+      <Reveal as="section" className="bg-surface py-24">
         <div className="mx-auto max-w-[1280px] px-8">
           {/* Header */}
           <div className="mx-auto mb-14 max-w-[600px] text-center">
@@ -617,22 +632,21 @@ export function GlobalTalentPage() {
           </div>
 
           {/* Field cards */}
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+          <Stagger className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
             {fields.map((f) => {
               const Icon = f.icon
               return (
-                <div
-                  key={f.label}
-                  className="flex flex-col items-center gap-4 rounded-2xl bg-white px-4 py-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(0,0,0,0.1)]"
-                >
-                  <div className={`flex size-14 items-center justify-center rounded-2xl ${f.bg}`}>
-                    <Icon size={26} className={f.color} />
+                <StaggerItem key={f.label}>
+                  <div className="flex flex-col items-center gap-4 rounded-2xl bg-white px-4 py-8 shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(0,0,0,0.1)]">
+                    <div className={`flex size-14 items-center justify-center rounded-2xl ${f.bg}`}>
+                      <Icon size={26} className={f.color} />
+                    </div>
+                    <p className="text-navy text-center text-[13px] font-bold">{f.label}</p>
                   </div>
-                  <p className="text-navy text-center text-[13px] font-bold">{f.label}</p>
-                </div>
+                </StaggerItem>
               )
             })}
-          </div>
+          </Stagger>
 
           {/* Footer note */}
           <p className="mt-8 text-center text-sm text-[#9ca3af]">
@@ -646,10 +660,10 @@ export function GlobalTalentPage() {
             — we may have a match for you.
           </p>
         </div>
-      </section>
+      </Reveal>
 
       {/* ══════════════════ TESTIMONIALS ══════════════════ */}
-      <section className="bg-navy py-24">
+      <Reveal as="section" className="bg-navy py-24">
         <div className="mx-auto max-w-[1280px] px-8">
           {/* Header */}
           <div className="mx-auto mb-14 max-w-[675px] text-center">
@@ -665,12 +679,10 @@ export function GlobalTalentPage() {
           </div>
 
           {/* Testimonial cards */}
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((t) => (
-              <div
-                key={t.name}
-                className="bg-navy-card relative flex flex-col rounded-[20px] border border-[rgba(255,255,255,0.06)] p-8 shadow-[0_4px_10px_rgba(0,0,0,0.2)]"
-              >
+              <StaggerItem key={t.name}>
+                <div className="bg-navy-card relative flex h-full flex-col rounded-[20px] border border-[rgba(255,255,255,0.06)] p-8 shadow-[0_4px_10px_rgba(0,0,0,0.2)]">
                 {/* Badge — top right */}
                 <div
                   className={`absolute top-6 right-6 inline-flex items-center rounded-full px-3 py-1 text-[10px] font-bold tracking-[0.8px] uppercase ${t.badgeColor}`}
@@ -700,14 +712,15 @@ export function GlobalTalentPage() {
                     <p className="text-text-subtle mt-0.5 text-[13px]">{t.role}</p>
                   </div>
                 </div>
-              </div>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
-      </section>
+      </Reveal>
 
       {/* ══════════════════ CTA SPLIT ══════════════════ */}
-      <section className="flex flex-col lg:flex-row">
+      <Reveal as="section" className="flex flex-col lg:flex-row">
         {/* Left — For Students */}
         <div
           className="relative flex flex-1 flex-col items-center justify-center overflow-hidden px-10 py-20 text-center"
@@ -763,7 +776,7 @@ export function GlobalTalentPage() {
             </a>
           </div>
         </div>
-      </section>
+      </Reveal>
     </>
   )
 }

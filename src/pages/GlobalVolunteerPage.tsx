@@ -14,11 +14,12 @@ import {
   Users,
   Lightbulb,
   TrendingUp,
-  ChevronDown,
-  ChevronUp,
   ArrowRight,
 } from 'lucide-react'
 import { images } from '../assets/images'
+import { Reveal } from '../components/motion/Reveal'
+import { Stagger, StaggerItem } from '../components/motion/Stagger'
+import { FaqItem } from '../components/motion/FaqItem'
 
 /* ─── Data ──────────────────────────────────────────────────── */
 
@@ -225,72 +226,79 @@ export function GlobalVolunteerPage() {
         <div className="bg-teal-gv pointer-events-none absolute right-[135px] bottom-[313px] size-[12px] rounded-[6px] opacity-20" />
 
         {/* Content */}
-        <div className="relative z-10 mx-auto flex w-full max-w-[684px] flex-1 flex-col items-center justify-center px-6 py-24 text-center">
-          {/* Badge */}
-          <div
-            className="mb-8 inline-flex items-center gap-2 rounded-full px-5 py-2"
-            style={{ background: '#00bfa5' }}
-          >
-            <Globe size={14} className="shrink-0 text-white" />
-            <span className="text-xs font-bold tracking-[1.44px] text-white uppercase">
-              Global Volunteer
-            </span>
-          </div>
-
-          {/* Headline */}
-          <h1 className="text-[clamp(40px,5vw,64px)] leading-[1.1] font-black tracking-[-0.02em] text-white">
-            Make an Impact.
-            <br />
-            See the World.
-          </h1>
-
-          {/* Sub-text */}
-          <p className="mx-auto mt-7 max-w-[620px] text-[20px] leading-[1.65] text-[rgba(255,255,255,0.85)]">
-            Join a 6–8 week volunteer project abroad and contribute to the UN Sustainable
-            Development Goals while discovering who you really are.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="mailto:colombosouth@aiesec.net?subject=Apply Now - Global Volunteer"
-              className="inline-flex items-center gap-2 rounded-[10px] px-10 py-[17px] text-base font-bold text-white transition-all hover:-translate-y-px"
-              style={{
-                background: '#00bfa5',
-                boxShadow: '0 4px 8px rgba(0,191,165,0.3)',
-              }}
+        <Stagger
+          inView={false}
+          className="relative z-10 mx-auto flex w-full max-w-[684px] flex-1 flex-col items-center justify-center px-6 py-24 text-center"
+        >
+          <StaggerItem>
+            <div
+              className="mb-8 inline-flex items-center gap-2 rounded-full px-5 py-2"
+              style={{ background: '#00bfa5' }}
             >
-              Apply Now
-            </a>
-            <a
-              href="#how-it-works"
-              className="inline-flex items-center rounded-[10px] border-2 border-[rgba(255,255,255,0.75)] px-10 py-[17px] text-base font-bold text-white transition-all hover:bg-white/10"
-            >
-              How It Works
-            </a>
-          </div>
-        </div>
+              <Globe size={14} className="shrink-0 text-white" />
+              <span className="text-xs font-bold tracking-[1.44px] text-white uppercase">
+                Global Volunteer
+              </span>
+            </div>
+          </StaggerItem>
+
+          <StaggerItem>
+            <h1 className="text-[clamp(40px,5vw,64px)] leading-[1.1] font-black tracking-[-0.02em] text-white">
+              Make an Impact.
+              <br />
+              See the World.
+            </h1>
+          </StaggerItem>
+
+          <StaggerItem>
+            <p className="mx-auto mt-7 max-w-[620px] text-[20px] leading-[1.65] text-[rgba(255,255,255,0.85)]">
+              Join a 6–8 week volunteer project abroad and contribute to the UN Sustainable
+              Development Goals while discovering who you really are.
+            </p>
+          </StaggerItem>
+
+          <StaggerItem>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+              <a
+                href="mailto:colombosouth@aiesec.net?subject=Apply Now - Global Volunteer"
+                className="inline-flex items-center gap-2 rounded-[10px] px-10 py-[17px] text-base font-bold text-white transition-all hover:-translate-y-px"
+                style={{
+                  background: '#00bfa5',
+                  boxShadow: '0 4px 8px rgba(0,191,165,0.3)',
+                }}
+              >
+                Apply Now
+              </a>
+              <a
+                href="#how-it-works"
+                className="inline-flex items-center rounded-[10px] border-2 border-[rgba(255,255,255,0.75)] px-10 py-[17px] text-base font-bold text-white transition-all hover:bg-white/10"
+              >
+                How It Works
+              </a>
+            </div>
+          </StaggerItem>
+        </Stagger>
 
         <div className="relative z-10 border-t border-white/10 bg-black/35">
-          <div className="mx-auto grid max-w-5xl grid-cols-1 divide-y divide-white/20 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+          <Stagger className="mx-auto grid max-w-5xl grid-cols-1 divide-y divide-white/20 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
             {[
               { value: '126', label: 'Countries' },
               { value: '6–8', label: 'Week Projects' },
               { value: '5,000+', label: 'Sri Lankan Alumni' },
             ].map((stat) => (
-              <div key={stat.label} className="flex flex-col items-center gap-1.5 px-4 py-6">
+              <StaggerItem key={stat.label} className="flex flex-col items-center gap-1.5 px-4 py-6">
                 <span className="text-4xl font-extrabold text-white">{stat.value}</span>
                 <span className="text-[13px] font-medium tracking-wide text-white/75">
                   {stat.label}
                 </span>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
       {/* ══════════════════ ABOUT ══════════════════ */}
-      <section className="bg-white py-24">
+      <Reveal as="section" className="bg-white py-24">
         <div className="mx-auto grid max-w-[1280px] items-start gap-16 px-8 lg:grid-cols-2">
           {/* Left column */}
           <div>
@@ -303,11 +311,12 @@ export function GlobalVolunteerPage() {
               <span className="text-brand">126 Countries</span>
             </h2>
 
-            <div className="mt-8 space-y-6">
+            <Stagger className="mt-8 space-y-6">
               {aboutItems.map((item) => {
                 const Icon = item.icon
                 return (
-                  <div key={item.title} className="flex gap-4">
+                  <StaggerItem key={item.title}>
+                    <div className="flex gap-4">
                     <div
                       className={`flex size-11 shrink-0 items-center justify-center rounded-xl ${item.iconBg}`}
                     >
@@ -317,10 +326,11 @@ export function GlobalVolunteerPage() {
                       <p className="text-navy text-[15px] font-bold">{item.title}</p>
                       <p className="mt-1.5 text-sm leading-[1.75] text-[#6b7280]">{item.body}</p>
                     </div>
-                  </div>
+                    </div>
+                  </StaggerItem>
                 )
               })}
-            </div>
+            </Stagger>
 
             {/* Stats bar */}
             <div className="mt-10 flex items-center gap-8 border-t border-[#f0f1f5] pt-8">
@@ -388,10 +398,10 @@ export function GlobalVolunteerPage() {
             <div className="h-[430px]" />
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* ══════════════════ PROJECTS THAT MATTER ══════════════════ */}
-      <section className="bg-surface py-24">
+      <Reveal as="section" className="bg-surface py-24">
         <div className="mx-auto max-w-[1280px] px-8">
           {/* Header */}
           <div className="mx-auto mb-14 max-w-[640px] text-center">
@@ -408,36 +418,37 @@ export function GlobalVolunteerPage() {
           </div>
 
           {/* SDG cards grid */}
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {sdgProjects.map((p) => {
               const Icon = p.icon
               return (
-                <div
-                  key={p.sdg}
-                  className={`flex gap-4 rounded-2xl border-l-4 ${p.border} ${p.bg} p-6 shadow-[0_2px_8px_rgba(0,0,0,0.05)]`}
-                >
-                  <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-white shadow-[0_2px_6px_rgba(0,0,0,0.08)]">
-                    <Icon size={22} className={p.iconColor} />
+                <StaggerItem key={p.sdg}>
+                  <div
+                    className={`flex gap-4 rounded-2xl border-l-4 ${p.border} ${p.bg} p-6 shadow-[0_2px_8px_rgba(0,0,0,0.05)]`}
+                  >
+                    <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-white shadow-[0_2px_6px_rgba(0,0,0,0.08)]">
+                      <Icon size={22} className={p.iconColor} />
+                    </div>
+                    <div>
+                      <span
+                        className="text-[10px] font-bold tracking-[0.88px] uppercase"
+                        style={{ color: p.color }}
+                      >
+                        {p.sdg}
+                      </span>
+                      <p className="text-navy mt-0.5 text-[15px] font-bold">{p.title}</p>
+                      <p className="mt-1.5 text-[13px] leading-[1.75] text-[#6b7280]">{p.body}</p>
+                    </div>
                   </div>
-                  <div>
-                    <span
-                      className="text-[10px] font-bold tracking-[0.88px] uppercase"
-                      style={{ color: p.color }}
-                    >
-                      {p.sdg}
-                    </span>
-                    <p className="text-navy mt-0.5 text-[15px] font-bold">{p.title}</p>
-                    <p className="mt-1.5 text-[13px] leading-[1.75] text-[#6b7280]">{p.body}</p>
-                  </div>
-                </div>
+                </StaggerItem>
               )
             })}
-          </div>
+          </Stagger>
         </div>
-      </section>
+      </Reveal>
 
       {/* ══════════════════ HOW IT WORKS ══════════════════ */}
-      <section id="how-it-works" className="bg-white py-24">
+      <Reveal as="section" id="how-it-works" className="bg-white py-24">
         <div className="mx-auto max-w-[1280px] px-8">
           {/* Header */}
           <div className="mb-16 text-center">
@@ -450,7 +461,7 @@ export function GlobalVolunteerPage() {
           </div>
 
           {/* Steps row */}
-          <div className="relative grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-4">
+          <Stagger className="relative grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-4">
             {/* Gradient connecting line — desktop only */}
             <div
               className="pointer-events-none absolute top-9 right-[12.5%] left-[12.5%] z-0 hidden h-[3px] rounded lg:block"
@@ -462,7 +473,7 @@ export function GlobalVolunteerPage() {
             {journeySteps.map((step) => {
               const Icon = step.icon
               return (
-                <div
+                <StaggerItem
                   key={step.title}
                   className="relative z-10 flex flex-col items-center text-center"
                 >
@@ -483,10 +494,10 @@ export function GlobalVolunteerPage() {
                   </div>
                   <h3 className="text-navy text-[16px] font-bold">{step.title}</h3>
                   <p className="mt-2.5 text-[13.5px] leading-[1.7] text-[#6b7280]">{step.body}</p>
-                </div>
+                </StaggerItem>
               )
             })}
-          </div>
+          </Stagger>
 
           {/* CTA button */}
           <div className="mt-16 flex justify-center">
@@ -499,10 +510,10 @@ export function GlobalVolunteerPage() {
             </a>
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* ══════════════════ HOST A VOLUNTEER ══════════════════ */}
-      <section className="relative overflow-hidden py-20" style={{ background: '#00bfa5' }}>
+      <Reveal as="section" className="relative overflow-hidden py-20" style={{ background: '#00bfa5' }}>
         {/* Decorative circles */}
         <div className="pointer-events-none absolute -top-20 right-[1296px] size-[320px] rounded-[160px] bg-[rgba(255,255,255,0.07)]" />
         <div className="pointer-events-none absolute -bottom-10 -left-10 size-[200px] rounded-[100px] bg-[rgba(255,255,255,0.05)]" />
@@ -550,10 +561,10 @@ export function GlobalVolunteerPage() {
             />
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* ══════════════════ TESTIMONIALS ══════════════════ */}
-      <section className="bg-navy py-24">
+      <Reveal as="section" className="bg-navy py-24">
         <div className="mx-auto max-w-[1280px] px-8">
           {/* Header */}
           <div className="mx-auto mb-14 max-w-[700px] text-center">
@@ -569,12 +580,10 @@ export function GlobalVolunteerPage() {
           </div>
 
           {/* Testimonial cards */}
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((t) => (
-              <div
-                key={t.name}
-                className="bg-navy-card flex flex-col gap-6 rounded-[20px] border border-[rgba(255,255,255,0.06)] px-[33px] py-[37px] shadow-[0_4px_10px_rgba(0,0,0,0.2)]"
-              >
+              <StaggerItem key={t.name}>
+                <div className="bg-navy-card flex h-full flex-col gap-6 rounded-[20px] border border-[rgba(255,255,255,0.06)] px-[33px] py-[37px] shadow-[0_4px_10px_rgba(0,0,0,0.2)]">
                 {/* Opening quote mark */}
                 <span
                   className="font-serif text-[64px] leading-none font-bold opacity-90"
@@ -601,14 +610,15 @@ export function GlobalVolunteerPage() {
                     <p className="text-text-subtle mt-0.5 text-[13px]">{t.role}</p>
                   </div>
                 </div>
-              </div>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
-      </section>
+      </Reveal>
 
       {/* ══════════════════ FAQ ══════════════════ */}
-      <section className="bg-white py-24">
+      <Reveal as="section" className="bg-white py-24">
         <div className="mx-auto max-w-[768px] px-8">
           {/* Header */}
           <div className="mb-14 text-center">
@@ -622,39 +632,25 @@ export function GlobalVolunteerPage() {
 
           {/* Accordion */}
           <div className="divide-y divide-[#e5e7eb]">
-            {faqs.map((faq, i) => {
-              const isOpen = openFaq === i
-              return (
-                <div key={i} className="py-px">
-                  <button
-                    onClick={() => setOpenFaq(isOpen ? null : i)}
-                    className="flex w-full items-center justify-between py-5 text-left"
-                  >
-                    <span className="text-navy pr-8 text-[16px] font-semibold">{faq.q}</span>
-                    <div className="bg-surface flex size-8 shrink-0 items-center justify-center rounded-2xl">
-                      {isOpen ? (
-                        <ChevronUp size={16} className="text-[#1a1a2e]" />
-                      ) : (
-                        <ChevronDown size={16} className="text-[#1a1a2e]" />
-                      )}
-                    </div>
-                  </button>
-                  {isOpen && (
-                    <p className="pb-5 text-[15px] leading-[1.75] text-[#6b7280]">{faq.a}</p>
-                  )}
-                </div>
-              )
-            })}
+            {faqs.map((faq, i) => (
+              <FaqItem
+                key={i}
+                question={faq.q}
+                answer={faq.a}
+                isOpen={openFaq === i}
+                onToggle={() => setOpenFaq(openFaq === i ? null : i)}
+              />
+            ))}
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* ══════════════════ FINAL CTA ══════════════════ */}
-      <section
+      <Reveal
+        variant="scaleIn"
+        as="section"
         className="relative overflow-hidden py-24"
-        style={{
-          background: 'linear-gradient(159.9deg, #00bfa5 0%, #037ef3 50%, #0250a0 100%)',
-        }}
+        style={{ background: 'linear-gradient(159.9deg, #00bfa5 0%, #037ef3 50%, #0250a0 100%)' }}
       >
         {/* Decorative circles */}
         <div className="pointer-events-none absolute top-[-60px] left-[-60px] size-[240px] rounded-[120px] bg-[rgba(255,255,255,0.06)]" />
@@ -693,7 +689,7 @@ export function GlobalVolunteerPage() {
             Applications reviewed within 5 business days
           </p>
         </div>
-      </section>
+      </Reveal>
     </>
   )
 }

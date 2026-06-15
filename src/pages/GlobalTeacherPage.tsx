@@ -15,6 +15,8 @@ import {
   Clock,
 } from 'lucide-react'
 import { images } from '../assets/images'
+import { Reveal } from '../components/motion/Reveal'
+import { Stagger, StaggerItem } from '../components/motion/Stagger'
 import { WorldMap } from '../components/ui/map'
 
 /* ─── Data ──────────────────────────────────────────────────── */
@@ -166,68 +168,74 @@ export function GlobalTeacherPage() {
         <div className="absolute bottom-[18%] left-[12%] size-24 rounded-[50px] border-2 border-[rgba(255,171,0,0.6)] opacity-[0.06]" />
         <div className="absolute right-[17%] bottom-[25%] size-40 rounded-[80px] border-2 border-[rgba(255,171,0,0.6)] opacity-[0.07]" />
 
-        {/* Content */}
-        <div className="relative z-10 mx-auto flex w-full max-w-[664px] flex-1 flex-col items-center justify-center px-6 py-24 text-center">
-          {/* Badge */}
-          <div className="bg-gold mb-8 inline-flex items-center gap-2 rounded-full px-6 py-2">
-            <BookOpen size={14} className="text-navy shrink-0" />
-            <span className="text-navy text-xs font-extrabold tracking-[1.56px] uppercase">
-              Global Teacher
-            </span>
-          </div>
+        <Stagger
+          inView={false}
+          className="relative z-10 mx-auto flex w-full max-w-[664px] flex-1 flex-col items-center justify-center px-6 py-24 text-center"
+        >
+          <StaggerItem>
+            <div className="bg-gold mb-8 inline-flex items-center gap-2 rounded-full px-6 py-2">
+              <BookOpen size={14} className="text-navy shrink-0" />
+              <span className="text-navy text-xs font-extrabold tracking-[1.56px] uppercase">
+                Global Teacher
+              </span>
+            </div>
+          </StaggerItem>
 
-          {/* Headline */}
-          <h1 className="text-[clamp(38px,5vw,62px)] leading-[1.1] font-black tracking-[-0.02em] text-white">
-            Teach Abroad.
-            <br />
-            Transform Lives —
-            <br />
-            Including Yours.
-          </h1>
+          <StaggerItem>
+            <h1 className="text-[clamp(38px,5vw,62px)] leading-[1.1] font-black tracking-[-0.02em] text-white">
+              Teach Abroad.
+              <br />
+              Transform Lives —
+              <br />
+              Including Yours.
+            </h1>
+          </StaggerItem>
 
-          {/* Sub-text */}
-          <p className="mx-auto mt-8 max-w-[600px] text-lg leading-relaxed text-[rgba(255,255,255,0.83)]">
-            Join teaching projects around the world and make a real, lasting impact in education
-            while discovering your own potential.
-          </p>
+          <StaggerItem>
+            <p className="mx-auto mt-8 max-w-[600px] text-lg leading-relaxed text-[rgba(255,255,255,0.83)]">
+              Join teaching projects around the world and make a real, lasting impact in education
+              while discovering your own potential.
+            </p>
+          </StaggerItem>
 
-          {/* CTA Buttons */}
-          <div className="mt-11 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="mailto:colombosouth@aiesec.net"
-              className="bg-gold text-navy inline-flex items-center gap-2 rounded-[10px] px-9 py-[17px] text-base font-extrabold shadow-[0_4px_8px_rgba(255,171,0,0.27)] transition-all hover:-translate-y-px hover:shadow-[0_6px_16px_rgba(255,171,0,0.4)]"
-            >
-              Apply to Teach <ArrowRight size={16} />
-            </a>
-            <a
-              href="mailto:colombosouth@aiesec.net?subject=Host a Teacher"
-              className="inline-flex items-center rounded-[10px] border-2 border-[rgba(255,255,255,0.75)] px-9 py-[17px] text-base font-bold text-white transition-all hover:bg-white/10"
-            >
-              Host a Teacher
-            </a>
-          </div>
-        </div>
+          <StaggerItem>
+            <div className="mt-11 flex flex-wrap items-center justify-center gap-4">
+              <a
+                href="mailto:colombosouth@aiesec.net"
+                className="bg-gold text-navy inline-flex items-center gap-2 rounded-[10px] px-9 py-[17px] text-base font-extrabold shadow-[0_4px_8px_rgba(255,171,0,0.27)] transition-all hover:-translate-y-px hover:shadow-[0_6px_16px_rgba(255,171,0,0.4)]"
+              >
+                Apply to Teach <ArrowRight size={16} />
+              </a>
+              <a
+                href="mailto:colombosouth@aiesec.net?subject=Host a Teacher"
+                className="inline-flex items-center rounded-[10px] border-2 border-[rgba(255,255,255,0.75)] px-9 py-[17px] text-base font-bold text-white transition-all hover:bg-white/10"
+              >
+                Host a Teacher
+              </a>
+            </div>
+          </StaggerItem>
+        </Stagger>
 
         <div className="relative z-10 border-t border-white/10 bg-black/35">
-          <div className="mx-auto grid max-w-5xl grid-cols-1 divide-y divide-white/20 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+          <Stagger className="mx-auto grid max-w-5xl grid-cols-1 divide-y divide-white/20 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
             {[
               { value: '20+', label: 'Countries' },
               { value: '6–8', label: 'Week Projects' },
               { value: 'SDG 4', label: 'Quality Education' },
             ].map((stat) => (
-              <div key={stat.label} className="flex flex-col items-center gap-1.5 px-4 py-6">
+              <StaggerItem key={stat.label} className="flex flex-col items-center gap-1.5 px-4 py-6">
                 <span className="text-4xl font-extrabold text-white">{stat.value}</span>
                 <span className="text-[13px] font-medium tracking-wide text-white/75">
                   {stat.label}
                 </span>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
       {/* ══════════════════ ABOUT ══════════════════ */}
-      <section className="bg-white py-24">
+      <Reveal as="section" className="bg-white py-24">
         <div className="mx-auto grid max-w-[1280px] items-start gap-16 px-8 lg:grid-cols-2">
           {/* Left column */}
           <div>
@@ -240,24 +248,26 @@ export function GlobalTeacherPage() {
               in the World.
             </h2>
 
-            <div className="mt-8 space-y-6">
+            <Stagger className="mt-8 space-y-6">
               {aboutItems.map((item) => {
                 const Icon = item.icon
                 return (
-                  <div key={item.title} className="flex gap-4">
-                    <div
-                      className={`flex size-11 shrink-0 items-center justify-center rounded-xl ${item.iconBg}`}
-                    >
-                      <Icon size={20} className={item.iconColor} />
+                  <StaggerItem key={item.title}>
+                    <div className="flex gap-4">
+                      <div
+                        className={`flex size-11 shrink-0 items-center justify-center rounded-xl ${item.iconBg}`}
+                      >
+                        <Icon size={20} className={item.iconColor} />
+                      </div>
+                      <div>
+                        <p className="text-navy text-[15px] font-bold">{item.title}</p>
+                        <p className="mt-1.5 text-sm leading-[1.78] text-[#6b7280]">{item.body}</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-navy text-[15px] font-bold">{item.title}</p>
-                      <p className="mt-1.5 text-sm leading-[1.78] text-[#6b7280]">{item.body}</p>
-                    </div>
-                  </div>
+                  </StaggerItem>
                 )
               })}
-            </div>
+            </Stagger>
 
             {/* SDG callout */}
             <div className="mt-10 flex items-center gap-4 rounded-xl border border-[rgba(255,171,0,0.27)] bg-[rgba(255,171,0,0.05)] px-5 py-4">
@@ -305,10 +315,10 @@ export function GlobalTeacherPage() {
             </div>
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* ══════════════════ YOUR ROLE ══════════════════ */}
-      <section className="bg-surface py-24">
+      <Reveal as="section" className="bg-surface py-24">
         <div className="mx-auto max-w-[1280px] px-8">
           {/* Header */}
           <div className="mx-auto mb-14 max-w-[540px] text-center">
@@ -343,10 +353,10 @@ export function GlobalTeacherPage() {
             })}
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* ══════════════════ FOR SCHOOLS ══════════════════ */}
-      <section className="bg-gold relative overflow-hidden py-20">
+      <Reveal as="section" className="bg-gold relative overflow-hidden py-20">
         {/* Decorative rings */}
         <div className="pointer-events-none absolute top-[-80px] right-[-20px] size-80 rounded-[160px] border-2 border-[rgba(26,26,46,0.08)]" />
         <div className="pointer-events-none absolute bottom-[80px] left-[-20px] size-52 rounded-[110px] border-2 border-[rgba(26,26,46,0.06)]" />
@@ -395,10 +405,10 @@ export function GlobalTeacherPage() {
             />
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* ══════════════════ DESTINATIONS ══════════════════ */}
-      <section className="bg-white py-24">
+      <Reveal as="section" className="bg-white py-24">
         <div className="mx-auto max-w-[1280px] px-8">
           {/* Header */}
           <div className="mx-auto mb-10 max-w-[500px] text-center">
@@ -467,10 +477,10 @@ export function GlobalTeacherPage() {
             + 14 more countries across Asia, Africa, and Latin America
           </p>
         </div>
-      </section>
+      </Reveal>
 
       {/* ══════════════════ HOW IT WORKS ══════════════════ */}
-      <section className="bg-surface py-24">
+      <Reveal as="section" className="bg-surface py-24">
         <div className="mx-auto max-w-[1280px] px-8">
           {/* Header */}
           <div className="mb-16 text-center">
@@ -521,10 +531,10 @@ export function GlobalTeacherPage() {
             </a>
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* ══════════════════ TESTIMONIALS ══════════════════ */}
-      <section className="bg-navy py-24">
+      <Reveal as="section" className="bg-navy py-24">
         <div className="mx-auto max-w-[1280px] px-8">
           {/* Header */}
           <div className="mx-auto mb-14 max-w-[675px] text-center">
@@ -580,10 +590,12 @@ export function GlobalTeacherPage() {
             ))}
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* ══════════════════ CTA ══════════════════ */}
-      <section
+      <Reveal
+        variant="scaleIn"
+        as="section"
         className="relative overflow-hidden py-36"
         style={{
           background: 'linear-gradient(159.96deg, #ffab00 0%, #f97316 40%, #037ef3 100%)',
@@ -629,7 +641,7 @@ export function GlobalTeacherPage() {
             Applications reviewed within 5 business days · No teaching degree required
           </p>
         </div>
-      </section>
+      </Reveal>
     </>
   )
 }
