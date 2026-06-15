@@ -1,0 +1,24 @@
+# Build output
+dist/
+build/
+
+# Dependencies
+node_modules/
+
+# Auto-generated
+*.lock
+package-lock.json
+
+# Environment files
+.env*
+
+# Public assets (images, fonts — binary/not formatted)
+public/
+src/assets/images/
+
+# Editor files
+.vscode/
+.idea/
+
+# Git
+.git/
