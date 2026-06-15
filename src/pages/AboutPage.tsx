@@ -513,53 +513,110 @@ function GlobalStructure() {
             </div>
           </div>
 
-          {/* Right — concentric circles diagram */}
-          <div className="flex flex-col items-center">
-            <div className="relative flex items-center justify-center">
-              {/* Outer ring — Global */}
-              <div className="relative flex size-[340px] items-center justify-center rounded-full border-2 border-brand/20 bg-brand/5">
-                {/* Top label */}
-                <div className="absolute top-6 text-center">
-                  <p className="text-text-primary text-[13px] font-bold">AIESEC Global</p>
-                  <p className="text-text-muted text-[12px]">126 Countries</p>
-                </div>
+          {/* Right — layered hierarchy funnel */}
+          <div className="relative flex flex-col items-center">
+            {/* Decorative background glow */}
+            <div className="bg-brand/8 pointer-events-none absolute top-1/2 left-1/2 size-72 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl" />
 
-                {/* Middle ring — Sri Lanka */}
-                <div className="relative flex size-[220px] items-center justify-center rounded-full border-2 border-brand/35 bg-brand/10">
-                  {/* Bottom label */}
-                  <div className="absolute bottom-8 text-center">
-                    <p className="text-text-primary text-[13px] font-bold">AIESEC Sri Lanka</p>
-                    <p className="text-text-muted text-[12px]">10+ Entities</p>
+            <div className="relative w-full max-w-md space-y-0">
+              {/* Tier 1 — Global */}
+              <div className="relative z-10">
+                <div className="border-brand/15 bg-white/80 relative overflow-hidden rounded-2xl border px-6 py-5 shadow-[0_8px_32px_rgba(3,126,243,0.08)] backdrop-blur-sm">
+                  <div className="from-brand/5 pointer-events-none absolute inset-0 bg-linear-to-br to-transparent" />
+                  <div className="relative flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-brand/10 flex size-11 items-center justify-center rounded-xl">
+                        <Globe size={20} className="text-brand" />
+                      </div>
+                      <div>
+                        <p className="text-text-primary text-[15px] font-bold">AIESEC Global</p>
+                        <p className="text-text-muted text-[12px]">World&apos;s largest youth-run org</p>
+                      </div>
+                    </div>
+                    <span className="bg-brand/10 text-brand shrink-0 rounded-full px-3 py-1 text-[12px] font-bold">
+                      126 Countries
+                    </span>
                   </div>
+                </div>
+                {/* Connector */}
+                <div className="flex justify-center">
+                  <div className="flex flex-col items-center">
+                    <div className="bg-brand/25 h-6 w-px" />
+                    <div className="border-brand/30 bg-brand/10 size-2 rotate-45 border" />
+                    <div className="bg-brand/25 h-6 w-px" />
+                  </div>
+                </div>
+              </div>
 
-                  {/* Inner ring — Colombo South */}
-                  <div className="flex size-[110px] items-center justify-center rounded-full border-2 border-brand bg-brand/20 text-center shadow-[0_0_0_4px_rgba(3,126,243,0.15)]">
-                    <div>
-                      <p className="text-brand text-[12px] font-extrabold leading-tight">
-                        AIESEC
-                        <br />
-                        Colombo
-                        <br />
-                        South
-                      </p>
+              {/* Tier 2 — Sri Lanka */}
+              <div className="relative z-20 -mt-1 px-4">
+                <div className="border-brand/25 bg-white relative overflow-hidden rounded-2xl border px-6 py-5 shadow-[0_12px_40px_rgba(3,126,243,0.12)]">
+                  <div className="from-brand/8 pointer-events-none absolute inset-0 bg-linear-to-br to-transparent" />
+                  <div className="relative flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-brand/15 flex size-11 items-center justify-center rounded-xl">
+                        <Building2 size={20} className="text-brand" />
+                      </div>
+                      <div>
+                        <p className="text-text-primary text-[15px] font-bold">AIESEC Sri Lanka</p>
+                        <p className="text-text-muted text-[12px]">National chapter</p>
+                      </div>
+                    </div>
+                    <span className="bg-brand/15 text-brand shrink-0 rounded-full px-3 py-1 text-[12px] font-bold">
+                      10+ Entities
+                    </span>
+                  </div>
+                </div>
+                {/* Connector */}
+                <div className="flex justify-center">
+                  <div className="flex flex-col items-center">
+                    <div className="bg-brand/35 h-6 w-px" />
+                    <div className="border-brand/50 bg-brand/20 size-2.5 rotate-45 border" />
+                    <div className="bg-brand/35 h-6 w-px" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Tier 3 — Colombo South (highlighted) */}
+              <div className="relative z-30 -mt-1 px-8">
+                <div className="border-brand bg-brand relative overflow-hidden rounded-2xl border-2 px-6 py-6 shadow-[0_16px_48px_rgba(3,126,243,0.35)]">
+                  {/* Subtle pattern overlay */}
+                  <div className="pointer-events-none absolute inset-0 opacity-10">
+                    <div className="absolute -top-8 -right-8 size-32 rounded-full bg-white/30" />
+                    <div className="absolute -bottom-6 -left-6 size-24 rounded-full bg-white/20" />
+                  </div>
+                  <div className="relative flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="flex size-12 items-center justify-center rounded-xl bg-white/20">
+                        <LocateFixed size={22} className="text-white" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <p className="text-[16px] font-bold text-white">AIESEC Colombo South</p>
+                          <span className="rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-bold tracking-wider text-white uppercase">
+                            You
+                          </span>
+                        </div>
+                        <p className="text-[12px] text-white/75">University of Moratuwa</p>
+                      </div>
+                    </div>
+                    <div className="shrink-0 text-right">
+                      <p className="text-2xl font-extrabold text-white">30+</p>
+                      <p className="text-[11px] font-medium text-white/70">Years of impact</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Legend */}
-            <div className="mt-8 flex items-center gap-6 text-[13px]">
-              {[
-                { color: 'bg-brand/20', label: 'Global' },
-                { color: 'bg-brand/35', label: 'Sri Lanka' },
-                { color: 'bg-brand', label: 'Colombo South' },
-              ].map((l) => (
-                <div key={l.label} className="flex items-center gap-2">
-                  <div className={`size-3 rounded-full ${l.color}`} />
-                  <span className="text-text-muted">{l.label}</span>
-                </div>
-              ))}
+            {/* Reach indicator */}
+            <div className="mt-10 flex items-center gap-3 text-[13px]">
+              <div className="bg-brand/15 h-px w-12" />
+              <span className="text-text-muted font-medium">
+                From <span className="text-brand font-bold">126 countries</span> to{' '}
+                <span className="text-brand font-bold">your campus</span>
+              </span>
+              <div className="bg-brand/15 h-px w-12" />
             </div>
           </div>
         </div>
