@@ -59,7 +59,16 @@ export function AdminDashboardPage() {
   }
 
   useEffect(() => {
-    fetchPosts()
+    async function load() {
+      setLoading(true)
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .order('created_at', { ascending: false })
+      if (!error) setPosts(data ?? [])
+      setLoading(false)
+    }
+    void load()
   }, [])
 
   const togglePublish = async (post: BlogPost) => {
