@@ -10,29 +10,29 @@ Official marketing website for **AIESEC in Colombo South**, built as a modern si
 
 ### Public website
 
-| Page | Route | Description |
-| --- | --- | --- |
-| Home | `/` | Hero, about, stats, values, programs, testimonials, blog preview, CTA |
-| Global Volunteer | `/programs/global-volunteer` | Volunteer exchange program details |
-| Global Talent | `/programs/global-talent` | Professional internship program |
-| Global Teacher | `/programs/global-teacher` | Teaching abroad program |
-| Blog | `/blog` | Published articles (Supabase or static fallback) |
-| Blog article | `/blog/:id` | Individual post with rich HTML content |
-| About | `/about` | Team and organization information |
-| Contact | `/contact` | Contact form — submissions stored in Supabase |
+| Page             | Route                        | Description                                                           |
+| ---------------- | ---------------------------- | --------------------------------------------------------------------- |
+| Home             | `/`                          | Hero, about, stats, values, programs, testimonials, blog preview, CTA |
+| Global Volunteer | `/programs/global-volunteer` | Volunteer exchange program details                                    |
+| Global Talent    | `/programs/global-talent`    | Professional internship program                                       |
+| Global Teacher   | `/programs/global-teacher`   | Teaching abroad program                                               |
+| Blog             | `/blog`                      | Published articles (Supabase or static fallback)                      |
+| Blog article     | `/blog/:id`                  | Individual post with rich HTML content                                |
+| About            | `/about`                     | Team and organization information                                     |
+| Contact          | `/contact`                   | Contact form — submissions stored in Supabase                         |
 
 ### Admin panel
 
 Authenticated editors manage content through a protected admin area:
 
-| Page | Route | Description |
-| --- | --- | --- |
-| Login | `/admin` | Email + password sign-in via Supabase Auth |
-| Dashboard | `/admin/dashboard` | List, publish, unpublish, and delete blog posts |
-| New post | `/admin/posts/new` | Create a post with TipTap rich text editor |
-| Edit post | `/admin/posts/:id/edit` | Update an existing post |
-| Messages | `/admin/messages` | Inbox for contact form submissions |
-| Message detail | `/admin/messages/:id` | View and update message status |
+| Page           | Route                   | Description                                     |
+| -------------- | ----------------------- | ----------------------------------------------- |
+| Login          | `/admin`                | Email + password sign-in via Supabase Auth      |
+| Dashboard      | `/admin/dashboard`      | List, publish, unpublish, and delete blog posts |
+| New post       | `/admin/posts/new`      | Create a post with TipTap rich text editor      |
+| Edit post      | `/admin/posts/:id/edit` | Update an existing post                         |
+| Messages       | `/admin/messages`       | Inbox for contact form submissions              |
+| Message detail | `/admin/messages/:id`   | View and update message status                  |
 
 Admin capabilities include direct image uploads to Supabase Storage, draft/published workflow, and contact message status tracking (`new` → `read` → `replied` → `archived`).
 
@@ -40,17 +40,17 @@ Admin capabilities include direct image uploads to Supabase Storage, draft/publi
 
 ## Tech stack
 
-| Layer | Technology |
-| --- | --- |
-| Framework | [React 19](https://react.dev) + [TypeScript](https://www.typescriptlang.org) |
-| Build tool | [Vite 8](https://vite.dev) |
-| Routing | [React Router 7](https://reactrouter.com) |
-| Styling | [Tailwind CSS 4](https://tailwindcss.com) with custom brand tokens |
-| Backend | [Supabase](https://supabase.com) — Auth, PostgreSQL, Storage |
-| Rich text | [TipTap](https://tiptap.dev) |
-| Animation | [Framer Motion](https://www.framer.com/motion/) |
-| Icons | [Lucide React](https://lucide.dev), [Tabler Icons](https://tabler.io/icons) |
-| Linting / formatting | ESLint 10, Prettier |
+| Layer                | Technology                                                                   |
+| -------------------- | ---------------------------------------------------------------------------- |
+| Framework            | [React 19](https://react.dev) + [TypeScript](https://www.typescriptlang.org) |
+| Build tool           | [Vite 8](https://vite.dev)                                                   |
+| Routing              | [React Router 7](https://reactrouter.com)                                    |
+| Styling              | [Tailwind CSS 4](https://tailwindcss.com) with custom brand tokens           |
+| Backend              | [Supabase](https://supabase.com) — Auth, PostgreSQL, Storage                 |
+| Rich text            | [TipTap](https://tiptap.dev)                                                 |
+| Animation            | [Framer Motion](https://www.framer.com/motion/)                              |
+| Icons                | [Lucide React](https://lucide.dev), [Tabler Icons](https://tabler.io/icons)  |
+| Linting / formatting | ESLint 10, Prettier                                                          |
 
 ---
 
@@ -121,16 +121,16 @@ Open [http://localhost:5173](http://localhost:5173).
 
 ## Available scripts
 
-| Command | Description |
-| --- | --- |
-| `npm run dev` | Start Vite dev server with HMR |
-| `npm run build` | Type-check and produce a production build in `dist/` |
-| `npm run preview` | Serve the production build locally |
-| `npm run typecheck` | Run TypeScript compiler without emitting files |
-| `npm run lint` | Run ESLint |
-| `npm run lint:ci` | Run ESLint with zero warnings allowed (used in CI) |
-| `npm run format` | Format all files with Prettier |
-| `npm run format:check` | Check formatting without writing |
+| Command                | Description                                          |
+| ---------------------- | ---------------------------------------------------- |
+| `npm run dev`          | Start Vite dev server with HMR                       |
+| `npm run build`        | Type-check and produce a production build in `dist/` |
+| `npm run preview`      | Serve the production build locally                   |
+| `npm run typecheck`    | Run TypeScript compiler without emitting files       |
+| `npm run lint`         | Run ESLint                                           |
+| `npm run lint:ci`      | Run ESLint with zero warnings allowed (used in CI)   |
+| `npm run format`       | Format all files with Prettier                       |
+| `npm run format:check` | Check formatting without writing                     |
 
 ---
 

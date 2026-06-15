@@ -46,9 +46,7 @@ export interface ContactMessage {
 }
 
 export type ContactMessageInsert = Pick<ContactMessage, 'name' | 'email' | 'subject' | 'message'>
-export type ContactMessageUpdate = Partial<
-  Pick<ContactMessage, 'status' | 'replied_at'>
->
+export type ContactMessageUpdate = Partial<Pick<ContactMessage, 'status' | 'replied_at'>>
 
 // Supabase Database type for the client
 export interface Database {
