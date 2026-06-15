@@ -1,7 +1,9 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
+import { AnimatePresence } from 'motion/react'
 import { NavbarSection } from '../Navbar'
 import { Footer } from '../Footer'
+import { PageTransition } from '../motion/PageTransition'
 
 export function RootLayout() {
   const { pathname } = useLocation()
@@ -15,7 +17,11 @@ export function RootLayout() {
     <div className="font-poppins text-text-primary">
       <NavbarSection />
       <main>
-        <Outlet />
+        <AnimatePresence mode="wait">
+          <PageTransition key={pathname}>
+            <Outlet />
+          </PageTransition>
+        </AnimatePresence>
       </main>
       <Footer />
     </div>
