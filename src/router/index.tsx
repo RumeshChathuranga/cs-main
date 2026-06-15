@@ -14,6 +14,8 @@ import { NotFoundPage } from '../pages/NotFoundPage'
 import { AdminLoginPage } from '../pages/admin/AdminLoginPage'
 import { AdminDashboardPage } from '../pages/admin/AdminDashboardPage'
 import { AdminPostEditorPage } from '../pages/admin/AdminPostEditorPage'
+import { AdminMessagesPage } from '../pages/admin/AdminMessagesPage'
+import { AdminMessageDetailPage } from '../pages/admin/AdminMessageDetailPage'
 
 export const router = createBrowserRouter([
   // ── Public website (with Navbar + Footer) ──────────────────────────────
@@ -46,6 +48,8 @@ export const router = createBrowserRouter([
       { path: '/admin/dashboard', element: <AdminDashboardPage /> },
       { path: '/admin/posts/new', element: <AdminPostEditorPage /> },
       { path: '/admin/posts/:id/edit', element: <AdminPostEditorPage /> },
+      { path: '/admin/messages', element: <AdminMessagesPage /> },
+      { path: '/admin/messages/:id', element: <AdminMessageDetailPage /> },
     ],
   },
 ])

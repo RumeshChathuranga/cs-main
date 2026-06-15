@@ -1,16 +1,29 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
-import { LayoutDashboard, PenLine, LogOut, ExternalLink } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { LayoutDashboard, PenLine, LogOut, ExternalLink, Mail } from 'lucide-react'
 import { useAuth } from '../../contexts/AuthContext'
 import { images } from '../../assets/images'
+import { getUnreadCount } from '../../hooks/useContactMessages'
 
 const navItems = [
   { to: '/admin/dashboard', icon: LayoutDashboard, label: 'All Posts' },
   { to: '/admin/posts/new', icon: PenLine, label: 'New Post' },
+  { to: '/admin/messages', icon: Mail, label: 'Messages' },
 ]
 
 export function AdminLayout() {
   const { user, signOut } = useAuth()
   const navigate = useNavigate()
+  const [unreadCount, setUnreadCount] = useState(0)
+
+  useEffect(() => {
+    if (!user) return
+    async function loadUnread() {
+      const count = await getUnreadCount()
+      setUnreadCount(count)
+    }
+    void loadUnread()
+  }, [user])
 
   const handleSignOut = async () => {
     await signOut()
@@ -52,7 +65,7 @@ export function AdminLayout() {
         {/* Label */}
         <div className="px-6 pt-5 pb-2">
           <p className="text-[10px] font-semibold tracking-[1.2px] text-[#9ca3af] uppercase">
-            Content Admin
+            Admin Panel
           </p>
         </div>
 
@@ -73,6 +86,11 @@ export function AdminLayout() {
             >
               <Icon size={18} />
               {label}
+              {to === '/admin/messages' && unreadCount > 0 && (
+                <span className="bg-brand ml-auto flex size-5 items-center justify-center rounded-full text-[10px] font-bold text-white">
+                  {unreadCount > 9 ? '9+' : unreadCount}
+                </span>
+              )}
             </NavLink>
           ))}
         </nav>
