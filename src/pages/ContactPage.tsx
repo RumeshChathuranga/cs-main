@@ -13,7 +13,7 @@ import {
   AlertCircle,
   Loader2,
 } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 import { submitContactMessage } from '../hooks/useContactMessages'
 
 // ─── Icon helpers (reuse identical SVGs from Footer) ─────────────────────────
@@ -56,12 +56,12 @@ function LinkedinIcon({ className }: { className?: string }) {
 
 // ─── Animation variants ───────────────────────────────────────────────────────
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
-  visible: (delay = 0) => ({
+  visible: (delay: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94], delay },
+    transition: { duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] as const, delay },
   }),
 }
 
