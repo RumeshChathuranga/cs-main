@@ -43,6 +43,15 @@ import gvHostImage from './images/gv-host-image.jpg'
 import gvAlumniNethmi from './images/gv-alumni-nethmi.jpg'
 import gvAlumniAsel from './images/gv-alumni-asel.jpg'
 import gvAlumniSithara from './images/gv-alumni-sithara.jpg'
+import blogGvGermany from './images/blog-gv-germany.jpg'
+import blogLeadingAuthority from './images/blog-leading-authority.jpg'
+import blogComfortZone from './images/blog-comfort-zone.jpg'
+import blogLeadSummit from './images/blog-lead-summit.jpg'
+import blogFreshmanLeader from './images/blog-freshman-leader.jpg'
+import blogNepalTeaching from './images/blog-nepal-teaching.jpg'
+import blogAvatarDilini from './images/blog-avatar-dilini.jpg'
+import blogAvatarTharindu from './images/blog-avatar-tharindu.jpg'
+import blogAvatarNimasha from './images/blog-avatar-nimasha.jpg'
 
 export const images = {
   logo,
@@ -90,4 +99,13 @@ export const images = {
   gvAlumniNethmi,
   gvAlumniAsel,
   gvAlumniSithara,
+  blogGvGermany,
+  blogLeadingAuthority,
+  blogComfortZone,
+  blogLeadSummit,
+  blogFreshmanLeader,
+  blogNepalTeaching,
+  blogAvatarDilini,
+  blogAvatarTharindu,
+  blogAvatarNimasha,
 } as const
