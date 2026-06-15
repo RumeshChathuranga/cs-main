@@ -2,6 +2,8 @@ import { useParams, Link } from 'react-router-dom'
 import { useState } from 'react'
 import { ArrowLeft, Clock, Calendar, Share2, Link2, Check } from 'lucide-react'
 import { useBlogPost, useBlogPosts } from '../hooks/useBlogPosts'
+import { Stagger, StaggerItem } from '../components/motion/Stagger'
+import { Reveal } from '../components/motion/Reveal'
 
 const CATEGORY_COLORS: Record<string, string> = {
   'Exchange Experiences': '#00bfa5',
@@ -160,43 +162,49 @@ export function BlogArticlePage() {
 
         {/* Article meta over image */}
         <div className="absolute right-0 bottom-0 left-0 px-8 pb-10">
-          <div className="mx-auto max-w-[800px]">
-            <span
-              className="mb-3 inline-block rounded-full px-3 py-1.5 text-[11px] font-semibold text-white drop-shadow"
-              style={{ backgroundColor: categoryColor }}
-            >
-              {post.category}
-            </span>
-            <h1
-              className="text-[36px] leading-[1.2] font-extrabold tracking-[-0.5px] text-white"
-              style={{ textShadow: '0 2px 16px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.7)' }}
-            >
-              {post.title}
-            </h1>
-            <div
-              className="mt-4 flex flex-wrap items-center gap-4"
-              style={{ textShadow: '0 1px 8px rgba(0,0,0,0.8)' }}
-            >
-              <div className="flex items-center gap-2.5">
-                {post.author_avatar_url && (
-                  <img
-                    src={post.author_avatar_url}
-                    alt={post.author_name}
-                    className="size-9 rounded-full border-2 border-white/40 object-cover"
-                  />
-                )}
-                <span className="text-[14px] font-semibold text-white">{post.author_name}</span>
+          <Stagger inView={false} className="mx-auto max-w-[800px]">
+            <StaggerItem>
+              <span
+                className="mb-3 inline-block rounded-full px-3 py-1.5 text-[11px] font-semibold text-white drop-shadow"
+                style={{ backgroundColor: categoryColor }}
+              >
+                {post.category}
+              </span>
+            </StaggerItem>
+            <StaggerItem>
+              <h1
+                className="text-[36px] leading-[1.2] font-extrabold tracking-[-0.5px] text-white"
+                style={{ textShadow: '0 2px 16px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.7)' }}
+              >
+                {post.title}
+              </h1>
+            </StaggerItem>
+            <StaggerItem>
+              <div
+                className="mt-4 flex flex-wrap items-center gap-4"
+                style={{ textShadow: '0 1px 8px rgba(0,0,0,0.8)' }}
+              >
+                <div className="flex items-center gap-2.5">
+                  {post.author_avatar_url && (
+                    <img
+                      src={post.author_avatar_url}
+                      alt={post.author_name}
+                      className="size-9 rounded-full border-2 border-white/40 object-cover"
+                    />
+                  )}
+                  <span className="text-[14px] font-semibold text-white">{post.author_name}</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-[13px] text-white/75">
+                  <Calendar size={13} />
+                  {formattedDate}
+                </div>
+                <div className="flex items-center gap-1.5 text-[13px] text-white/75">
+                  <Clock size={13} />
+                  {post.read_time} min read
+                </div>
               </div>
-              <div className="flex items-center gap-1.5 text-[13px] text-white/75">
-                <Calendar size={13} />
-                {formattedDate}
-              </div>
-              <div className="flex items-center gap-1.5 text-[13px] text-white/75">
-                <Clock size={13} />
-                {post.read_time} min read
-              </div>
-            </div>
-          </div>
+            </StaggerItem>
+          </Stagger>
         </div>
       </section>
 
@@ -264,7 +272,7 @@ export function BlogArticlePage() {
           </div>
 
           {/* ── Article content ── */}
-          <div className="mx-auto max-w-[800px] px-4">
+          <Reveal className="mx-auto max-w-[800px] px-4">
             {/* Excerpt / opening pull quote */}
             {post.excerpt && (
               <p className="mb-10 text-[20px] leading-[1.6] font-medium text-[#005bb2] italic">
@@ -350,24 +358,25 @@ export function BlogArticlePage() {
                 </p>
               </div>
             </div>
-          </div>
-          {/* end max-w-800 */}
+          </Reveal>
         </div>
         {/* end relative outer */}
       </div>
 
       {/* ══ MORE STORIES ══ */}
       {relatedPosts.length > 0 && (
-        <section className="bg-surface px-8 py-16">
+        <Reveal as="section" className="bg-surface px-8 py-16">
           <div className="mx-auto max-w-[1280px]">
             <h2 className="text-navy mb-8 text-[26px] font-extrabold">More Stories Like This</h2>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <Stagger className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {relatedPosts.map((p) => (
-                <RelatedCard key={p.id} post={p} />
+                <StaggerItem key={p.id}>
+                  <RelatedCard post={p} />
+                </StaggerItem>
               ))}
-            </div>
+            </Stagger>
           </div>
-        </section>
+        </Reveal>
       )}
     </>
   )

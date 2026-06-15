@@ -1,8 +1,10 @@
 import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { Search } from 'lucide-react'
+import { AnimatePresence } from 'motion/react'
 import { useBlogPosts } from '../hooks/useBlogPosts'
 import type { BlogPost } from '../lib/database.types'
+import { Stagger, StaggerItem } from '../components/motion/Stagger'
 
 /* ─── Data ─── */
 
@@ -158,23 +160,31 @@ export function BlogPage() {
         <div className="pointer-events-none absolute top-[164px] left-[123px] size-3 rounded-[6px] bg-white/25" />
         <div className="pointer-events-none absolute top-[82px] right-[192px] size-2 rounded-[4px] bg-white/20" />
 
-        <div className="relative mx-auto flex max-w-[720px] flex-col items-center gap-0 text-center">
-          {/* Badge */}
-          <div className="mb-[28px] inline-flex rounded-[24px] border border-white/22 bg-white/12 px-[18px] py-[7px]">
-            <span className="text-[12px] font-semibold tracking-[0.72px] text-white">
-              AIESEC IN COLOMBO SOUTH
-            </span>
-          </div>
+        <Stagger
+          inView={false}
+          className="relative mx-auto flex max-w-[720px] flex-col items-center gap-0 text-center"
+        >
+          <StaggerItem>
+            <div className="mb-[28px] inline-flex rounded-[24px] border border-white/22 bg-white/12 px-[18px] py-[7px]">
+              <span className="text-[12px] font-semibold tracking-[0.72px] text-white">
+                AIESEC IN COLOMBO SOUTH
+              </span>
+            </div>
+          </StaggerItem>
 
-          <h1 className="text-[52px] leading-[1.18] font-extrabold tracking-[-0.52px] text-white">
-            Our Stories &amp; Insights
-          </h1>
+          <StaggerItem>
+            <h1 className="text-[52px] leading-[1.18] font-extrabold tracking-[-0.52px] text-white">
+              Our Stories &amp; Insights
+            </h1>
+          </StaggerItem>
 
-          <p className="mt-[20px] max-w-[560px] text-[18px] leading-[1.7] text-white/80">
-            Experiences, leadership journeys, and updates from AIESEC in Colombo South — stories
-            that inspire, connect, and move the world forward.
-          </p>
-        </div>
+          <StaggerItem>
+            <p className="mt-[20px] max-w-[560px] text-[18px] leading-[1.7] text-white/80">
+              Experiences, leadership journeys, and updates from AIESEC in Colombo South — stories
+              that inspire, connect, and move the world forward.
+            </p>
+          </StaggerItem>
+        </Stagger>
       </section>
 
       {/* ══ FILTER & SEARCH BAR ══ */}
@@ -238,11 +248,18 @@ export function BlogPage() {
               ))}
             </div>
           ) : filteredPosts.length > 0 ? (
-            <div className="grid grid-cols-1 gap-[23px] sm:grid-cols-2 lg:grid-cols-3">
-              {filteredPosts.map((post) => (
-                <BlogCard key={post.id} post={post} />
-              ))}
-            </div>
+            <AnimatePresence mode="wait">
+              <Stagger
+                key={`${activeCategory}-${searchTerm}`}
+                className="grid grid-cols-1 gap-[23px] sm:grid-cols-2 lg:grid-cols-3"
+              >
+                {filteredPosts.map((post) => (
+                  <StaggerItem key={post.id}>
+                    <BlogCard post={post} />
+                  </StaggerItem>
+                ))}
+              </Stagger>
+            </AnimatePresence>
           ) : (
             <div className="flex flex-col items-center gap-4 py-24 text-center">
               <div className="bg-brand/10 flex size-16 items-center justify-center rounded-full">
