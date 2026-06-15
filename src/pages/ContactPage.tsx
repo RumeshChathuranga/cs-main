@@ -436,35 +436,102 @@ function ContactSection() {
 
 function MapSection() {
   return (
-    <section className="relative border-y-[3px] border-brand">
-      {/* Google Maps embed — University of Moratuwa */}
-      <div className="relative h-[400px] overflow-hidden bg-[#eee]">
-        <iframe
-          title="University of Moratuwa location"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8236893484136!2d79.9007!3d6.7964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2451c3a1ac44d%3A0x6e2d0b87caf08c47!2sUniversity%20of%20Moratuwa!5e0!3m2!1sen!2slk!4v1718000000000!5m2!1sen!2slk"
-          width="100%"
-          height="100%"
-          style={{ border: 0, filter: 'saturate(0.6) brightness(0.97)' }}
-          allowFullScreen
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          className="absolute inset-0"
-        />
-        {/* Semi-transparent brand overlay */}
-        <div className="pointer-events-none absolute inset-0 bg-brand/6" />
+    <section className="bg-white py-16">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        {/* Section label */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          custom={0}
+          className="mb-8 flex items-center gap-3"
+        >
+          <div className="flex size-10 items-center justify-center rounded-[10px] bg-brand/8">
+            <MapPin size={18} className="text-brand" />
+          </div>
+          <div>
+            <p className="text-[11px] font-bold tracking-[1.1px] text-[#9ca3af] uppercase">
+              Where to find us
+            </p>
+            <h2 className="text-[20px] font-extrabold text-navy">University of Moratuwa</h2>
+          </div>
+        </motion.div>
 
-        {/* Find Us On Campus pill */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <a
-            href="https://maps.google.com/?q=University+of+Moratuwa"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-3 rounded-full border border-white/20 bg-white px-6 py-3.5 shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)] transition-transform hover:scale-[1.03]"
-          >
-            <MapPin size={18} className="text-brand shrink-0" />
-            <span className="text-[16px] font-bold text-[#191c1e]">Find Us On Campus</span>
-          </a>
-        </div>
+        {/* Two-column layout: map + details */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          custom={0.08}
+          className="grid overflow-hidden rounded-2xl border border-[#eef1f5] shadow-[0px_4px_24px_rgba(0,0,0,0.07)] lg:grid-cols-[1fr_300px]"
+        >
+          {/* Map */}
+          <div className="relative h-[280px] lg:h-[300px]">
+            <iframe
+              title="University of Moratuwa location"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8236893484136!2d79.9007!3d6.7964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2451c3a1ac44d%3A0x6e2d0b87caf08c47!2sUniversity%20of%20Moratuwa!5e0!3m2!1sen!2slk!4v1718000000000!5m2!1sen!2slk"
+              width="100%"
+              height="100%"
+              style={{ border: 0, filter: 'saturate(0.55) brightness(0.98)' }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute inset-0"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-brand/5" />
+          </div>
+
+          {/* Info sidebar */}
+          <div className="flex flex-col justify-between border-t border-[#eef1f5] bg-white p-7 lg:border-t-0 lg:border-l">
+            <div className="space-y-5">
+              <div>
+                <p className="text-[11px] font-bold tracking-[1.1px] text-[#9ca3af] uppercase">
+                  Address
+                </p>
+                <p className="mt-1.5 text-[14px] font-semibold leading-relaxed text-navy">
+                  University of Moratuwa
+                </p>
+                <p className="text-[13px] leading-relaxed text-[#6b7280]">
+                  Katubedda, Moratuwa 10400
+                  <br />
+                  Sri Lanka
+                </p>
+              </div>
+
+              <div>
+                <p className="text-[11px] font-bold tracking-[1.1px] text-[#9ca3af] uppercase">
+                  Office Hours
+                </p>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-[#6b7280]">
+                  Monday – Friday
+                  <br />
+                  9:00 AM – 5:00 PM (IST)
+                </p>
+              </div>
+
+              <div>
+                <p className="text-[11px] font-bold tracking-[1.1px] text-[#9ca3af] uppercase">
+                  Campus
+                </p>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-[#6b7280]">
+                  Faculty of Engineering building, ground floor, Room 101
+                </p>
+              </div>
+            </div>
+
+            <a
+              href="https://maps.google.com/?q=University+of+Moratuwa"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 flex items-center justify-center gap-2 rounded-[10px] bg-brand py-3 text-[14px] font-bold text-white shadow-[0px_4px_9px_rgba(3,126,243,0.27)] transition-all hover:bg-brand-dark"
+            >
+              <MapPin size={15} />
+              Get Directions
+            </a>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

@@ -19,7 +19,6 @@ const navItems = [
   { name: 'Global Teacher', link: '/programs/global-teacher' },
   { name: 'Blog', link: '/blog' },
   { name: 'About Us', link: '/about' },
-  { name: 'Contact', link: '/contact' },
 ]
 
 export function NavbarSection() {
