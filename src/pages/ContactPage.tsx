@@ -13,8 +13,9 @@ import {
   AlertCircle,
   Loader2,
 } from 'lucide-react'
-import { motion, type Variants } from 'framer-motion'
 import { useSubmitContactMessage } from '../hooks/mutations/useContactMessageMutations'
+import { Reveal } from '../components/motion/Reveal'
+import { Stagger, StaggerItem } from '../components/motion/Stagger'
 
 // ─── Icon helpers (reuse identical SVGs from Footer) ─────────────────────────
 
@@ -54,17 +55,6 @@ function LinkedinIcon({ className }: { className?: string }) {
   )
 }
 
-// ─── Animation variants ───────────────────────────────────────────────────────
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (delay: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] as const, delay },
-  }),
-}
-
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 
 function ContactHero() {
@@ -77,48 +67,36 @@ function ContactHero() {
       {/* White bleed that overlaps into the next section */}
       <div className="absolute bottom-0 left-0 h-10 w-full bg-white" />
 
-      <div className="relative z-10 flex flex-col items-center justify-center px-6 pt-16 pb-20 text-center">
-        {/* Badge */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={0}
-          className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/28 bg-white/16 px-4 py-1.5 backdrop-blur-sm"
-        >
-          <span className="text-white/90">
-            <svg viewBox="0 0 12 12" fill="currentColor" className="size-3">
-              <path d="M6 0l1.347 4.146H12L8.326 6.708 9.674 10.854 6 8.292l-3.674 2.562L3.674 6.708 0 4.146h4.653z" />
-            </svg>
-          </span>
-          <span className="text-[11px] font-bold tracking-[1.1px] text-white uppercase">
-            AIESEC in Colombo South
-          </span>
-        </motion.div>
+      <Stagger
+        inView={false}
+        className="relative z-10 flex flex-col items-center justify-center px-6 pt-16 pb-20 text-center"
+      >
+        <StaggerItem>
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/28 bg-white/16 px-4 py-1.5 backdrop-blur-sm">
+            <span className="text-white/90">
+              <svg viewBox="0 0 12 12" fill="currentColor" className="size-3">
+                <path d="M6 0l1.347 4.146H12L8.326 6.708 9.674 10.854 6 8.292l-3.674 2.562L3.674 6.708 0 4.146h4.653z" />
+              </svg>
+            </span>
+            <span className="text-[11px] font-bold tracking-[1.1px] text-white uppercase">
+              AIESEC in Colombo South
+            </span>
+          </div>
+        </StaggerItem>
 
-        {/* Heading */}
-        <motion.h1
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={0.08}
-          className="text-[52px] leading-[1.1] font-black tracking-[-0.02em] text-white"
-        >
-          Get In Touch.
-        </motion.h1>
+        <StaggerItem>
+          <h1 className="text-[52px] leading-[1.1] font-black tracking-[-0.02em] text-white">
+            Get In Touch.
+          </h1>
+        </StaggerItem>
 
-        {/* Subtitle */}
-        <motion.p
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={0.16}
-          className="mt-4 max-w-lg text-[18px] leading-[1.65] text-white/82"
-        >
-          We&apos;d love to hear from you — whether you&apos;re a student, a company, or just
-          curious about what we do.
-        </motion.p>
-      </div>
+        <StaggerItem>
+          <p className="mt-4 max-w-lg text-[18px] leading-[1.65] text-white/82">
+            We&apos;d love to hear from you — whether you&apos;re a student, a company, or just
+            curious about what we do.
+          </p>
+        </StaggerItem>
+      </Stagger>
     </section>
   )
 }
@@ -203,11 +181,7 @@ function ContactForm() {
         </div>
 
         {submitted ? (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="flex flex-col items-center gap-4 py-12 text-center"
-          >
+          <Reveal variant="scaleIn" inView={false} className="flex flex-col items-center gap-4 py-12 text-center">
             <div className="bg-brand/10 flex size-14 items-center justify-center rounded-full">
               <CheckCircle size={28} className="text-brand" />
             </div>
@@ -215,7 +189,7 @@ function ContactForm() {
             <p className="max-w-xs text-sm text-[#6b7280]">
               Thank you for reaching out. We&apos;ll respond within 24 hours.
             </p>
-          </motion.div>
+          </Reveal>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-[18px]">
             {error && (
@@ -447,24 +421,12 @@ function ContactSection() {
     <section className="bg-white py-[72px]">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            custom={0}
-          >
+          <Reveal delay={0}>
             <ContactForm />
-          </motion.div>
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            custom={0.1}
-          >
+          </Reveal>
+          <Reveal delay={0.1}>
             <ContactInfoPanel />
-          </motion.div>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -478,14 +440,7 @@ function MapSection() {
     <section className="bg-white py-16">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section label */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          custom={0}
-          className="mb-8 flex items-center gap-3"
-        >
+        <Reveal className="mb-8 flex items-center gap-3">
           <div className="bg-brand/8 flex size-10 items-center justify-center rounded-[10px]">
             <MapPin size={18} className="text-brand" />
           </div>
@@ -495,17 +450,10 @@ function MapSection() {
             </p>
             <h2 className="text-navy text-[20px] font-extrabold">University of Moratuwa</h2>
           </div>
-        </motion.div>
+        </Reveal>
 
         {/* Two-column layout: map + details */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          custom={0.08}
-          className="grid overflow-hidden rounded-2xl border border-[#eef1f5] shadow-[0px_4px_24px_rgba(0,0,0,0.07)] lg:grid-cols-[1fr_300px]"
-        >
+        <Reveal delay={0.08} className="grid overflow-hidden rounded-2xl border border-[#eef1f5] shadow-[0px_4px_24px_rgba(0,0,0,0.07)] lg:grid-cols-[1fr_300px]">
           {/* Map */}
           <div className="relative h-[280px] lg:h-[300px]">
             <iframe
@@ -570,7 +518,7 @@ function MapSection() {
               Get Directions
             </a>
           </div>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   )
@@ -587,86 +535,56 @@ const stats = [
 function FaqSection() {
   return (
     <section className="bg-surface py-[80px]">
-      <div className="mx-auto flex max-w-3xl flex-col items-center px-6 text-center">
-        {/* Icon */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          custom={0}
-          className="bg-brand/[0.07] mb-6 flex size-16 items-center justify-center rounded-[18px]"
-        >
-          <HelpCircle size={30} className="text-brand" />
-        </motion.div>
+      <Stagger className="mx-auto flex max-w-3xl flex-col items-center px-6 text-center">
+        <StaggerItem>
+          <div className="bg-brand/[0.07] mb-6 flex size-16 items-center justify-center rounded-[18px]">
+            <HelpCircle size={30} className="text-brand" />
+          </div>
+        </StaggerItem>
 
-        {/* Heading */}
-        <motion.h2
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          custom={0.07}
-          className="text-navy text-[36px] leading-[1.2] font-extrabold"
-        >
-          Have More Questions?
-        </motion.h2>
+        <StaggerItem>
+          <h2 className="text-navy text-[36px] leading-[1.2] font-extrabold">
+            Have More Questions?
+          </h2>
+        </StaggerItem>
 
-        {/* Body */}
-        <motion.p
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          custom={0.14}
-          className="mt-4 max-w-lg text-[16px] leading-[1.75] text-[#6b7280]"
-        >
-          Check out our FAQ for quick answers to common questions — or reach out directly. We reply
-          to every message within 24 hours, no exceptions.
-        </motion.p>
+        <StaggerItem>
+          <p className="mt-4 max-w-lg text-[16px] leading-[1.75] text-[#6b7280]">
+            Check out our FAQ for quick answers to common questions — or reach out directly. We reply
+            to every message within 24 hours, no exceptions.
+          </p>
+        </StaggerItem>
 
-        {/* Buttons */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          custom={0.21}
-          className="mt-10 flex flex-wrap justify-center gap-4"
-        >
-          <a
-            href="/about#faq"
-            className="border-brand text-brand hover:bg-brand inline-flex h-[52px] items-center gap-2 rounded-[10px] border-2 px-6 text-[15px] font-bold transition-all hover:text-white"
-          >
-            View FAQ
-            <ArrowRight size={15} />
-          </a>
-          <Link
-            to="/programs/global-volunteer"
-            className="bg-brand hover:bg-brand-dark inline-flex h-[52px] items-center gap-2 rounded-[10px] px-6 text-[15px] font-bold text-white shadow-[0px_4px_9px_rgba(3,126,243,0.27)] transition-all hover:shadow-[0px_6px_14px_rgba(3,126,243,0.35)]"
-          >
-            Explore Programs
-            <ArrowRight size={15} />
-          </Link>
-        </motion.div>
+        <StaggerItem>
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
+            <a
+              href="/about#faq"
+              className="border-brand text-brand hover:bg-brand inline-flex h-[52px] items-center gap-2 rounded-[10px] border-2 px-6 text-[15px] font-bold transition-all hover:text-white"
+            >
+              View FAQ
+              <ArrowRight size={15} />
+            </a>
+            <Link
+              to="/programs/global-volunteer"
+              className="bg-brand hover:bg-brand-dark inline-flex h-[52px] items-center gap-2 rounded-[10px] px-6 text-[15px] font-bold text-white shadow-[0px_4px_9px_rgba(3,126,243,0.27)] transition-all hover:shadow-[0px_6px_14px_rgba(3,126,243,0.35)]"
+            >
+              Explore Programs
+              <ArrowRight size={15} />
+            </Link>
+          </div>
+        </StaggerItem>
 
-        {/* Stats row */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          custom={0.28}
-          className="mt-12 flex flex-wrap justify-center gap-10"
-        >
-          {stats.map(({ value, label }) => (
-            <div key={label} className="flex flex-col items-center gap-1">
-              <span className="text-brand text-[20px] leading-tight font-black">{value}</span>
-              <span className="text-[12px] font-medium text-[#9ca3af]">{label}</span>
-            </div>
-          ))}
-        </motion.div>
-      </div>
+        <StaggerItem>
+          <div className="mt-12 flex flex-wrap justify-center gap-10">
+            {stats.map(({ value, label }) => (
+              <div key={label} className="flex flex-col items-center gap-1">
+                <span className="text-brand text-[20px] leading-tight font-black">{value}</span>
+                <span className="text-[12px] font-medium text-[#9ca3af]">{label}</span>
+              </div>
+            ))}
+          </div>
+        </StaggerItem>
+      </Stagger>
     </section>
   )
 }
