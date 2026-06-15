@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import type { LucideIcon } from 'lucide-react'
+import { BookOpen, Briefcase, Clock, Globe } from 'lucide-react'
 import { images } from '../assets/images'
 import { SectionHeader } from './ui/SectionHeader'
 import { Reveal } from './motion/Reveal'
@@ -10,12 +12,14 @@ interface Program {
   tagColor: string
   tagBg: string
   gradient: string
-  emoji: string
+  icon: LucideIcon
+  iconColor: string
+  iconBg: string
   title: string
   subtitle: string
   subtitleColor: string
   description: string
-  badges: { label: string; bg: string; color: string }[]
+  badges: { icon: LucideIcon; label: string; bg: string; color: string }[]
   href: string
 }
 
@@ -26,15 +30,17 @@ const programs: Program[] = [
     tagColor: 'text-teal',
     tagBg: 'bg-teal-100',
     gradient: 'from-teal/80',
-    emoji: '🌍',
+    icon: Globe,
+    iconColor: 'text-teal',
+    iconBg: 'bg-teal/10',
     title: 'Global Volunteer',
     subtitle: 'Make an Impact Abroad',
     subtitleColor: 'text-teal',
     description:
       'Travel the world while making a real difference. Join short-term volunteering projects in 60+ countries, working on education, environment, and social causes — and grow as a leader.',
     badges: [
-      { label: '⏱ 6–8 weeks', bg: 'bg-teal/8', color: 'text-teal' },
-      { label: '🌐 60+ countries', bg: 'bg-teal/8', color: 'text-teal' },
+      { icon: Clock, label: '6–8 weeks', bg: 'bg-teal/8', color: 'text-teal' },
+      { icon: Globe, label: '60+ countries', bg: 'bg-teal/8', color: 'text-teal' },
     ],
     href: '/programs/global-volunteer',
   },
@@ -44,15 +50,17 @@ const programs: Program[] = [
     tagColor: 'text-brand',
     tagBg: 'bg-blue-100',
     gradient: 'from-brand/80',
-    emoji: '💼',
+    icon: Briefcase,
+    iconColor: 'text-brand',
+    iconBg: 'bg-brand/10',
     title: 'Global Talent',
     subtitle: 'Launch Your Global Career',
     subtitleColor: 'text-brand',
     description:
       'Secure a professional internship with a company abroad. Build your career, gain cross-cultural work experience, and develop the skills that modern employers demand — on an international stage.',
     badges: [
-      { label: '⏱ 3–18 months', bg: 'bg-brand/8', color: 'text-brand' },
-      { label: '🌐 70+ countries', bg: 'bg-brand/8', color: 'text-brand' },
+      { icon: Clock, label: '3–18 months', bg: 'bg-brand/8', color: 'text-brand' },
+      { icon: Globe, label: '70+ countries', bg: 'bg-brand/8', color: 'text-brand' },
     ],
     href: '/programs/global-talent',
   },
@@ -62,15 +70,17 @@ const programs: Program[] = [
     tagColor: 'text-amber',
     tagBg: 'bg-amber-100',
     gradient: 'from-amber/80',
-    emoji: '📚',
+    icon: BookOpen,
+    iconColor: 'text-amber',
+    iconBg: 'bg-amber/10',
     title: 'Global Teacher',
     subtitle: 'Teach. Inspire. Lead.',
     subtitleColor: 'text-amber',
     description:
       'Travel abroad and teach English or other subjects in schools and community centers. The Global Teacher program places passionate young educators in classrooms around the world.',
     badges: [
-      { label: '⏱ 6–8 weeks', bg: 'bg-amber/8', color: 'text-amber' },
-      { label: '🌐 20+ countries', bg: 'bg-amber/8', color: 'text-amber' },
+      { icon: Clock, label: '6–8 weeks', bg: 'bg-amber/8', color: 'text-amber' },
+      { icon: Globe, label: '20+ countries', bg: 'bg-amber/8', color: 'text-amber' },
     ],
     href: '/programs/global-teacher',
   },
@@ -90,8 +100,8 @@ export function Programs() {
 
         <Stagger className="mt-14 grid gap-6 lg:grid-cols-3">
           {programs.map((program) => (
-            <StaggerItem key={program.title}>
-              <article className="group overflow-hidden rounded-[20px] bg-white shadow-[0_6px_24px_rgba(0,0,0,0.07),0_2px_8px_rgba(0,0,0,0.04)] transition-shadow hover:shadow-xl">
+            <StaggerItem key={program.title} className="h-full">
+              <article className="group flex h-full flex-col overflow-hidden rounded-[20px] bg-white shadow-[0_6px_24px_rgba(0,0,0,0.07),0_2px_8px_rgba(0,0,0,0.04)] transition-shadow hover:shadow-xl">
                 <div className="relative h-[220px] overflow-hidden">
                   <img
                     src={program.image}
@@ -108,9 +118,13 @@ export function Programs() {
                   </span>
                 </div>
 
-                <div className="flex flex-col gap-5 p-7">
+                <div className="flex flex-1 flex-col gap-5 p-7">
                   <div className="flex items-center gap-3">
-                    <span className="text-[28px]">{program.emoji}</span>
+                    <div
+                      className={`flex size-12 shrink-0 items-center justify-center rounded-xl ${program.iconBg}`}
+                    >
+                      <program.icon size={24} className={program.iconColor} strokeWidth={2} />
+                    </div>
                     <div>
                       <h3 className="text-text-primary text-xl font-extrabold">{program.title}</h3>
                       <p className={`text-[13px] font-semibold ${program.subtitleColor}`}>
@@ -119,14 +133,17 @@ export function Programs() {
                     </div>
                   </div>
 
-                  <p className="text-text-secondary text-sm leading-relaxed">{program.description}</p>
+                  <p className="text-text-secondary flex-1 text-sm leading-relaxed">
+                    {program.description}
+                  </p>
 
                   <div className="flex flex-wrap gap-2.5">
                     {program.badges.map((badge) => (
                       <span
                         key={badge.label}
-                        className={`rounded-full px-3 py-1 text-xs font-semibold ${badge.bg} ${badge.color}`}
+                        className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold ${badge.bg} ${badge.color}`}
                       >
+                        <badge.icon size={12} strokeWidth={2.5} />
                         {badge.label}
                       </span>
                     ))}
@@ -134,7 +151,7 @@ export function Programs() {
 
                   <Link
                     to={program.href}
-                    className="text-brand hover:text-brand-dark text-sm font-bold transition-colors"
+                    className="text-brand hover:text-brand-dark mt-auto text-sm font-bold transition-colors"
                   >
                     Learn More →
                   </Link>
