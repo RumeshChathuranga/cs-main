@@ -62,6 +62,7 @@ VITE_SUPABASE_ANON_KEY=YOUR_ANON_KEY_HERE
 ```
 
 To find these values:
+
 - In Supabase, go to **Project Settings → API**
 - Copy **Project URL** → paste as `VITE_SUPABASE_URL`
 - Copy **anon / public** key → paste as `VITE_SUPABASE_ANON_KEY`
@@ -86,6 +87,7 @@ Repeat for each editor. They can then log in at `/admin` on your website.
 ## 5. Transfer the Project (When Handing Over)
 
 When you leave the IM team:
+
 1. In Supabase, go to **Project Settings → General**
 2. Scroll to **"Transfer Project"**
 3. Enter the new person's email
@@ -122,6 +124,7 @@ CREATE POLICY "Editors can delete blog images"
 ```
 
 After running this SQL, editors can:
+
 - **Upload images from their computer** directly in the Cover Image field and the rich text editor
 - **Paste a URL** if they prefer to link an external image
 - Images are stored permanently in Supabase Storage and served via a public CDN URL
@@ -130,11 +133,11 @@ After running this SQL, editors can:
 
 ## Summary of URLs
 
-| URL | What it does |
-|-----|-------------|
-| `/blog` | Public blog listing page |
-| `/blog/:id` | Individual blog article |
-| `/admin` | Editor login page |
-| `/admin/dashboard` | Manage all posts |
-| `/admin/posts/new` | Write a new post |
-| `/admin/posts/:id/edit` | Edit an existing post |
+| URL                     | What it does             |
+| ----------------------- | ------------------------ |
+| `/blog`                 | Public blog listing page |
+| `/blog/:id`             | Individual blog article  |
+| `/admin`                | Editor login page        |
+| `/admin/dashboard`      | Manage all posts         |
+| `/admin/posts/new`      | Write a new post         |
+| `/admin/posts/:id/edit` | Edit an existing post    |
