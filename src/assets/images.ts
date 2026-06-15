@@ -30,6 +30,11 @@ import gtSchoolStudents from './images/gt-school-students.jpg'
 import gtAlumniSanduni from './images/gt-alumni-sanduni.jpg'
 import gtAlumniAsel from './images/gt-alumni-asel.jpg'
 import gtSchoolPrincipal from './images/gt-school-principal.jpg'
+import gtaHeroBg from './images/gta-hero-bg.jpg'
+import gtaProfessionals from './images/gta-professionals.jpg'
+import gtaAlumniRavindu from './images/gta-alumni-ravindu.jpg'
+import gtaAlumniMihara from './images/gta-alumni-mihara.jpg'
+import gtaAlumniDilshan from './images/gta-alumni-dilshan.jpg'
 
 export const images = {
   logo,
@@ -64,4 +69,9 @@ export const images = {
   gtAlumniSanduni,
   gtAlumniAsel,
   gtSchoolPrincipal,
+  gtaHeroBg,
+  gtaProfessionals,
+  gtaAlumniRavindu,
+  gtaAlumniMihara,
+  gtaAlumniDilshan,
 } as const
