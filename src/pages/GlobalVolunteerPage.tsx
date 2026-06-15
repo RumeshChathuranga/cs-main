@@ -202,7 +202,7 @@ export function GlobalVolunteerPage() {
   return (
     <>
       {/* ══════════════════ HERO ══════════════════ */}
-      <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden">
+      <section className="relative flex min-h-[85vh] flex-col overflow-hidden">
         {/* Background image */}
         <img
           src={images.gvHeroBg}
@@ -225,7 +225,7 @@ export function GlobalVolunteerPage() {
         <div className="bg-teal-gv pointer-events-none absolute right-[135px] bottom-[313px] size-[12px] rounded-[6px] opacity-20" />
 
         {/* Content */}
-        <div className="relative z-10 mx-auto w-full max-w-[684px] px-6 text-center">
+        <div className="relative z-10 mx-auto flex w-full max-w-[684px] flex-1 flex-col items-center justify-center px-6 py-24 text-center">
           {/* Badge */}
           <div
             className="mb-8 inline-flex items-center gap-2 rounded-full px-5 py-2"
@@ -269,13 +269,22 @@ export function GlobalVolunteerPage() {
               How It Works
             </a>
           </div>
+        </div>
 
-          {/* Scroll indicator */}
-          <div className="mt-14 flex flex-col items-center gap-1.5 opacity-55">
-            <div className="h-10 w-px bg-[rgba(255,255,255,0.6)]" />
-            <span className="text-[10px] font-normal tracking-[1px] text-white uppercase">
-              Scroll
-            </span>
+        <div className="relative z-10 border-t border-white/10 bg-black/35">
+          <div className="mx-auto grid max-w-5xl grid-cols-1 divide-y divide-white/20 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+            {[
+              { value: '126', label: 'Countries' },
+              { value: '6–8', label: 'Week Projects' },
+              { value: '5,000+', label: 'Sri Lankan Alumni' },
+            ].map((stat) => (
+              <div key={stat.label} className="flex flex-col items-center gap-1.5 px-4 py-6">
+                <span className="text-4xl font-extrabold text-white">{stat.value}</span>
+                <span className="text-[13px] font-medium tracking-wide text-white/75">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </section>

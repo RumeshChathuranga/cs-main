@@ -145,7 +145,7 @@ export function GlobalTeacherPage() {
   return (
     <>
       {/* ══════════════════ HERO ══════════════════ */}
-      <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden">
+      <section className="relative flex min-h-[85vh] flex-col overflow-hidden">
         {/* Background image */}
         <img
           src={images.gtHeroClassroom}
@@ -167,7 +167,7 @@ export function GlobalTeacherPage() {
         <div className="absolute right-[17%] bottom-[25%] size-40 rounded-[80px] border-2 border-[rgba(255,171,0,0.6)] opacity-[0.07]" />
 
         {/* Content */}
-        <div className="relative z-10 mx-auto w-full max-w-[664px] px-6 text-center">
+        <div className="relative z-10 mx-auto flex w-full max-w-[664px] flex-1 flex-col items-center justify-center px-6 py-24 text-center">
           {/* Badge */}
           <div className="bg-gold mb-8 inline-flex items-center gap-2 rounded-full px-6 py-2">
             <BookOpen size={14} className="text-navy shrink-0" />
@@ -206,19 +206,20 @@ export function GlobalTeacherPage() {
               Host a Teacher
             </a>
           </div>
+        </div>
 
-          {/* Stats row */}
-          <div className="mt-14 flex flex-wrap justify-center gap-x-16 gap-y-4">
+        <div className="relative z-10 border-t border-white/10 bg-black/35">
+          <div className="mx-auto grid max-w-5xl grid-cols-1 divide-y divide-white/20 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
             {[
-              { val: '20+', label: 'Countries' },
-              { val: '6–8', label: 'Week Projects' },
-              { val: 'SDG 4', label: 'Quality Education' },
-            ].map((s) => (
-              <div key={s.label} className="text-center">
-                <p className="text-gold text-2xl font-black tracking-tight">{s.val}</p>
-                <p className="mt-1 text-xs font-medium tracking-[0.36px] text-[rgba(255,255,255,0.6)]">
-                  {s.label}
-                </p>
+              { value: '20+', label: 'Countries' },
+              { value: '6–8', label: 'Week Projects' },
+              { value: 'SDG 4', label: 'Quality Education' },
+            ].map((stat) => (
+              <div key={stat.label} className="flex flex-col items-center gap-1.5 px-4 py-6">
+                <span className="text-4xl font-extrabold text-white">{stat.value}</span>
+                <span className="text-[13px] font-medium tracking-wide text-white/75">
+                  {stat.label}
+                </span>
               </div>
             ))}
           </div>
