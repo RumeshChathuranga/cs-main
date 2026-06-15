@@ -14,7 +14,7 @@ import {
   Loader2,
 } from 'lucide-react'
 import { motion, type Variants } from 'framer-motion'
-import { submitContactMessage } from '../hooks/useContactMessages'
+import { useSubmitContactMessage } from '../hooks/mutations/useContactMessageMutations'
 
 // ─── Icon helpers (reuse identical SVGs from Footer) ─────────────────────────
 
@@ -139,6 +139,7 @@ const COOLDOWN_KEY = 'contact_form_last_submit'
 const COOLDOWN_MS = 60_000
 
 function ContactForm() {
+  const submitMutation = useSubmitContactMessage()
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -146,8 +147,8 @@ function ContactForm() {
     message: '',
   })
   const [submitted, setSubmitted] = useState(false)
-  const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const submitting = submitMutation.isPending
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
@@ -165,18 +166,16 @@ function ContactForm() {
       return
     }
 
-    setSubmitting(true)
-    const { error: submitError } = await submitContactMessage({
+    const result = await submitMutation.mutateAsync({
       name: form.name.trim(),
       email: form.email.trim(),
       subject: form.subject,
       message: form.message.trim(),
     })
-    setSubmitting(false)
 
-    if (submitError) {
+    if (result.error) {
       setError(
-        submitError.includes('Too many messages')
+        result.error.includes('Too many messages')
           ? 'You have sent several messages recently. Please try again later.'
           : 'Something went wrong. Please try again or email us directly.',
       )
