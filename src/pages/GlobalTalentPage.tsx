@@ -208,7 +208,7 @@ export function GlobalTalentPage() {
   return (
     <>
       {/* ══════════════════ HERO ══════════════════ */}
-      <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
+      <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden">
         {/* Background image */}
         <img
           src={images.gtaHeroBg}

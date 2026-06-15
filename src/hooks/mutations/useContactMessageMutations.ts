@@ -7,10 +7,7 @@ import {
 import { queryKeys } from '../../lib/queryKeys'
 import type { ContactMessageInsert, ContactMessageStatus } from '../../lib/database.types'
 
-function invalidateMessageQueries(
-  queryClient: ReturnType<typeof useQueryClient>,
-  id?: string,
-) {
+function invalidateMessageQueries(queryClient: ReturnType<typeof useQueryClient>, id?: string) {
   void queryClient.invalidateQueries({ queryKey: queryKeys.contactMessages.all })
   if (id) {
     void queryClient.invalidateQueries({ queryKey: queryKeys.contactMessages.detail(id) })

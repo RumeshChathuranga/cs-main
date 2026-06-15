@@ -98,8 +98,7 @@ export function AdminPostEditorPage() {
   const saveMutation = useSaveBlogPost()
 
   const [draft, setDraft] = useState<FormData | null>(null)
-  const form =
-    draft ?? (isEditing && existingPost ? postToForm(existingPost) : EMPTY_FORM)
+  const form = draft ?? (isEditing && existingPost ? postToForm(existingPost) : EMPTY_FORM)
 
   const set = <K extends keyof FormData>(key: K, value: FormData[K]) =>
     setDraft((prev) => ({ ...(prev ?? form), [key]: value }))

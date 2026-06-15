@@ -23,10 +23,7 @@ export function AdminDashboardPage() {
   const togglePublish = async (post: BlogPost) => {
     try {
       const newStatus = await togglePublishMutation.mutateAsync(post)
-      showToast(
-        newStatus === 'published' ? 'Post published!' : 'Post moved to drafts.',
-        'success',
-      )
+      showToast(newStatus === 'published' ? 'Post published!' : 'Post moved to drafts.', 'success')
     } catch {
       showToast('Failed to update status.', 'error')
     }

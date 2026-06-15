@@ -26,8 +26,13 @@ const STATUS_STYLES: Record<ContactMessageStatus, string> = {
 }
 
 export function AdminMessagesPage() {
-  const { data: messages = [], isLoading: loading, error, refetch, isFetching } =
-    useContactMessages()
+  const {
+    data: messages = [],
+    isLoading: loading,
+    error,
+    refetch,
+    isFetching,
+  } = useContactMessages()
   const updateStatusMutation = useUpdateMessageStatus()
   const deleteMessageMutation = useDeleteContactMessage()
   const showToast = useToastStore((s) => s.showToast)

@@ -32,10 +32,7 @@ export async function fetchContactMessage(id: string): Promise<ContactMessage> {
   return data as ContactMessage
 }
 
-export async function updateMessageStatus(
-  id: string,
-  status: ContactMessageStatus,
-): Promise<void> {
+export async function updateMessageStatus(id: string, status: ContactMessageStatus): Promise<void> {
   const updates: { status: ContactMessageStatus; replied_at?: string | null } = { status }
 
   if (status === 'replied') {
