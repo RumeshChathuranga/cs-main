@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { images } from '../assets/images'
 
 export function About() {
@@ -29,12 +30,12 @@ export function About() {
             </p>
           </div>
 
-          <a
-            href="#"
+          <Link
+            to="/about"
             className="text-brand hover:text-brand-dark mt-8 inline-flex items-center text-[15px] font-bold transition-colors"
           >
             Learn More →
-          </a>
+          </Link>
         </div>
 
         <div className="relative">

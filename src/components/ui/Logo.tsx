@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { images } from '../../assets/images'
 
 interface LogoProps {
@@ -15,7 +16,7 @@ export function Logo({ variant = 'default', size = 'md' }: LogoProps) {
   }[size]
 
   return (
-    <a href="#" className="group flex items-center gap-3">
+    <Link to="/" className="group flex items-center gap-3">
       {/* Icon container — clean gradient background, no background image */}
       <div
         className="relative shrink-0 overflow-hidden rounded-xl transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_4px_14px_rgba(3,126,243,0.45)]"
@@ -60,6 +61,6 @@ export function Logo({ variant = 'default', size = 'md' }: LogoProps) {
           IN COLOMBO SOUTH
         </span>
       </div>
-    </a>
+    </Link>
   )
 }

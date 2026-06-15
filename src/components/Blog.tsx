@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { images } from '../assets/images'
 
 interface BlogPost {
@@ -64,12 +65,12 @@ export function Blog() {
               Latest Stories
             </h2>
           </header>
-          <a
-            href="#"
+          <Link
+            to="/blog"
             className="border-brand text-brand hover:text-brand-dark border-b-2 pb-1.5 text-[15px] font-bold transition-colors"
           >
             View All →
-          </a>
+          </Link>
         </div>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-3">

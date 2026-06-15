@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import {
   Navbar,
   NavBody,
@@ -12,12 +13,12 @@ import {
 import { Logo } from './ui/Logo'
 
 const navItems = [
-  { name: 'Home', link: '#' },
-  { name: 'Global Volunteer', link: '#programs' },
-  { name: 'Global Talent', link: '#programs' },
-  { name: 'Global Teacher', link: '#programs' },
-  { name: 'Blog', link: '#blog' },
-  { name: 'About Us', link: '#about' },
+  { name: 'Home', link: '/' },
+  { name: 'Global Volunteer', link: '/programs/global-volunteer' },
+  { name: 'Global Talent', link: '/programs/global-talent' },
+  { name: 'Global Teacher', link: '/programs/global-teacher' },
+  { name: 'Blog', link: '/blog' },
+  { name: 'About Us', link: '/about' },
 ]
 
 export function NavbarSection() {
@@ -30,10 +31,10 @@ export function NavbarSection() {
         <Logo />
         <NavItems items={navItems} />
         <div className="flex items-center gap-3">
-          <NavbarButton variant="secondary" href="#about">
+          <NavbarButton variant="secondary" as={NavLink} to="/about">
             Join Us
           </NavbarButton>
-          <NavbarButton variant="primary" href="#contact">
+          <NavbarButton variant="primary" as={NavLink} to="/about#contact">
             Contact Us
           </NavbarButton>
         </div>
@@ -48,14 +49,21 @@ export function NavbarSection() {
 
         <MobileNavMenu isOpen={mobileOpen} onClose={() => setMobileOpen(false)}>
           {navItems.map((item) => (
-            <a
+            <NavLink
               key={item.name}
-              href={item.link}
+              to={item.link}
+              end={item.link === '/'}
               onClick={() => setMobileOpen(false)}
-              className="hover:bg-brand/8 hover:text-brand w-full rounded-xl px-4 py-3 text-[14px] font-medium text-[#3a3a52] transition-colors"
+              className={({ isActive }) =>
+                `w-full rounded-xl px-4 py-3 text-[14px] font-medium transition-colors ${
+                  isActive
+                    ? 'bg-brand/10 text-brand'
+                    : 'text-[#3a3a52] hover:bg-brand/8 hover:text-brand'
+                }`
+              }
             >
               {item.name}
-            </a>
+            </NavLink>
           ))}
           <div className="mt-1 flex w-full flex-col gap-2 border-t border-gray-100 pt-3">
             <NavbarButton

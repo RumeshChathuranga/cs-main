@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { images } from '../assets/images'
 import { SectionHeader } from './ui/SectionHeader'
 
@@ -13,6 +14,7 @@ interface Program {
   subtitleColor: string
   description: string
   badges: { label: string; bg: string; color: string }[]
+  href: string
 }
 
 const programs: Program[] = [
@@ -32,6 +34,7 @@ const programs: Program[] = [
       { label: '⏱ 6–8 weeks', bg: 'bg-teal/8', color: 'text-teal' },
       { label: '🌐 60+ countries', bg: 'bg-teal/8', color: 'text-teal' },
     ],
+    href: '/programs/global-volunteer',
   },
   {
     image: images.globalTalent,
@@ -49,6 +52,7 @@ const programs: Program[] = [
       { label: '⏱ 3–18 months', bg: 'bg-brand/8', color: 'text-brand' },
       { label: '🌐 70+ countries', bg: 'bg-brand/8', color: 'text-brand' },
     ],
+    href: '/programs/global-talent',
   },
   {
     image: images.globalTeacher,
@@ -66,6 +70,7 @@ const programs: Program[] = [
       { label: '⏱ 6–8 weeks', bg: 'bg-amber/8', color: 'text-amber' },
       { label: '🌐 20+ countries', bg: 'bg-amber/8', color: 'text-amber' },
     ],
+    href: '/programs/global-teacher',
   },
 ]
 
@@ -125,12 +130,12 @@ export function Programs() {
                   ))}
                 </div>
 
-                <a
-                  href="#"
+                <Link
+                  to={program.href}
                   className="text-brand hover:text-brand-dark text-sm font-bold transition-colors"
                 >
                   Learn More →
-                </a>
+                </Link>
               </div>
             </article>
           ))}

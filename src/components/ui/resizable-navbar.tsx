@@ -2,6 +2,7 @@ import { cn } from '../../lib/utils'
 import { IconMenu2, IconX } from '@tabler/icons-react'
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'motion/react'
 import React, { useRef, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
 interface NavbarProps {
   children: React.ReactNode
@@ -97,18 +98,24 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
       )}
     >
       {items.map((item, idx) => (
-        <a
+        <NavLink
           key={`link-${idx}`}
-          href={item.link}
+          to={item.link}
+          end={item.link === '/'}
           onMouseEnter={() => setHovered(idx)}
           onClick={onItemClick}
-          className="hover:text-brand relative px-4 py-2 text-[13.5px] font-medium text-[#3a3a52] transition-colors"
+          className={({ isActive }) =>
+            cn(
+              'relative px-4 py-2 text-[13.5px] font-medium transition-colors',
+              isActive ? 'text-brand' : 'text-[#3a3a52] hover:text-brand',
+            )
+          }
         >
           {hovered === idx && (
             <motion.div layoutId="hovered" className="bg-brand/8 absolute inset-0 rounded-xl" />
           )}
           <span className="relative z-20">{item.name}</span>
-        </a>
+        </NavLink>
       ))}
     </motion.div>
   )
@@ -179,6 +186,7 @@ export const MobileNavToggle = ({ isOpen, onClick }: { isOpen: boolean; onClick:
 
 export const NavbarButton = ({
   href,
+  to,
   as: Tag = 'a',
   children,
   className,
@@ -186,11 +194,17 @@ export const NavbarButton = ({
   ...props
 }: {
   href?: string
+  to?: string
   as?: React.ElementType
   children: React.ReactNode
   className?: string
   variant?: 'primary' | 'secondary' | 'dark' | 'gradient'
-} & (React.ComponentPropsWithoutRef<'a'> | React.ComponentPropsWithoutRef<'button'>)) => {
+} & (
+  | React.ComponentPropsWithoutRef<'a'>
+  | React.ComponentPropsWithoutRef<'button'>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  | Record<string, any>
+)) => {
   const base =
     'px-5 py-2.5 rounded-xl text-[13px] font-semibold relative cursor-pointer hover:-translate-y-px transition duration-200 inline-flex items-center justify-center'
 
@@ -204,8 +218,11 @@ export const NavbarButton = ({
       'bg-gradient-to-b from-brand to-brand-dark text-white shadow-[0_2px_0_rgba(255,255,255,0.2)_inset]',
   }
 
+  // When `to` is provided, prefer it over `href`
+  const linkProps = to ? { to } : href ? { href } : {}
+
   return (
-    <Tag href={href ?? undefined} className={cn(base, variants[variant], className)} {...props}>
+    <Tag className={cn(base, variants[variant], className)} {...linkProps} {...props}>
       {children}
     </Tag>
   )
