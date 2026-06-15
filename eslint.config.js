@@ -4,6 +4,7 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
+import eslintConfigPrettier from 'eslint-config-prettier/flat'
 
 export default defineConfig([
   globalIgnores(['dist']),
@@ -19,4 +20,6 @@ export default defineConfig([
       globals: globals.browser,
     },
   },
+  // Must be last — disables all ESLint formatting rules that Prettier owns
+  eslintConfigPrettier,
 ])
