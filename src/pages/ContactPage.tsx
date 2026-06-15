@@ -181,7 +181,11 @@ function ContactForm() {
         </div>
 
         {submitted ? (
-          <Reveal variant="scaleIn" inView={false} className="flex flex-col items-center gap-4 py-12 text-center">
+          <Reveal
+            variant="scaleIn"
+            inView={false}
+            className="flex flex-col items-center gap-4 py-12 text-center"
+          >
             <div className="bg-brand/10 flex size-14 items-center justify-center rounded-full">
               <CheckCircle size={28} className="text-brand" />
             </div>
@@ -453,7 +457,10 @@ function MapSection() {
         </Reveal>
 
         {/* Two-column layout: map + details */}
-        <Reveal delay={0.08} className="grid overflow-hidden rounded-2xl border border-[#eef1f5] shadow-[0px_4px_24px_rgba(0,0,0,0.07)] lg:grid-cols-[1fr_300px]">
+        <Reveal
+          delay={0.08}
+          className="grid overflow-hidden rounded-2xl border border-[#eef1f5] shadow-[0px_4px_24px_rgba(0,0,0,0.07)] lg:grid-cols-[1fr_300px]"
+        >
           {/* Map */}
           <div className="relative h-[280px] lg:h-[300px]">
             <iframe
@@ -550,8 +557,8 @@ function FaqSection() {
 
         <StaggerItem>
           <p className="mt-4 max-w-lg text-[16px] leading-[1.75] text-[#6b7280]">
-            Check out our FAQ for quick answers to common questions — or reach out directly. We reply
-            to every message within 24 hours, no exceptions.
+            Check out our FAQ for quick answers to common questions — or reach out directly. We
+            reply to every message within 24 hours, no exceptions.
           </p>
         </StaggerItem>
 

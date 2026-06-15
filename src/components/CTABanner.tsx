@@ -4,7 +4,11 @@ import { Reveal } from './motion/Reveal'
 export function CTABanner() {
   return (
     <section className="grid md:grid-cols-2">
-      <Reveal variant="scaleIn" as="div" className="bg-brand relative overflow-hidden px-8 py-14 text-center md:px-12">
+      <Reveal
+        variant="scaleIn"
+        as="div"
+        className="bg-brand relative overflow-hidden px-8 py-14 text-center md:px-12"
+      >
         <div className="absolute -top-10 -right-10 size-[200px] rounded-full bg-white/6" />
         <div className="absolute -bottom-5 -left-5 size-40 rounded-full bg-white/5" />
 
@@ -23,7 +27,12 @@ export function CTABanner() {
         </div>
       </Reveal>
 
-      <Reveal variant="scaleIn" as="div" delay={0.1} className="bg-navy relative overflow-hidden px-8 py-14 text-center md:px-12">
+      <Reveal
+        variant="scaleIn"
+        as="div"
+        delay={0.1}
+        className="bg-navy relative overflow-hidden px-8 py-14 text-center md:px-12"
+      >
         <div className="bg-brand/6 absolute -top-8 -left-12 size-[200px] rounded-full" />
         <div className="bg-brand/5 absolute right-10 -bottom-4 size-40 rounded-full" />
 

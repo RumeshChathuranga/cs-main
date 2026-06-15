@@ -31,9 +31,7 @@ export function Stagger({
     <Component
       variants={variants}
       initial="hidden"
-      {...(inView
-        ? { whileInView: 'visible', viewport }
-        : { animate: 'visible' })}
+      {...(inView ? { whileInView: 'visible', viewport } : { animate: 'visible' })}
       className={className}
     >
       {children}

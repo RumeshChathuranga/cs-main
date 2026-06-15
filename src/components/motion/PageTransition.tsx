@@ -15,12 +15,7 @@ export function PageTransition({ children }: PageTransitionProps) {
   }
 
   return (
-    <motion.div
-      variants={pageTransition}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-    >
+    <motion.div variants={pageTransition} initial="initial" animate="animate" exit="exit">
       {children}
     </motion.div>
   )

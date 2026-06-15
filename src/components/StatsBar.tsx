@@ -21,7 +21,7 @@ export function StatsBar() {
               value={stat.value}
               delay={index * 0.06}
               duration={1}
-              className="text-4xl font-extrabold tracking-tight text-white lg:text-5xl tabular-nums"
+              className="text-4xl font-extrabold tracking-tight text-white tabular-nums lg:text-5xl"
             />
             <span className="text-[15px] font-medium tracking-wide text-white/85">
               {stat.label}

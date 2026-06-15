@@ -163,15 +163,15 @@ function OurHistory() {
                 return (
                   <StaggerItem key={a.label}>
                     <div className="bg-surface flex min-w-[170px] flex-1 items-center gap-3 rounded-xl px-4 py-4 shadow-sm">
-                    <div className="bg-brand/10 flex size-10 shrink-0 items-center justify-center rounded-lg">
-                      <Icon size={18} className="text-brand" />
-                    </div>
-                    <div>
-                      <p className="text-text-primary text-[13px] leading-tight font-bold">
-                        {a.label}
-                      </p>
-                      <p className="text-text-muted mt-0.5 text-[12px]">{a.sub}</p>
-                    </div>
+                      <div className="bg-brand/10 flex size-10 shrink-0 items-center justify-center rounded-lg">
+                        <Icon size={18} className="text-brand" />
+                      </div>
+                      <div>
+                        <p className="text-text-primary text-[13px] leading-tight font-bold">
+                          {a.label}
+                        </p>
+                        <p className="text-text-muted mt-0.5 text-[12px]">{a.sub}</p>
+                      </div>
                     </div>
                   </StaggerItem>
                 )
@@ -188,25 +188,25 @@ function OurHistory() {
               {timelineEvents.map((item) => (
                 <StaggerItem key={item.year}>
                   <div className="relative flex gap-6 pl-8">
-                  {/* Dot */}
-                  <div
-                    className={`absolute top-1 left-0 flex size-6 shrink-0 items-center justify-center rounded-full border-2 ${
-                      item.highlight ? 'border-brand bg-brand' : 'border-gray-300 bg-white'
-                    }`}
-                  >
-                    {item.highlight && <div className="size-2 rounded-full bg-white" />}
-                  </div>
-                  {/* Content */}
-                  <div>
-                    <p
-                      className={`text-[17px] font-extrabold ${
-                        item.highlight ? 'text-brand' : 'text-text-primary'
+                    {/* Dot */}
+                    <div
+                      className={`absolute top-1 left-0 flex size-6 shrink-0 items-center justify-center rounded-full border-2 ${
+                        item.highlight ? 'border-brand bg-brand' : 'border-gray-300 bg-white'
                       }`}
                     >
-                      {item.year}
-                    </p>
-                    <p className="text-text-secondary mt-0.5 text-[15px]">{item.event}</p>
-                  </div>
+                      {item.highlight && <div className="size-2 rounded-full bg-white" />}
+                    </div>
+                    {/* Content */}
+                    <div>
+                      <p
+                        className={`text-[17px] font-extrabold ${
+                          item.highlight ? 'text-brand' : 'text-text-primary'
+                        }`}
+                      >
+                        {item.year}
+                      </p>
+                      <p className="text-text-secondary mt-0.5 text-[15px]">{item.event}</p>
+                    </div>
                   </div>
                 </StaggerItem>
               ))}
@@ -232,7 +232,10 @@ function AboutStatsBar() {
     <section className="bg-brand py-16">
       <Stagger className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-white/25 px-6 lg:grid-cols-4 lg:px-8">
         {aboutStats.map((s, index) => (
-          <StaggerItem key={s.label} className="flex flex-col items-center gap-2 px-4 py-4 text-center">
+          <StaggerItem
+            key={s.label}
+            className="flex flex-col items-center gap-2 px-4 py-4 text-center"
+          >
             <CountUp
               value={s.value}
               delay={index * 0.06}
@@ -321,16 +324,14 @@ function CoreValues() {
             const Icon = v.icon
             return (
               <StaggerItem key={v.title}>
-                <article
-                  className="group flex flex-col items-center rounded-2xl bg-white px-7 py-9 text-center shadow-[0_4px_10px_rgba(0,0,0,0.06),0_1px_3px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-                >
-                <div
-                  className={`flex size-[68px] items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110 ${v.bg}`}
-                >
-                  <Icon size={28} className={v.color} strokeWidth={1.8} />
-                </div>
-                <h3 className="text-text-primary mt-5 text-[16px] font-bold">{v.title}</h3>
-                <p className="text-text-muted mt-3 text-sm leading-relaxed">{v.description}</p>
+                <article className="group flex flex-col items-center rounded-2xl bg-white px-7 py-9 text-center shadow-[0_4px_10px_rgba(0,0,0,0.06),0_1px_3px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                  <div
+                    className={`flex size-[68px] items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110 ${v.bg}`}
+                  >
+                    <Icon size={28} className={v.color} strokeWidth={1.8} />
+                  </div>
+                  <h3 className="text-text-primary mt-5 text-[16px] font-bold">{v.title}</h3>
+                  <p className="text-text-muted mt-3 text-sm leading-relaxed">{v.description}</p>
                 </article>
               </StaggerItem>
             )
@@ -425,37 +426,37 @@ function TeamSection() {
                 rel="noopener noreferrer"
                 className="group relative block overflow-hidden rounded-2xl bg-white shadow-[0_4px_14px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
-              {/* Photo */}
-              <div className="relative aspect-302/220 overflow-hidden">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="size-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                />
-                {/* LinkedIn overlay on hover */}
-                <div className="bg-brand/70 absolute inset-0 flex items-center justify-center opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover:opacity-100">
-                  <div className="flex flex-col items-center gap-2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="white"
-                      className="size-9"
-                    >
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                    </svg>
-                    <span className="text-xs font-semibold text-white">View LinkedIn</span>
+                {/* Photo */}
+                <div className="relative aspect-302/220 overflow-hidden">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="size-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
+                  {/* LinkedIn overlay on hover */}
+                  <div className="bg-brand/70 absolute inset-0 flex items-center justify-center opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover:opacity-100">
+                    <div className="flex flex-col items-center gap-2">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="white"
+                        className="size-9"
+                      >
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                      </svg>
+                      <span className="text-xs font-semibold text-white">View LinkedIn</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Info */}
-              <div className="px-4 py-4">
-                <h3 className="text-text-primary text-[15px] font-bold">{member.name}</h3>
-                <p className="text-text-muted mt-0.5 text-[13px]">{member.role}</p>
-              </div>
+                {/* Info */}
+                <div className="px-4 py-4">
+                  <h3 className="text-text-primary text-[15px] font-bold">{member.name}</h3>
+                  <p className="text-text-muted mt-0.5 text-[13px]">{member.role}</p>
+                </div>
 
-              {/* Bottom accent bar */}
-              <div className="bg-brand/0 group-hover:bg-brand h-[3px] w-full transition-all duration-300" />
+                {/* Bottom accent bar */}
+                <div className="bg-brand/0 group-hover:bg-brand h-[3px] w-full transition-all duration-300" />
               </a>
             </StaggerItem>
           ))}
@@ -651,7 +652,11 @@ function GlobalStructure() {
 
 function AboutCTA() {
   return (
-    <Reveal variant="scaleIn" as="section" className="relative overflow-hidden bg-white py-28 text-center">
+    <Reveal
+      variant="scaleIn"
+      as="section"
+      className="relative overflow-hidden bg-white py-28 text-center"
+    >
       {/* Decorative blobs */}
       <div className="bg-brand/8 absolute -top-20 -left-20 size-[320px] rounded-full blur-3xl" />
       <div className="bg-brand/6 absolute -right-16 -bottom-16 size-[280px] rounded-full blur-3xl" />

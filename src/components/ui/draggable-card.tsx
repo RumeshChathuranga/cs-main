@@ -63,8 +63,12 @@ export function DraggableCardBody({
     if (reducedMotion) return
 
     const { clientX, clientY } = e
-    const { width, height, left, top } =
-      cardRef.current?.getBoundingClientRect() ?? { width: 0, height: 0, left: 0, top: 0 }
+    const { width, height, left, top } = cardRef.current?.getBoundingClientRect() ?? {
+      width: 0,
+      height: 0,
+      left: 0,
+      top: 0,
+    }
     mouseX.set(clientX - (left + width / 2))
     mouseY.set(clientY - (top + height / 2))
   }

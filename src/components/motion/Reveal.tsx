@@ -8,7 +8,17 @@ import {
 } from '../../lib/motion'
 import { useReducedMotion } from '../../hooks/useReducedMotion'
 
-type RevealElement = 'div' | 'section' | 'article' | 'header' | 'footer' | 'span' | 'h1' | 'h2' | 'h3' | 'p'
+type RevealElement =
+  | 'div'
+  | 'section'
+  | 'article'
+  | 'header'
+  | 'footer'
+  | 'span'
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'p'
 
 interface RevealProps {
   children: ReactNode
@@ -41,9 +51,7 @@ export function Reveal({
     <Component
       variants={variants}
       initial="hidden"
-      {...(inView
-        ? { whileInView: 'visible', viewport }
-        : { animate: 'visible' })}
+      {...(inView ? { whileInView: 'visible', viewport } : { animate: 'visible' })}
       custom={delay}
       className={className}
       style={style}

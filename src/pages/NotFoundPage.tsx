@@ -18,7 +18,10 @@ export function NotFoundPage() {
         transition={{ duration: 5, repeat: Infinity, ease: EASE_OUT, delay: 0.5 }}
       />
 
-      <Stagger inView={false} className="relative z-10 flex max-w-lg flex-col items-center text-center">
+      <Stagger
+        inView={false}
+        className="relative z-10 flex max-w-lg flex-col items-center text-center"
+      >
         <StaggerItem>
           <p className="text-brand text-[120px] leading-none font-black tracking-tighter md:text-[160px]">
             404

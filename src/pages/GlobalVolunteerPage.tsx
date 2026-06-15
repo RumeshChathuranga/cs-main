@@ -286,7 +286,10 @@ export function GlobalVolunteerPage() {
               { value: '6–8', label: 'Week Projects' },
               { value: '5,000+', label: 'Sri Lankan Alumni' },
             ].map((stat) => (
-              <StaggerItem key={stat.label} className="flex flex-col items-center gap-1.5 px-4 py-6">
+              <StaggerItem
+                key={stat.label}
+                className="flex flex-col items-center gap-1.5 px-4 py-6"
+              >
                 <span className="text-4xl font-extrabold text-white">{stat.value}</span>
                 <span className="text-[13px] font-medium tracking-wide text-white/75">
                   {stat.label}
@@ -317,15 +320,15 @@ export function GlobalVolunteerPage() {
                 return (
                   <StaggerItem key={item.title}>
                     <div className="flex gap-4">
-                    <div
-                      className={`flex size-11 shrink-0 items-center justify-center rounded-xl ${item.iconBg}`}
-                    >
-                      <Icon size={20} className={item.iconColor} />
-                    </div>
-                    <div>
-                      <p className="text-navy text-[15px] font-bold">{item.title}</p>
-                      <p className="mt-1.5 text-sm leading-[1.75] text-[#6b7280]">{item.body}</p>
-                    </div>
+                      <div
+                        className={`flex size-11 shrink-0 items-center justify-center rounded-xl ${item.iconBg}`}
+                      >
+                        <Icon size={20} className={item.iconColor} />
+                      </div>
+                      <div>
+                        <p className="text-navy text-[15px] font-bold">{item.title}</p>
+                        <p className="mt-1.5 text-sm leading-[1.75] text-[#6b7280]">{item.body}</p>
+                      </div>
                     </div>
                   </StaggerItem>
                 )
@@ -513,7 +516,11 @@ export function GlobalVolunteerPage() {
       </Reveal>
 
       {/* ══════════════════ HOST A VOLUNTEER ══════════════════ */}
-      <Reveal as="section" className="relative overflow-hidden py-20" style={{ background: '#00bfa5' }}>
+      <Reveal
+        as="section"
+        className="relative overflow-hidden py-20"
+        style={{ background: '#00bfa5' }}
+      >
         {/* Decorative circles */}
         <div className="pointer-events-none absolute -top-20 right-[1296px] size-[320px] rounded-[160px] bg-[rgba(255,255,255,0.07)]" />
         <div className="pointer-events-none absolute -bottom-10 -left-10 size-[200px] rounded-[100px] bg-[rgba(255,255,255,0.05)]" />
@@ -584,32 +591,32 @@ export function GlobalVolunteerPage() {
             {testimonials.map((t) => (
               <StaggerItem key={t.name}>
                 <div className="bg-navy-card flex h-full flex-col gap-6 rounded-[20px] border border-[rgba(255,255,255,0.06)] px-[33px] py-[37px] shadow-[0_4px_10px_rgba(0,0,0,0.2)]">
-                {/* Opening quote mark */}
-                <span
-                  className="font-serif text-[64px] leading-none font-bold opacity-90"
-                  style={{ color: '#00bfa5', fontFamily: 'Georgia, serif' }}
-                >
-                  &ldquo;
-                </span>
+                  {/* Opening quote mark */}
+                  <span
+                    className="font-serif text-[64px] leading-none font-bold opacity-90"
+                    style={{ color: '#00bfa5', fontFamily: 'Georgia, serif' }}
+                  >
+                    &ldquo;
+                  </span>
 
-                {/* Quote */}
-                <p className="flex-1 text-[15px] leading-[1.8] text-[rgba(255,255,255,0.9)] italic">
-                  {t.quote}
-                </p>
+                  {/* Quote */}
+                  <p className="flex-1 text-[15px] leading-[1.8] text-[rgba(255,255,255,0.9)] italic">
+                    {t.quote}
+                  </p>
 
-                {/* Author */}
-                <div className="flex items-center gap-3.5">
-                  <img
-                    src={t.avatar}
-                    alt={t.name}
-                    className="size-[52px] shrink-0 rounded-full border-2 object-cover"
-                    style={{ borderColor: '#00bfa5' }}
-                  />
-                  <div>
-                    <p className="text-[15px] font-bold text-white">{t.name}</p>
-                    <p className="text-text-subtle mt-0.5 text-[13px]">{t.role}</p>
+                  {/* Author */}
+                  <div className="flex items-center gap-3.5">
+                    <img
+                      src={t.avatar}
+                      alt={t.name}
+                      className="size-[52px] shrink-0 rounded-full border-2 object-cover"
+                      style={{ borderColor: '#00bfa5' }}
+                    />
+                    <div>
+                      <p className="text-[15px] font-bold text-white">{t.name}</p>
+                      <p className="text-text-subtle mt-0.5 text-[13px]">{t.role}</p>
+                    </div>
                   </div>
-                </div>
                 </div>
               </StaggerItem>
             ))}

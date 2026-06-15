@@ -47,7 +47,9 @@ export function Testimonials() {
           {testimonials.map((item) => (
             <StaggerItem key={item.name}>
               <article className="bg-navy-card flex flex-col gap-6 rounded-[20px] border border-white/6 p-8 shadow-[0_4px_10px_rgba(0,0,0,0.2)]">
-                <span className="text-brand text-7xl leading-none font-bold opacity-80">&ldquo;</span>
+                <span className="text-brand text-7xl leading-none font-bold opacity-80">
+                  &ldquo;
+                </span>
 
                 <p className="flex-1 text-[15px] leading-relaxed text-white/90 italic">
                   {item.quote}

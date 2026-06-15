@@ -309,7 +309,10 @@ export function GlobalTalentPage() {
               { value: '6–12', label: 'Month Internships' },
               { value: '500+', label: 'Partner Companies' },
             ].map((stat) => (
-              <StaggerItem key={stat.label} className="flex flex-col items-center gap-1.5 px-4 py-6">
+              <StaggerItem
+                key={stat.label}
+                className="flex flex-col items-center gap-1.5 px-4 py-6"
+              >
                 <span className="text-4xl font-extrabold text-white">{stat.value}</span>
                 <span className="text-[13px] font-medium tracking-wide text-white/75">
                   {stat.label}
@@ -338,15 +341,15 @@ export function GlobalTalentPage() {
                 return (
                   <StaggerItem key={item.title}>
                     <div className="flex gap-4">
-                    <div
-                      className={`flex size-11 shrink-0 items-center justify-center rounded-xl ${item.iconBg}`}
-                    >
-                      <Icon size={20} className={item.iconColor} />
-                    </div>
-                    <div>
-                      <p className="text-navy text-[15px] font-bold">{item.title}</p>
-                      <p className="mt-1.5 text-sm leading-[1.78] text-[#6b7280]">{item.body}</p>
-                    </div>
+                      <div
+                        className={`flex size-11 shrink-0 items-center justify-center rounded-xl ${item.iconBg}`}
+                      >
+                        <Icon size={20} className={item.iconColor} />
+                      </div>
+                      <div>
+                        <p className="text-navy text-[15px] font-bold">{item.title}</p>
+                        <p className="mt-1.5 text-sm leading-[1.78] text-[#6b7280]">{item.body}</p>
+                      </div>
                     </div>
                   </StaggerItem>
                 )
@@ -424,80 +427,80 @@ export function GlobalTalentPage() {
           <Stagger className="grid gap-6 lg:grid-cols-2">
             {/* For Interns */}
             <StaggerItem>
-            <div className="overflow-hidden rounded-2xl bg-white shadow-[0_4px_14px_rgba(0,0,0,0.07)]">
-              {/* Card header */}
-              <div
-                className="flex items-center gap-4 px-8 py-6"
-                style={{ background: 'linear-gradient(135deg, #1d4ed8, #3b82f6)' }}
-              >
-                <div className="flex size-11 items-center justify-center rounded-xl bg-[rgba(255,255,255,0.2)]">
-                  <Users size={22} className="text-white" />
+              <div className="overflow-hidden rounded-2xl bg-white shadow-[0_4px_14px_rgba(0,0,0,0.07)]">
+                {/* Card header */}
+                <div
+                  className="flex items-center gap-4 px-8 py-6"
+                  style={{ background: 'linear-gradient(135deg, #1d4ed8, #3b82f6)' }}
+                >
+                  <div className="flex size-11 items-center justify-center rounded-xl bg-[rgba(255,255,255,0.2)]">
+                    <Users size={22} className="text-white" />
+                  </div>
+                  <div>
+                    <p className="text-[11px] font-bold tracking-[1.1px] text-[rgba(255,255,255,0.75)] uppercase">
+                      For Interns
+                    </p>
+                    <p className="text-lg font-extrabold text-white">
+                      Students &amp; Young Professionals
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-[11px] font-bold tracking-[1.1px] text-[rgba(255,255,255,0.75)] uppercase">
-                    For Interns
-                  </p>
-                  <p className="text-lg font-extrabold text-white">
-                    Students &amp; Young Professionals
-                  </p>
+                {/* Benefit list */}
+                <div className="divide-y divide-[#f3f4f6] px-8 py-2">
+                  {internBenefits.map((b) => {
+                    const Icon = b.icon
+                    return (
+                      <div key={b.title} className="flex gap-4 py-5">
+                        <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-[rgba(29,78,216,0.07)]">
+                          <Icon size={18} className="text-[#1d4ed8]" />
+                        </div>
+                        <div>
+                          <p className="text-navy text-[14px] font-bold">{b.title}</p>
+                          <p className="mt-1 text-[13px] leading-[1.75] text-[#6b7280]">{b.body}</p>
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
-              {/* Benefit list */}
-              <div className="divide-y divide-[#f3f4f6] px-8 py-2">
-                {internBenefits.map((b) => {
-                  const Icon = b.icon
-                  return (
-                    <div key={b.title} className="flex gap-4 py-5">
-                      <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-[rgba(29,78,216,0.07)]">
-                        <Icon size={18} className="text-[#1d4ed8]" />
-                      </div>
-                      <div>
-                        <p className="text-navy text-[14px] font-bold">{b.title}</p>
-                        <p className="mt-1 text-[13px] leading-[1.75] text-[#6b7280]">{b.body}</p>
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
             </StaggerItem>
 
             {/* For Organisations */}
             <StaggerItem>
-            <div className="overflow-hidden rounded-2xl bg-white shadow-[0_4px_14px_rgba(0,0,0,0.07)]">
-              {/* Card header */}
-              <div
-                className="flex items-center gap-4 px-8 py-6"
-                style={{ background: 'linear-gradient(135deg, #6b4eff, #8b5cf6)' }}
-              >
-                <div className="flex size-11 items-center justify-center rounded-xl bg-[rgba(255,255,255,0.2)]">
-                  <Building2 size={22} className="text-white" />
+              <div className="overflow-hidden rounded-2xl bg-white shadow-[0_4px_14px_rgba(0,0,0,0.07)]">
+                {/* Card header */}
+                <div
+                  className="flex items-center gap-4 px-8 py-6"
+                  style={{ background: 'linear-gradient(135deg, #6b4eff, #8b5cf6)' }}
+                >
+                  <div className="flex size-11 items-center justify-center rounded-xl bg-[rgba(255,255,255,0.2)]">
+                    <Building2 size={22} className="text-white" />
+                  </div>
+                  <div>
+                    <p className="text-[11px] font-bold tracking-[1.1px] text-[rgba(255,255,255,0.75)] uppercase">
+                      For Organisations
+                    </p>
+                    <p className="text-lg font-extrabold text-white">Companies &amp; Partners</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-[11px] font-bold tracking-[1.1px] text-[rgba(255,255,255,0.75)] uppercase">
-                    For Organisations
-                  </p>
-                  <p className="text-lg font-extrabold text-white">Companies &amp; Partners</p>
+                {/* Benefit list */}
+                <div className="divide-y divide-[#f3f4f6] px-8 py-2">
+                  {orgBenefits.map((b) => {
+                    const Icon = b.icon
+                    return (
+                      <div key={b.title} className="flex gap-4 py-5">
+                        <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-[rgba(107,78,255,0.07)]">
+                          <Icon size={18} className="text-violet" />
+                        </div>
+                        <div>
+                          <p className="text-navy text-[14px] font-bold">{b.title}</p>
+                          <p className="mt-1 text-[13px] leading-[1.75] text-[#6b7280]">{b.body}</p>
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
-              {/* Benefit list */}
-              <div className="divide-y divide-[#f3f4f6] px-8 py-2">
-                {orgBenefits.map((b) => {
-                  const Icon = b.icon
-                  return (
-                    <div key={b.title} className="flex gap-4 py-5">
-                      <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-[rgba(107,78,255,0.07)]">
-                        <Icon size={18} className="text-violet" />
-                      </div>
-                      <div>
-                        <p className="text-navy text-[14px] font-bold">{b.title}</p>
-                        <p className="mt-1 text-[13px] leading-[1.75] text-[#6b7280]">{b.body}</p>
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
             </StaggerItem>
           </Stagger>
         </div>
@@ -683,35 +686,35 @@ export function GlobalTalentPage() {
             {testimonials.map((t) => (
               <StaggerItem key={t.name}>
                 <div className="bg-navy-card relative flex h-full flex-col rounded-[20px] border border-[rgba(255,255,255,0.06)] p-8 shadow-[0_4px_10px_rgba(0,0,0,0.2)]">
-                {/* Badge — top right */}
-                <div
-                  className={`absolute top-6 right-6 inline-flex items-center rounded-full px-3 py-1 text-[10px] font-bold tracking-[0.8px] uppercase ${t.badgeColor}`}
-                >
-                  {t.badge}
-                </div>
-
-                {/* Opening quote mark */}
-                <span className="text-violet font-serif text-[56px] leading-none font-bold opacity-90">
-                  &ldquo;
-                </span>
-
-                {/* Quote */}
-                <p className="mt-1 flex-1 text-[14.5px] leading-[1.85] text-[rgba(255,255,255,0.88)] italic">
-                  {t.quote}
-                </p>
-
-                {/* Author */}
-                <div className="mt-8 flex items-center gap-3.5">
-                  <img
-                    src={t.avatar}
-                    alt={t.name}
-                    className="size-[52px] shrink-0 rounded-full border-2 border-[#6b4eff] object-cover"
-                  />
-                  <div>
-                    <p className="text-[15px] font-bold text-white">{t.name}</p>
-                    <p className="text-text-subtle mt-0.5 text-[13px]">{t.role}</p>
+                  {/* Badge — top right */}
+                  <div
+                    className={`absolute top-6 right-6 inline-flex items-center rounded-full px-3 py-1 text-[10px] font-bold tracking-[0.8px] uppercase ${t.badgeColor}`}
+                  >
+                    {t.badge}
                   </div>
-                </div>
+
+                  {/* Opening quote mark */}
+                  <span className="text-violet font-serif text-[56px] leading-none font-bold opacity-90">
+                    &ldquo;
+                  </span>
+
+                  {/* Quote */}
+                  <p className="mt-1 flex-1 text-[14.5px] leading-[1.85] text-[rgba(255,255,255,0.88)] italic">
+                    {t.quote}
+                  </p>
+
+                  {/* Author */}
+                  <div className="mt-8 flex items-center gap-3.5">
+                    <img
+                      src={t.avatar}
+                      alt={t.name}
+                      className="size-[52px] shrink-0 rounded-full border-2 border-[#6b4eff] object-cover"
+                    />
+                    <div>
+                      <p className="text-[15px] font-bold text-white">{t.name}</p>
+                      <p className="text-text-subtle mt-0.5 text-[13px]">{t.role}</p>
+                    </div>
+                  </div>
                 </div>
               </StaggerItem>
             ))}

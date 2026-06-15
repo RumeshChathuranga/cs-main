@@ -22,7 +22,7 @@ export function Gallery() {
         </Reveal>
 
         <div className="mt-14">
-          <DraggableCardContainer className="relative flex min-h-[520px] w-full items-center justify-center overflow-hidden rounded-2xl bg-surface md:min-h-[600px]">
+          <DraggableCardContainer className="bg-surface relative flex min-h-[520px] w-full items-center justify-center overflow-hidden rounded-2xl md:min-h-[600px]">
             <p
               aria-hidden
               className="text-text-faint pointer-events-none absolute top-1/2 mx-auto max-w-md -translate-y-1/2 px-6 text-center text-2xl font-extrabold md:max-w-xl md:text-4xl"

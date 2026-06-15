@@ -97,13 +97,7 @@ export const reducedMotionVariants: Variants = {
   visible: { opacity: 1, transition: { duration: 0.01 } },
 }
 
-export type MotionVariant =
-  | 'fadeUp'
-  | 'fadeDown'
-  | 'fadeIn'
-  | 'fadeLeft'
-  | 'fadeRight'
-  | 'scaleIn'
+export type MotionVariant = 'fadeUp' | 'fadeDown' | 'fadeIn' | 'fadeLeft' | 'fadeRight' | 'scaleIn'
 
 export const variantMap: Record<MotionVariant, Variants> = {
   fadeUp,

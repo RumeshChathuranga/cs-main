@@ -56,10 +56,7 @@ export function Hero() {
       <div className="relative z-10 mt-auto border-t border-white/10 bg-black/35">
         <Stagger className="mx-auto grid max-w-5xl grid-cols-1 divide-y divide-white/20 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
           {heroStats.map((stat) => (
-            <StaggerItem
-              key={stat.label}
-              className="flex flex-col items-center gap-1.5 px-4 py-6"
-            >
+            <StaggerItem key={stat.label} className="flex flex-col items-center gap-1.5 px-4 py-6">
               <span className="text-4xl font-extrabold text-white">{stat.value}</span>
               <span className="text-[13px] font-medium tracking-wide text-white/75">
                 {stat.label}

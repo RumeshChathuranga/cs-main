@@ -223,7 +223,10 @@ export function GlobalTeacherPage() {
               { value: '6–8', label: 'Week Projects' },
               { value: 'SDG 4', label: 'Quality Education' },
             ].map((stat) => (
-              <StaggerItem key={stat.label} className="flex flex-col items-center gap-1.5 px-4 py-6">
+              <StaggerItem
+                key={stat.label}
+                className="flex flex-col items-center gap-1.5 px-4 py-6"
+              >
                 <span className="text-4xl font-extrabold text-white">{stat.value}</span>
                 <span className="text-[13px] font-medium tracking-wide text-white/75">
                   {stat.label}

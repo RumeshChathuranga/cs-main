@@ -86,7 +86,9 @@ export function Values() {
                     <Icon size={30} className={value.iconColor} strokeWidth={1.8} />
                   </div>
                   <h3 className="text-text-primary mt-5 text-[17px] font-bold">{value.title}</h3>
-                  <p className="text-text-muted mt-3 text-sm leading-relaxed">{value.description}</p>
+                  <p className="text-text-muted mt-3 text-sm leading-relaxed">
+                    {value.description}
+                  </p>
                 </article>
               </StaggerItem>
             )
