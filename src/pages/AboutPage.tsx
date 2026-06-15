@@ -15,12 +15,14 @@ import {
   Smile,
 } from 'lucide-react'
 import { images } from '../assets/images'
+import { Reveal } from '../components/motion/Reveal'
+import { Stagger, StaggerItem } from '../components/motion/Stagger'
 
 // ─── About Hero ──────────────────────────────────────────────────────────────
 
 function AboutHero() {
   return (
-    <section className="relative flex min-h-[92vh] flex-col overflow-hidden">
+    <section className="relative flex min-h-[85vh] flex-col overflow-hidden">
       <img
         src={images.aboutHeroBg}
         alt="AIESEC in Colombo South — team"
@@ -30,60 +32,67 @@ function AboutHero() {
       <div className="from-navy/50 via-navy/60 to-navy/90 absolute inset-0 bg-linear-to-b" />
 
       {/* Content — grows to fill space and centers the text block */}
-      <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 py-16 text-center lg:px-8">
-        {/* Est. badge */}
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 backdrop-blur-sm">
-          <MapPin size={13} className="text-brand" />
-          <span className="text-xs font-semibold tracking-widest text-white/90 uppercase">
-            Est. 1995 · University of Moratuwa
-          </span>
-        </div>
+      <Stagger
+        inView={false}
+        className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 py-16 text-center lg:px-8"
+      >
+        <StaggerItem>
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 backdrop-blur-sm">
+            <MapPin size={13} className="text-brand" />
+            <span className="text-xs font-semibold tracking-widest text-white/90 uppercase">
+              Est. 1995 · University of Moratuwa
+            </span>
+          </div>
+        </StaggerItem>
 
-        {/* Headline */}
-        <h1 className="max-w-3xl text-5xl leading-[1.12] font-extrabold text-white md:text-6xl lg:text-7xl">
-          We Are AIESEC
-          <br />
-          <span className="text-brand italic">in Colombo South.</span>
-        </h1>
+        <StaggerItem>
+          <h1 className="max-w-3xl text-5xl leading-[1.12] font-extrabold text-white md:text-6xl lg:text-7xl">
+            We Are AIESEC
+            <br />
+            <span className="text-brand italic">in Colombo South.</span>
+          </h1>
+        </StaggerItem>
 
-        {/* Sub-text */}
-        <p className="mt-6 max-w-2xl text-[17px] leading-[1.75] text-white/80">
-          A community of young leaders building a better world — one exchange, one idea, and one
-          friendship at a time.
-        </p>
+        <StaggerItem>
+          <p className="mt-6 max-w-2xl text-[17px] leading-[1.75] text-white/80">
+            A community of young leaders building a better world — one exchange, one idea, and one
+            friendship at a time.
+          </p>
+        </StaggerItem>
 
-        {/* CTAs */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <Link
-            to="/programs/global-volunteer"
-            className="bg-brand hover:bg-brand-dark inline-flex items-center gap-2 rounded-[10px] px-7 py-3.5 text-[15px] font-bold text-white shadow-lg transition-all duration-200 hover:shadow-xl"
-          >
-            Explore Programs
-            <ArrowRight size={16} />
-          </Link>
-          <a
-            href="#team"
-            className="inline-flex items-center gap-2 rounded-[10px] border-2 border-white/70 px-7 py-3.5 text-[15px] font-bold text-white transition-all duration-200 hover:bg-white/10"
-          >
-            Meet the Team
-          </a>
-        </div>
-      </div>
+        <StaggerItem>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <Link
+              to="/programs/global-volunteer"
+              className="bg-brand hover:bg-brand-dark inline-flex items-center gap-2 rounded-[10px] px-7 py-3.5 text-[15px] font-bold text-white shadow-lg transition-all duration-200 hover:shadow-xl"
+            >
+              Explore Programs
+              <ArrowRight size={16} />
+            </Link>
+            <a
+              href="#team"
+              className="inline-flex items-center gap-2 rounded-[10px] border-2 border-white/70 px-7 py-3.5 text-[15px] font-bold text-white transition-all duration-200 hover:bg-white/10"
+            >
+              Meet the Team
+            </a>
+          </div>
+        </StaggerItem>
+      </Stagger>
 
       {/* Stats bar — pinned to hero bottom */}
       <div className="relative z-10 mt-auto border-t border-white/15 bg-black/40 backdrop-blur-sm">
-        <div className="mx-auto grid max-w-7xl grid-cols-3 divide-x divide-white/20 px-6 lg:px-8">
+        <Stagger className="mx-auto grid max-w-7xl grid-cols-3 divide-x divide-white/20 px-6 lg:px-8">
           {[
             { value: '30+', label: 'Years Active' },
             { value: '1,000+', label: 'Members' },
             { value: '500+', label: 'Exchanges' },
           ].map((s) => (
-            <div key={s.label} className="flex flex-col items-center gap-1 px-4 py-5">
+            <StaggerItem key={s.label} className="flex flex-col items-center gap-1 px-4 py-5">
               <span className="text-3xl font-extrabold tracking-tight text-white">{s.value}</span>
               <span className="text-[13px] font-medium text-white/70">{s.label}</span>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   )
@@ -107,7 +116,7 @@ const awards = [
 
 function OurHistory() {
   return (
-    <section className="bg-white py-20 lg:py-24">
+    <Reveal as="section" className="bg-white py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section header */}
         <header className="mb-16 text-center">
@@ -147,14 +156,12 @@ function OurHistory() {
             </div>
 
             {/* Award badges */}
-            <div className="mt-4 flex flex-wrap gap-4">
+            <Stagger className="mt-4 flex flex-wrap gap-4">
               {awards.map((a) => {
                 const Icon = a.icon
                 return (
-                  <div
-                    key={a.label}
-                    className="bg-surface flex min-w-[170px] flex-1 items-center gap-3 rounded-xl px-4 py-4 shadow-sm"
-                  >
+                  <StaggerItem key={a.label}>
+                    <div className="bg-surface flex min-w-[170px] flex-1 items-center gap-3 rounded-xl px-4 py-4 shadow-sm">
                     <div className="bg-brand/10 flex size-10 shrink-0 items-center justify-center rounded-lg">
                       <Icon size={18} className="text-brand" />
                     </div>
@@ -164,10 +171,11 @@ function OurHistory() {
                       </p>
                       <p className="text-text-muted mt-0.5 text-[12px]">{a.sub}</p>
                     </div>
-                  </div>
+                    </div>
+                  </StaggerItem>
                 )
               })}
-            </div>
+            </Stagger>
           </div>
 
           {/* Right — vertical timeline */}
@@ -175,9 +183,10 @@ function OurHistory() {
             {/* Vertical line */}
             <div className="absolute top-3 bottom-3 left-[11px] w-0.5 bg-gray-200" />
 
-            <div className="space-y-8">
+            <Stagger className="space-y-8">
               {timelineEvents.map((item) => (
-                <div key={item.year} className="relative flex gap-6 pl-8">
+                <StaggerItem key={item.year}>
+                  <div className="relative flex gap-6 pl-8">
                   {/* Dot */}
                   <div
                     className={`absolute top-1 left-0 flex size-6 shrink-0 items-center justify-center rounded-full border-2 ${
@@ -197,13 +206,14 @@ function OurHistory() {
                     </p>
                     <p className="text-text-secondary mt-0.5 text-[15px]">{item.event}</p>
                   </div>
-                </div>
+                  </div>
+                </StaggerItem>
               ))}
-            </div>
+            </Stagger>
           </div>
         </div>
       </div>
-    </section>
+    </Reveal>
   )
 }
 
@@ -219,14 +229,14 @@ const aboutStats = [
 function AboutStatsBar() {
   return (
     <section className="bg-brand py-16">
-      <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-white/25 px-6 lg:grid-cols-4 lg:px-8">
+      <Stagger className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-white/25 px-6 lg:grid-cols-4 lg:px-8">
         {aboutStats.map((s) => (
-          <div key={s.label} className="flex flex-col items-center gap-2 px-4 py-4 text-center">
+          <StaggerItem key={s.label} className="flex flex-col items-center gap-2 px-4 py-4 text-center">
             <span className="text-5xl font-extrabold tracking-tight text-white">{s.value}</span>
             <span className="text-[15px] font-medium text-white/85">{s.label}</span>
-          </div>
+          </StaggerItem>
         ))}
-      </div>
+      </Stagger>
     </section>
   )
 }
@@ -285,7 +295,7 @@ const coreValues = [
 
 function CoreValues() {
   return (
-    <section className="bg-surface py-20 lg:py-24">
+    <Reveal as="section" className="bg-surface py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <header className="mb-14 text-center">
           <span className="bg-brand/10 text-brand inline-block rounded-full px-4 py-1.5 text-xs font-bold tracking-widest uppercase">
@@ -300,14 +310,14 @@ function CoreValues() {
           </p>
         </header>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {coreValues.map((v) => {
             const Icon = v.icon
             return (
-              <article
-                key={v.title}
-                className="group flex flex-col items-center rounded-2xl bg-white px-7 py-9 text-center shadow-[0_4px_10px_rgba(0,0,0,0.06),0_1px_3px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-              >
+              <StaggerItem key={v.title}>
+                <article
+                  className="group flex flex-col items-center rounded-2xl bg-white px-7 py-9 text-center shadow-[0_4px_10px_rgba(0,0,0,0.06),0_1px_3px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                >
                 <div
                   className={`flex size-[68px] items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110 ${v.bg}`}
                 >
@@ -315,12 +325,13 @@ function CoreValues() {
                 </div>
                 <h3 className="text-text-primary mt-5 text-[16px] font-bold">{v.title}</h3>
                 <p className="text-text-muted mt-3 text-sm leading-relaxed">{v.description}</p>
-              </article>
+                </article>
+              </StaggerItem>
             )
           })}
-        </div>
+        </Stagger>
       </div>
-    </section>
+    </Reveal>
   )
 }
 
@@ -385,7 +396,7 @@ const teamMembers = [
 
 function TeamSection() {
   return (
-    <section id="team" className="bg-white py-20 lg:py-24">
+    <Reveal as="section" id="team" className="bg-white py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <header className="mb-4 text-center">
           <span className="bg-brand/10 text-brand inline-block rounded-full px-4 py-1.5 text-xs font-bold tracking-widest uppercase">
@@ -399,15 +410,15 @@ function TeamSection() {
           </p>
         </header>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <Stagger className="mt-12 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {teamMembers.map((member) => (
-            <a
-              key={member.name}
-              href={member.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative overflow-hidden rounded-2xl bg-white shadow-[0_4px_14px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-            >
+            <StaggerItem key={member.name}>
+              <a
+                href={member.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative block overflow-hidden rounded-2xl bg-white shadow-[0_4px_14px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+              >
               {/* Photo */}
               <div className="relative aspect-302/220 overflow-hidden">
                 <img
@@ -439,15 +450,16 @@ function TeamSection() {
 
               {/* Bottom accent bar */}
               <div className="bg-brand/0 group-hover:bg-brand h-[3px] w-full transition-all duration-300" />
-            </a>
+              </a>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
 
         <p className="text-text-muted mt-8 text-center text-sm">
           Hover over any card to connect on LinkedIn
         </p>
       </div>
-    </section>
+    </Reveal>
   )
 }
 
@@ -476,7 +488,7 @@ const hierarchy = [
 
 function GlobalStructure() {
   return (
-    <section className="bg-surface py-20 lg:py-24">
+    <Reveal as="section" className="bg-surface py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-20">
           {/* Left — hierarchy list */}
@@ -625,7 +637,7 @@ function GlobalStructure() {
           </div>
         </div>
       </div>
-    </section>
+    </Reveal>
   )
 }
 
@@ -633,7 +645,7 @@ function GlobalStructure() {
 
 function AboutCTA() {
   return (
-    <section className="relative overflow-hidden bg-white py-28 text-center">
+    <Reveal variant="scaleIn" as="section" className="relative overflow-hidden bg-white py-28 text-center">
       {/* Decorative blobs */}
       <div className="bg-brand/8 absolute -top-20 -left-20 size-[320px] rounded-full blur-3xl" />
       <div className="bg-brand/6 absolute -right-16 -bottom-16 size-[280px] rounded-full blur-3xl" />
@@ -677,7 +689,7 @@ function AboutCTA() {
           Open to all University of Moratuwa students · No experience required
         </p>
       </div>
-    </section>
+    </Reveal>
   )
 }
 
