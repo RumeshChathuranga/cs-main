@@ -69,14 +69,17 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         backdropFilter: visible ? 'blur(12px)' : 'none',
         boxShadow: visible
           ? '0 0 24px rgba(3,126,243,0.08), 0 1px 1px rgba(0,0,0,0.04), 0 16px 48px rgba(3,126,243,0.06)'
-          : '0 2px 8px rgba(3,126,243,0.06)',
+          : 'none',
         width: visible ? '90%' : '100%',
+        maxWidth: visible ? '80rem' : '100%',
+        paddingLeft: visible ? '24px' : '48px',
+        paddingRight: visible ? '24px' : '48px',
         y: visible ? 8 : 0,
         borderRadius: visible ? '16px' : '0px',
       }}
       transition={{ type: 'spring', stiffness: 200, damping: 50 }}
       className={cn(
-        'relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start bg-white/90 px-6 py-3 lg:flex',
+        'relative z-[60] mx-auto hidden w-full flex-row items-center justify-between self-start bg-white/90 py-3 lg:flex',
         visible && 'bg-white/85',
         className,
       )}
@@ -128,10 +131,10 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
         backdropFilter: visible ? 'blur(12px)' : 'none',
         boxShadow: visible
           ? '0 0 24px rgba(3,126,243,0.08), 0 16px 48px rgba(3,126,243,0.06)'
-          : '0 2px 8px rgba(3,126,243,0.06)',
+          : 'none',
         width: visible ? '94%' : '100%',
-        paddingRight: visible ? '12px' : '0px',
-        paddingLeft: visible ? '12px' : '0px',
+        paddingRight: visible ? '12px' : '16px',
+        paddingLeft: visible ? '12px' : '16px',
         borderRadius: visible ? '14px' : '0px',
         y: visible ? 8 : 0,
       }}
