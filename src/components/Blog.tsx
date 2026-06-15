@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { images } from '../assets/images'
+import { Reveal } from './motion/Reveal'
+import { Stagger, StaggerItem } from './motion/Stagger'
 
 interface BlogPost {
   image: string
@@ -56,71 +58,72 @@ export function Blog() {
   return (
     <section id="blog" className="bg-white py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <header>
-            <span className="bg-brand/10 text-brand inline-block rounded-full px-4 py-1.5 text-xs font-bold tracking-widest uppercase">
-              From Our Members
-            </span>
-            <h2 className="text-text-primary mt-4 text-3xl font-extrabold md:text-4xl">
-              Latest Stories
-            </h2>
-          </header>
-          <Link
-            to="/blog"
-            className="border-brand text-brand hover:text-brand-dark border-b-2 pb-1.5 text-[15px] font-bold transition-colors"
-          >
-            View All →
-          </Link>
-        </div>
-
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {posts.map((post) => (
-            <article
-              key={post.title}
-              className="group overflow-hidden rounded-2xl border border-black/6 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06),0_1px_6px_rgba(0,0,0,0.04)] transition-shadow hover:shadow-lg"
+        <Reveal>
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <header>
+              <span className="bg-brand/10 text-brand inline-block rounded-full px-4 py-1.5 text-xs font-bold tracking-widest uppercase">
+                From Our Members
+              </span>
+              <h2 className="text-text-primary mt-4 text-3xl font-extrabold md:text-4xl">
+                Latest Stories
+              </h2>
+            </header>
+            <Link
+              to="/blog"
+              className="border-brand text-brand hover:text-brand-dark border-b-2 pb-1.5 text-[15px] font-bold transition-colors"
             >
-              <div className="relative h-[200px] overflow-hidden">
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-                <span
-                  className={`absolute top-3.5 left-3.5 rounded-full px-2.5 py-1 text-[11px] font-bold tracking-wide uppercase ${post.categoryBg} ${post.categoryColor}`}
-                >
-                  {post.category}
-                </span>
-              </div>
+              View All →
+            </Link>
+          </div>
+        </Reveal>
 
-              <div className="p-6">
-                <h3 className="text-text-primary text-[17px] leading-snug font-bold">
-                  {post.title}
-                </h3>
-                <p className="text-text-muted mt-3 text-sm leading-relaxed">{post.excerpt}</p>
-
-                <div className="border-surface mt-5 flex items-center gap-2.5 border-t pt-4">
+        <Stagger className="mt-12 grid gap-6 lg:grid-cols-3">
+          {posts.map((post) => (
+            <StaggerItem key={post.title}>
+              <article className="group overflow-hidden rounded-2xl border border-black/6 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06),0_1px_6px_rgba(0,0,0,0.04)] transition-shadow hover:shadow-lg">
+                <div className="relative h-[200px] overflow-hidden">
                   <img
-                    src={post.avatar}
-                    alt={post.author}
-                    className="border-brand size-[34px] rounded-full border-2 object-cover"
+                    src={post.image}
+                    alt={post.title}
+                    className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
-                  <div className="min-w-0 flex-1">
-                    <p className="text-text-primary truncate text-[13px] font-semibold">
-                      {post.author}
-                    </p>
-                    <p className="text-text-faint text-xs">{post.date}</p>
-                  </div>
-                  <a
-                    href="#"
-                    className="text-brand hover:text-brand-dark shrink-0 text-[13px] font-semibold"
+                  <span
+                    className={`absolute top-3.5 left-3.5 rounded-full px-2.5 py-1 text-[11px] font-bold tracking-wide uppercase ${post.categoryBg} ${post.categoryColor}`}
                   >
-                    Read →
-                  </a>
+                    {post.category}
+                  </span>
                 </div>
-              </div>
-            </article>
+
+                <div className="p-6">
+                  <h3 className="text-text-primary text-[17px] leading-snug font-bold">
+                    {post.title}
+                  </h3>
+                  <p className="text-text-muted mt-3 text-sm leading-relaxed">{post.excerpt}</p>
+
+                  <div className="border-surface mt-5 flex items-center gap-2.5 border-t pt-4">
+                    <img
+                      src={post.avatar}
+                      alt={post.author}
+                      className="border-brand size-[34px] rounded-full border-2 object-cover"
+                    />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-text-primary truncate text-[13px] font-semibold">
+                        {post.author}
+                      </p>
+                      <p className="text-text-faint text-xs">{post.date}</p>
+                    </div>
+                    <a
+                      href="#"
+                      className="text-brand hover:text-brand-dark shrink-0 text-[13px] font-semibold"
+                    >
+                      Read →
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   )

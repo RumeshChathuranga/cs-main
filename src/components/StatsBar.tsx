@@ -1,3 +1,5 @@
+import { Stagger, StaggerItem } from './motion/Stagger'
+
 const stats = [
   { value: '70+', label: 'Years of Experience' },
   { value: '1M+', label: 'Alumni Worldwide' },
@@ -8,9 +10,9 @@ const stats = [
 export function StatsBar() {
   return (
     <section className="bg-brand py-14">
-      <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-white/25 px-6 lg:grid-cols-4 lg:px-8">
+      <Stagger className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-white/25 px-6 lg:grid-cols-4 lg:px-8">
         {stats.map((stat) => (
-          <div
+          <StaggerItem
             key={stat.label}
             className="flex flex-col items-center gap-2.5 px-6 py-4 text-center"
           >
@@ -20,9 +22,9 @@ export function StatsBar() {
             <span className="text-[15px] font-medium tracking-wide text-white/85">
               {stat.label}
             </span>
-          </div>
+          </StaggerItem>
         ))}
-      </div>
+      </Stagger>
     </section>
   )
 }

@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
 import { images } from '../assets/images'
+import { Reveal } from './motion/Reveal'
 
 export function About() {
   return (
     <section id="about" className="bg-white py-20 lg:py-24">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
-        <div>
+        <Reveal variant="fadeLeft" as="div">
           <h2 className="text-text-primary text-3xl leading-tight font-extrabold md:text-[42px] md:leading-[50px]">
             Empowering Youth <span className="text-brand">Since 1948</span>
           </h2>
@@ -36,9 +37,9 @@ export function About() {
           >
             Learn More →
           </Link>
-        </div>
+        </Reveal>
 
-        <div className="relative">
+        <Reveal variant="fadeRight" as="div" className="relative">
           <div className="from-brand to-brand/15 absolute -top-5 -left-5 -rotate-2 rounded-[20px] bg-gradient-to-br p-1">
             <div className="size-full min-h-[400px] min-w-[300px] rounded-[20px]" />
           </div>
@@ -59,7 +60,7 @@ export function About() {
               Territories
             </p>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

@@ -1,5 +1,7 @@
 import { images } from '../assets/images'
 import { SectionHeader } from './ui/SectionHeader'
+import { Reveal } from './motion/Reveal'
+import { Stagger, StaggerItem } from './motion/Stagger'
 
 const testimonials = [
   {
@@ -32,42 +34,43 @@ export function Testimonials() {
   return (
     <section className="bg-navy py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <SectionHeader
-          badge="Alumni Voices"
-          title="Stories From Our Alumni"
-          description="Real experiences from young leaders who dared to go global."
-          dark
-        />
+        <Reveal>
+          <SectionHeader
+            badge="Alumni Voices"
+            title="Stories From Our Alumni"
+            description="Real experiences from young leaders who dared to go global."
+            dark
+          />
+        </Reveal>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+        <Stagger className="mt-14 grid gap-6 lg:grid-cols-3">
           {testimonials.map((item) => (
-            <article
-              key={item.name}
-              className="bg-navy-card flex flex-col gap-6 rounded-[20px] border border-white/6 p-8 shadow-[0_4px_10px_rgba(0,0,0,0.2)]"
-            >
-              <span className="text-brand text-7xl leading-none font-bold opacity-80">&ldquo;</span>
+            <StaggerItem key={item.name}>
+              <article className="bg-navy-card flex flex-col gap-6 rounded-[20px] border border-white/6 p-8 shadow-[0_4px_10px_rgba(0,0,0,0.2)]">
+                <span className="text-brand text-7xl leading-none font-bold opacity-80">&ldquo;</span>
 
-              <p className="flex-1 text-[15px] leading-relaxed text-white/90 italic">
-                {item.quote}
-              </p>
+                <p className="flex-1 text-[15px] leading-relaxed text-white/90 italic">
+                  {item.quote}
+                </p>
 
-              <div className="flex items-center gap-4">
-                <div className="relative shrink-0">
-                  <img
-                    src={item.avatar}
-                    alt={item.name}
-                    className="border-brand size-[52px] rounded-full border-2 object-cover"
-                  />
-                  <span className="absolute -right-1 -bottom-1 text-base">{item.flag}</span>
+                <div className="flex items-center gap-4">
+                  <div className="relative shrink-0">
+                    <img
+                      src={item.avatar}
+                      alt={item.name}
+                      className="border-brand size-[52px] rounded-full border-2 object-cover"
+                    />
+                    <span className="absolute -right-1 -bottom-1 text-base">{item.flag}</span>
+                  </div>
+                  <div>
+                    <p className="text-[15px] font-bold text-white">{item.name}</p>
+                    <p className="text-text-subtle text-[13px]">{item.role}</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-[15px] font-bold text-white">{item.name}</p>
-                  <p className="text-text-subtle text-[13px]">{item.role}</p>
-                </div>
-              </div>
-            </article>
+              </article>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   )

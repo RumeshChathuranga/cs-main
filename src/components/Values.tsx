@@ -1,6 +1,8 @@
 import type { LucideIcon } from 'lucide-react'
 import { Star, ShieldCheck, Zap, Leaf, Globe, Smile } from 'lucide-react'
 import { SectionHeader } from './ui/SectionHeader'
+import { Reveal } from './motion/Reveal'
+import { Stagger, StaggerItem } from './motion/Stagger'
 
 interface Value {
   icon: LucideIcon
@@ -64,31 +66,32 @@ export function Values() {
   return (
     <section className="bg-surface py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <SectionHeader
-          badge="What We Stand For"
-          title="Our Values"
-          description="The six values that guide every AIESEC member in their journey."
-        />
+        <Reveal>
+          <SectionHeader
+            badge="What We Stand For"
+            title="Our Values"
+            description="The six values that guide every AIESEC member in their journey."
+          />
+        </Reveal>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <Stagger className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {values.map((value) => {
             const Icon = value.icon
             return (
-              <article
-                key={value.title}
-                className="group flex flex-col items-center rounded-2xl bg-white px-7 py-9 text-center shadow-[0_4px_10px_rgba(0,0,0,0.06),0_1px_3px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-              >
-                <div
-                  className={`flex size-[72px] items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110 ${value.iconBg}`}
-                >
-                  <Icon size={30} className={value.iconColor} strokeWidth={1.8} />
-                </div>
-                <h3 className="text-text-primary mt-5 text-[17px] font-bold">{value.title}</h3>
-                <p className="text-text-muted mt-3 text-sm leading-relaxed">{value.description}</p>
-              </article>
+              <StaggerItem key={value.title}>
+                <article className="group flex flex-col items-center rounded-2xl bg-white px-7 py-9 text-center shadow-[0_4px_10px_rgba(0,0,0,0.06),0_1px_3px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                  <div
+                    className={`flex size-[72px] items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110 ${value.iconBg}`}
+                  >
+                    <Icon size={30} className={value.iconColor} strokeWidth={1.8} />
+                  </div>
+                  <h3 className="text-text-primary mt-5 text-[17px] font-bold">{value.title}</h3>
+                  <p className="text-text-muted mt-3 text-sm leading-relaxed">{value.description}</p>
+                </article>
+              </StaggerItem>
             )
           })}
-        </div>
+        </Stagger>
       </div>
     </section>
   )
