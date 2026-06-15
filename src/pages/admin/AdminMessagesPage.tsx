@@ -78,8 +78,26 @@ export function AdminMessagesPage() {
 
   useEffect(() => {
     if (!user) return
-    void loadMessages()
-  }, [user, loadMessages])
+
+    let cancelled = false
+
+    ;(async () => {
+      const { data, error } = await fetchContactMessages()
+      if (cancelled) return
+
+      if (error) {
+        setLoadError(error)
+      } else {
+        setMessages(data)
+        setLoadError(null)
+      }
+      setLoading(false)
+    })()
+
+    return () => {
+      cancelled = true
+    }
+  }, [user])
 
   const handleStatusUpdate = async (id: string, status: ContactMessageStatus) => {
     setUpdatingId(id)
