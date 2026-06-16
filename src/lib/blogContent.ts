@@ -14,10 +14,7 @@ function addPullQuoteClass(paragraphHtml: string): string {
   if (paragraphHtml.includes('blog-pull-quote')) return paragraphHtml
 
   if (/^<p\s[^>]*class="/i.test(paragraphHtml)) {
-    return paragraphHtml.replace(
-      /^<p(\s[^>]*class=")([^"]*)(")/i,
-      '<p$1$2 blog-pull-quote$3',
-    )
+    return paragraphHtml.replace(/^<p(\s[^>]*class=")([^"]*)(")/i, '<p$1$2 blog-pull-quote$3')
   }
 
   if (/^<p\s/i.test(paragraphHtml)) {
