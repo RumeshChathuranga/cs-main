@@ -9,6 +9,7 @@ import TextAlign from '@tiptap/extension-text-align'
 import Highlight from '@tiptap/extension-highlight'
 import { useRef } from 'react'
 import { supabase } from '../../lib/supabase'
+import { enhanceBlogContentHtml } from '../../lib/blogContent'
 import {
   Bold,
   Italic,
@@ -93,7 +94,12 @@ export function RichTextEditor({ content, onChange, placeholder }: RichTextEdito
     ],
     content,
     onUpdate({ editor }) {
-      onChange(editor.getHTML())
+      const raw = editor.getHTML()
+      const enhanced = enhanceBlogContentHtml(raw)
+      onChange(enhanced)
+      if (enhanced !== raw) {
+        editor.commands.setContent(enhanced, { emitUpdate: false })
+      }
     },
   })
 
@@ -246,7 +252,7 @@ export function RichTextEditor({ content, onChange, placeholder }: RichTextEdito
         <ToolbarButton
           onClick={() => editor.chain().focus().toggleBlockquote().run()}
           active={editor.isActive('blockquote')}
-          title="Bordered caption / blockquote"
+          title="Highlighted caption box"
         >
           <Quote size={15} />
         </ToolbarButton>
@@ -324,7 +330,7 @@ export function RichTextEditor({ content, onChange, placeholder }: RichTextEdito
       {/* Editor area */}
       <EditorContent
         editor={editor}
-        className="prose prose-slate [&_.ProseMirror_blockquote]:border-brand max-w-none px-6 py-5 [&_.ProseMirror]:min-h-[320px] [&_.ProseMirror]:outline-none [&_.ProseMirror_blockquote]:my-6 [&_.ProseMirror_blockquote]:rounded-r-xl [&_.ProseMirror_blockquote]:border-l-4 [&_.ProseMirror_blockquote]:bg-[#ebf5ff] [&_.ProseMirror_blockquote]:px-8 [&_.ProseMirror_blockquote]:py-5 [&_.ProseMirror_blockquote]:text-[#45455b] [&_.ProseMirror_blockquote]:not-italic [&_.ProseMirror_p.is-editor-empty:first-child::before]:pointer-events-none [&_.ProseMirror_p.is-editor-empty:first-child::before]:float-left [&_.ProseMirror_p.is-editor-empty:first-child::before]:h-0 [&_.ProseMirror_p.is-editor-empty:first-child::before]:text-[#9ca3af] [&_.ProseMirror_p.is-editor-empty:first-child::before]:content-[attr(data-placeholder)]"
+        className="prose prose-slate [&_.ProseMirror_blockquote]:border-brand max-w-none px-6 py-5 [&_.ProseMirror]:min-h-[320px] [&_.ProseMirror]:outline-none [&_.ProseMirror_p]:mb-4 [&_.ProseMirror_img]:my-6 [&_.ProseMirror_img]:mx-auto [&_.ProseMirror_img]:block [&_.ProseMirror_img]:h-auto [&_.ProseMirror_img]:max-w-[600px] [&_.ProseMirror_img]:w-auto [&_.ProseMirror_img]:rounded-xl [&_.ProseMirror_blockquote]:my-6 [&_.ProseMirror_blockquote]:rounded-r-xl [&_.ProseMirror_blockquote]:border-l-4 [&_.ProseMirror_blockquote]:bg-[#ebf5ff] [&_.ProseMirror_blockquote]:px-8 [&_.ProseMirror_blockquote]:py-5 [&_.ProseMirror_blockquote]:text-[#45455b] [&_.ProseMirror_blockquote]:not-italic [&_.ProseMirror_.blog-pull-quote]:mb-6 [&_.ProseMirror_.blog-pull-quote]:text-[20px] [&_.ProseMirror_.blog-pull-quote]:leading-[1.6] [&_.ProseMirror_.blog-pull-quote]:font-medium [&_.ProseMirror_.blog-pull-quote]:text-[#005bb2] [&_.ProseMirror_.blog-pull-quote]:italic [&_.ProseMirror_p.is-editor-empty:first-child::before]:pointer-events-none [&_.ProseMirror_p.is-editor-empty:first-child::before]:float-left [&_.ProseMirror_p.is-editor-empty:first-child::before]:h-0 [&_.ProseMirror_p.is-editor-empty:first-child::before]:text-[#9ca3af] [&_.ProseMirror_p.is-editor-empty:first-child::before]:content-[attr(data-placeholder)]"
       />
     </div>
   )

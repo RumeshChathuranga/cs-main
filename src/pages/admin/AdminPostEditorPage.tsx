@@ -207,7 +207,7 @@ export function AdminPostEditorPage() {
             <div className="mt-4">
               <Field
                 label="Excerpt"
-                hint="A short summary shown on the blog listing page (2–3 sentences)."
+                hint="Short subtitle shown directly below the post title on the article page. Also used on blog listing cards."
               >
                 <textarea
                   value={form.excerpt}

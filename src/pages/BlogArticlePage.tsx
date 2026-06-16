@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom'
 import { useState } from 'react'
 import { ArrowLeft, Clock, Calendar, Share2, Link2, Check } from 'lucide-react'
 import { useBlogPost, useBlogPosts } from '../hooks/useBlogPosts'
+import { enhanceBlogContentHtml } from '../lib/blogContent'
 import { Stagger, StaggerItem } from '../components/motion/Stagger'
 import { Reveal } from '../components/motion/Reveal'
 
@@ -92,7 +93,9 @@ export function BlogArticlePage() {
 
   // Strip a leading <h1> from the content so it never duplicates the hero title
   const articleContent = post?.content
-    ? post.content.replace(/^(\s*<h1[^>]*>[\s\S]*?<\/h1>\s*)/i, '').trimStart()
+    ? enhanceBlogContentHtml(
+        post.content.replace(/^(\s*<h1[^>]*>[\s\S]*?<\/h1>\s*)/i, '').trimStart(),
+      )
     : ''
 
   const copyLink = async () => {
@@ -179,6 +182,16 @@ export function BlogArticlePage() {
                 {post.title}
               </h1>
             </StaggerItem>
+            {post.excerpt && (
+              <StaggerItem>
+                <p
+                  className="mt-3 max-w-[700px] text-[17px] leading-[1.65] font-normal text-white/85"
+                  style={{ textShadow: '0 1px 8px rgba(0,0,0,0.8)' }}
+                >
+                  {post.excerpt}
+                </p>
+              </StaggerItem>
+            )}
             <StaggerItem>
               <div
                 className="mt-4 flex flex-wrap items-center gap-4"
@@ -273,16 +286,9 @@ export function BlogArticlePage() {
 
           {/* ── Article content ── */}
           <Reveal className="mx-auto max-w-[800px] px-4">
-            {/* Excerpt / opening pull quote */}
-            {post.excerpt && (
-              <p className="mb-10 text-[20px] leading-[1.6] font-medium text-[#005bb2] italic">
-                "{post.excerpt}"
-              </p>
-            )}
-
             {/* Article content (rich HTML from TipTap — leading h1 stripped to avoid duplication with hero) */}
             <div
-              className="prose prose-slate prose-headings:font-bold prose-headings:text-navy prose-h2:text-[22px] prose-h2:mt-10 prose-h3:text-[18px] prose-p:text-[17px] prose-p:leading-[1.9] prose-p:text-[#1a1a2e] prose-a:text-brand prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-img:shadow-md prose-strong:text-navy [&_blockquote]:border-brand max-w-none [&_blockquote]:my-8 [&_blockquote]:rounded-r-xl [&_blockquote]:border-l-4 [&_blockquote]:bg-[#ebf5ff] [&_blockquote]:px-8 [&_blockquote]:py-6 [&_blockquote]:text-[20px] [&_blockquote]:text-[#45455b] [&_blockquote]:not-italic [&_blockquote_p]:my-0 [&_blockquote_p]:leading-[1.7]"
+              className="prose prose-slate prose-headings:font-bold prose-headings:text-navy prose-h2:text-[22px] prose-h2:mt-10 prose-h3:text-[18px] prose-p:mb-6 prose-p:text-[17px] prose-p:leading-[1.9] prose-p:text-[#1a1a2e] prose-a:text-brand prose-a:no-underline hover:prose-a:underline prose-img:my-8 prose-img:mx-auto prose-img:block prose-img:h-auto prose-img:max-w-[600px] prose-img:w-auto prose-img:rounded-xl prose-img:shadow-md prose-strong:text-navy [&_blockquote]:border-brand max-w-none [&_p:last-child]:mb-0 [&_blockquote]:my-8 [&_blockquote]:rounded-r-xl [&_blockquote]:border-l-4 [&_blockquote]:bg-[#ebf5ff] [&_blockquote]:px-8 [&_blockquote]:py-6 [&_blockquote]:text-[20px] [&_blockquote]:text-[#45455b] [&_blockquote]:not-italic [&_blockquote_p]:my-0 [&_blockquote_p]:leading-[1.7] [&_.blog-pull-quote]:mb-8 [&_.blog-pull-quote]:text-[20px] [&_.blog-pull-quote]:leading-[1.6] [&_.blog-pull-quote]:font-medium [&_.blog-pull-quote]:text-[#005bb2] [&_.blog-pull-quote]:italic"
               dangerouslySetInnerHTML={{ __html: articleContent }}
             />
 
