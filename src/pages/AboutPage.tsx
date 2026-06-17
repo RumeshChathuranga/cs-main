@@ -38,16 +38,16 @@ function AboutHero() {
         className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 py-16 text-center lg:px-8"
       >
         <StaggerItem>
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 backdrop-blur-sm">
-            <MapPin size={13} className="text-brand" />
-            <span className="text-xs font-semibold tracking-widest text-white/90 uppercase">
+          <div className="mb-6 flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1.5 backdrop-blur-sm sm:inline-flex sm:px-4">
+            <MapPin size={13} className="text-brand shrink-0" />
+            <span className="text-center text-[10px] font-semibold tracking-wide text-white/90 uppercase sm:text-xs sm:tracking-widest">
               Est. 1995 · University of Moratuwa
             </span>
           </div>
         </StaggerItem>
 
         <StaggerItem>
-          <h1 className="max-w-3xl text-5xl leading-[1.12] font-extrabold text-white md:text-6xl lg:text-7xl">
+          <h1 className="max-w-3xl text-4xl leading-[1.12] font-extrabold text-white sm:text-5xl md:text-6xl lg:text-7xl">
             We Are AIESEC
             <br />
             <span className="text-brand italic">in Colombo South.</span>
@@ -82,15 +82,22 @@ function AboutHero() {
 
       {/* Stats bar — pinned to hero bottom */}
       <div className="relative z-10 mt-auto border-t border-white/15 bg-black/40 backdrop-blur-sm">
-        <Stagger className="mx-auto grid max-w-7xl grid-cols-3 divide-x divide-white/20 px-6 lg:px-8">
+        <Stagger className="mx-auto grid w-full max-w-7xl grid-cols-3 divide-x divide-white/20 px-4 sm:px-6 lg:px-8">
           {[
             { value: '30+', label: 'Years Active' },
             { value: '1,000+', label: 'Members' },
             { value: '500+', label: 'Exchanges' },
           ].map((s) => (
-            <StaggerItem key={s.label} className="flex flex-col items-center gap-1 px-4 py-5">
-              <span className="text-3xl font-extrabold tracking-tight text-white">{s.value}</span>
-              <span className="text-[13px] font-medium text-white/70">{s.label}</span>
+            <StaggerItem
+              key={s.label}
+              className="flex flex-col items-center gap-1 px-2 py-4 sm:px-4 sm:py-5"
+            >
+              <span className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
+                {s.value}
+              </span>
+              <span className="text-center text-[11px] font-medium text-white/70 sm:text-[13px]">
+                {s.label}
+              </span>
             </StaggerItem>
           ))}
         </Stagger>
@@ -118,7 +125,7 @@ const awards = [
 function OurHistory() {
   return (
     <Reveal as="section" className="bg-white py-20 lg:py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl min-w-0 px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <header className="mb-16 text-center">
           <span className="bg-brand/10 text-brand inline-block rounded-full px-4 py-1.5 text-xs font-bold tracking-widest uppercase">
@@ -162,7 +169,7 @@ function OurHistory() {
                 const Icon = a.icon
                 return (
                   <StaggerItem key={a.label}>
-                    <div className="bg-surface flex min-w-[170px] flex-1 items-center gap-3 rounded-xl px-4 py-4 shadow-sm">
+                    <div className="bg-surface flex min-w-0 flex-1 items-center gap-3 rounded-xl px-4 py-4 shadow-sm sm:min-w-[170px]">
                       <div className="bg-brand/10 flex size-10 shrink-0 items-center justify-center rounded-lg">
                         <Icon size={18} className="text-brand" />
                       </div>
@@ -230,19 +237,19 @@ const aboutStats = [
 function AboutStatsBar() {
   return (
     <section className="bg-brand py-16">
-      <Stagger className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-white/25 px-6 lg:grid-cols-4 lg:px-8">
+      <Stagger className="mx-auto grid w-full max-w-7xl grid-cols-2 divide-x divide-white/25 px-4 sm:px-6 lg:grid-cols-4 lg:px-8">
         {aboutStats.map((s, index) => (
           <StaggerItem
             key={s.label}
-            className="flex flex-col items-center gap-2 px-4 py-4 text-center"
+            className="flex flex-col items-center gap-2 px-2 py-4 text-center sm:px-4"
           >
             <CountUp
               value={s.value}
               delay={index * 0.06}
               duration={1}
-              className="text-5xl font-extrabold tracking-tight text-white tabular-nums"
+              className="text-4xl font-extrabold tracking-tight text-white tabular-nums sm:text-5xl"
             />
-            <span className="text-[15px] font-medium text-white/85">{s.label}</span>
+            <span className="text-[13px] font-medium text-white/85 sm:text-[15px]">{s.label}</span>
           </StaggerItem>
         ))}
       </Stagger>
@@ -305,7 +312,7 @@ const coreValues = [
 function CoreValues() {
   return (
     <Reveal as="section" className="bg-surface py-20 lg:py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl min-w-0 px-4 sm:px-6 lg:px-8">
         <header className="mb-14 text-center">
           <span className="bg-brand/10 text-brand inline-block rounded-full px-4 py-1.5 text-xs font-bold tracking-widest uppercase">
             Core Values
@@ -404,7 +411,7 @@ const teamMembers = [
 function TeamSection() {
   return (
     <Reveal as="section" id="team" className="bg-white py-20 lg:py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl min-w-0 px-4 sm:px-6 lg:px-8">
         <header className="mb-4 text-center">
           <span className="bg-brand/10 text-brand inline-block rounded-full px-4 py-1.5 text-xs font-bold tracking-widest uppercase">
             Leadership
@@ -496,7 +503,7 @@ const hierarchy = [
 function GlobalStructure() {
   return (
     <Reveal as="section" className="bg-surface py-20 lg:py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl min-w-0 px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-20">
           {/* Left — hierarchy list */}
           <div>
@@ -535,7 +542,7 @@ function GlobalStructure() {
           </div>
 
           {/* Right — layered hierarchy funnel */}
-          <div className="relative flex flex-col items-center">
+          <div className="relative flex w-full min-w-0 flex-col items-center overflow-hidden">
             {/* Decorative background glow */}
             <div className="bg-brand/8 pointer-events-none absolute top-1/2 left-1/2 size-72 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl" />
 
@@ -544,19 +551,19 @@ function GlobalStructure() {
               <div className="relative z-10">
                 <div className="border-brand/15 relative overflow-hidden rounded-2xl border bg-white/80 px-6 py-5 shadow-[0_8px_32px_rgba(3,126,243,0.08)] backdrop-blur-sm">
                   <div className="from-brand/5 pointer-events-none absolute inset-0 bg-linear-to-br to-transparent" />
-                  <div className="relative flex items-center justify-between gap-4">
-                    <div className="flex items-center gap-3">
-                      <div className="bg-brand/10 flex size-11 items-center justify-center rounded-xl">
+                  <div className="relative flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                    <div className="flex min-w-0 items-center gap-3">
+                      <div className="bg-brand/10 flex size-11 shrink-0 items-center justify-center rounded-xl">
                         <Globe size={20} className="text-brand" />
                       </div>
-                      <div>
+                      <div className="min-w-0">
                         <p className="text-text-primary text-[15px] font-bold">AIESEC Global</p>
                         <p className="text-text-muted text-[12px]">
                           World&apos;s largest youth-run org
                         </p>
                       </div>
                     </div>
-                    <span className="bg-brand/10 text-brand shrink-0 rounded-full px-3 py-1 text-[12px] font-bold">
+                    <span className="bg-brand/10 text-brand w-fit shrink-0 rounded-full px-3 py-1 text-[12px] font-bold">
                       126 Countries
                     </span>
                   </div>
@@ -575,17 +582,17 @@ function GlobalStructure() {
               <div className="relative z-20 -mt-1 px-4">
                 <div className="border-brand/25 relative overflow-hidden rounded-2xl border bg-white px-6 py-5 shadow-[0_12px_40px_rgba(3,126,243,0.12)]">
                   <div className="from-brand/8 pointer-events-none absolute inset-0 bg-linear-to-br to-transparent" />
-                  <div className="relative flex items-center justify-between gap-4">
-                    <div className="flex items-center gap-3">
-                      <div className="bg-brand/15 flex size-11 items-center justify-center rounded-xl">
+                  <div className="relative flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                    <div className="flex min-w-0 items-center gap-3">
+                      <div className="bg-brand/15 flex size-11 shrink-0 items-center justify-center rounded-xl">
                         <Building2 size={20} className="text-brand" />
                       </div>
-                      <div>
+                      <div className="min-w-0">
                         <p className="text-text-primary text-[15px] font-bold">AIESEC Sri Lanka</p>
                         <p className="text-text-muted text-[12px]">National chapter</p>
                       </div>
                     </div>
-                    <span className="bg-brand/15 text-brand shrink-0 rounded-full px-3 py-1 text-[12px] font-bold">
+                    <span className="bg-brand/15 text-brand w-fit shrink-0 rounded-full px-3 py-1 text-[12px] font-bold">
                       10+ Entities
                     </span>
                   </div>
@@ -601,21 +608,23 @@ function GlobalStructure() {
               </div>
 
               {/* Tier 3 — Colombo South (highlighted) */}
-              <div className="relative z-30 -mt-1 px-8">
-                <div className="border-brand bg-brand relative overflow-hidden rounded-2xl border-2 px-6 py-6 shadow-[0_16px_48px_rgba(3,126,243,0.35)]">
+              <div className="relative z-30 -mt-1 px-2 sm:px-8">
+                <div className="border-brand bg-brand relative overflow-hidden rounded-2xl border-2 px-4 py-5 shadow-[0_16px_48px_rgba(3,126,243,0.35)] sm:px-6 sm:py-6">
                   {/* Subtle pattern overlay */}
                   <div className="pointer-events-none absolute inset-0 opacity-10">
                     <div className="absolute -top-8 -right-8 size-32 rounded-full bg-white/30" />
                     <div className="absolute -bottom-6 -left-6 size-24 rounded-full bg-white/20" />
                   </div>
-                  <div className="relative flex items-center justify-between gap-4">
-                    <div className="flex items-center gap-3">
-                      <div className="flex size-12 items-center justify-center rounded-xl bg-white/20">
+                  <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="flex min-w-0 items-center gap-3">
+                      <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-white/20">
                         <LocateFixed size={22} className="text-white" />
                       </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <p className="text-[16px] font-bold text-white">AIESEC Colombo South</p>
+                      <div className="min-w-0">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <p className="text-[15px] font-bold text-white sm:text-[16px]">
+                            AIESEC Colombo South
+                          </p>
                           <span className="rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-bold tracking-wider text-white uppercase">
                             You
                           </span>
@@ -623,7 +632,7 @@ function GlobalStructure() {
                         <p className="text-[12px] text-white/75">University of Moratuwa</p>
                       </div>
                     </div>
-                    <div className="shrink-0 text-right">
+                    <div className="shrink-0 sm:text-right">
                       <p className="text-2xl font-extrabold text-white">30+</p>
                       <p className="text-[11px] font-medium text-white/70">Years of impact</p>
                     </div>
@@ -633,13 +642,13 @@ function GlobalStructure() {
             </div>
 
             {/* Reach indicator */}
-            <div className="mt-10 flex items-center gap-3 text-[13px]">
-              <div className="bg-brand/15 h-px w-12" />
+            <div className="mt-10 flex w-full max-w-full flex-wrap items-center justify-center gap-2 px-2 text-center text-[13px] sm:gap-3">
+              <div className="bg-brand/15 hidden h-px w-8 shrink-0 sm:block sm:w-12" />
               <span className="text-text-muted font-medium">
                 From <span className="text-brand font-bold">126 countries</span> to{' '}
                 <span className="text-brand font-bold">your campus</span>
               </span>
-              <div className="bg-brand/15 h-px w-12" />
+              <div className="bg-brand/15 hidden h-px w-8 shrink-0 sm:block sm:w-12" />
             </div>
           </div>
         </div>
@@ -708,7 +717,7 @@ function AboutCTA() {
 
 export function AboutPage() {
   return (
-    <>
+    <div className="overflow-x-hidden">
       <AboutHero />
       <OurHistory />
       <AboutStatsBar />
@@ -716,6 +725,6 @@ export function AboutPage() {
       <TeamSection />
       <GlobalStructure />
       <AboutCTA />
-    </>
+    </div>
   )
 }
