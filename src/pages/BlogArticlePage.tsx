@@ -138,92 +138,100 @@ export function BlogArticlePage() {
   const categoryColor = CATEGORY_COLORS[post.category] ?? '#037ef3'
 
   return (
-    <>
+    <div className="overflow-x-hidden">
       {/* ══ HERO BANNER ══ */}
-      <section className="relative h-[420px] overflow-hidden">
+      <section className="relative min-h-[30rem] overflow-hidden sm:h-[420px]">
         {post.cover_image_url ? (
-          <img src={post.cover_image_url} alt={post.title} className="size-full object-cover" />
+          <img
+            src={post.cover_image_url}
+            alt={post.title}
+            className="absolute inset-0 size-full object-cover"
+          />
         ) : (
           <div
-            className="size-full"
+            className="absolute inset-0"
             style={{ background: 'linear-gradient(135deg, #037ef3 0%, #0250a0 100%)' }}
           />
         )}
         {/* Dark overlay — strong enough for any cover image including light/gray photos */}
         <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/55 to-black/10" />
 
-        {/* Back link */}
-        <div className="absolute top-0 right-0 left-0 flex px-8 py-6">
-          <Link
-            to="/blog"
-            className="flex items-center gap-2 rounded-lg bg-white/15 px-4 py-2 text-[13px] font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/25"
-          >
-            <ArrowLeft size={14} />
-            Back to Blog
-          </Link>
-        </div>
+        <div className="relative z-10 flex min-h-[30rem] flex-col justify-between sm:h-[420px] sm:min-h-0">
+          {/* Back link */}
+          <div className="flex px-4 pt-4 sm:px-8 sm:pt-6">
+            <Link
+              to="/blog"
+              className="flex items-center gap-2 rounded-lg bg-white/15 px-3 py-2 text-[12px] font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/25 sm:px-4 sm:text-[13px]"
+            >
+              <ArrowLeft size={14} />
+              Back to Blog
+            </Link>
+          </div>
 
-        {/* Article meta over image */}
-        <div className="absolute right-0 bottom-0 left-0 px-8 pb-10">
-          <Stagger inView={false} className="mx-auto max-w-[800px]">
-            <StaggerItem>
-              <span
-                className="mb-3 inline-block rounded-full px-3 py-1.5 text-[11px] font-semibold text-white drop-shadow"
-                style={{ backgroundColor: categoryColor }}
-              >
-                {post.category}
-              </span>
-            </StaggerItem>
-            <StaggerItem>
-              <h1
-                className="text-[36px] leading-[1.2] font-extrabold tracking-[-0.5px] text-white"
-                style={{ textShadow: '0 2px 16px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.7)' }}
-              >
-                {post.title}
-              </h1>
-            </StaggerItem>
-            {post.excerpt && (
+          {/* Article meta over image */}
+          <div className="px-4 pb-6 sm:px-8 sm:pb-10">
+            <Stagger inView={false} className="mx-auto max-w-[800px]">
               <StaggerItem>
-                <p
-                  className="mt-3 max-w-[700px] text-[17px] leading-[1.65] font-normal text-white/85"
+                <span
+                  className="mb-2 inline-block rounded-full px-3 py-1.5 text-[11px] font-semibold text-white drop-shadow sm:mb-3"
+                  style={{ backgroundColor: categoryColor }}
+                >
+                  {post.category}
+                </span>
+              </StaggerItem>
+              <StaggerItem>
+                <h1
+                  className="text-[22px] leading-[1.3] font-extrabold tracking-[-0.3px] text-white sm:text-[36px] sm:leading-[1.2] sm:tracking-[-0.5px]"
+                  style={{ textShadow: '0 2px 16px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.7)' }}
+                >
+                  {post.title}
+                </h1>
+              </StaggerItem>
+              {post.excerpt && (
+                <StaggerItem>
+                  <p
+                    className="mt-2 max-w-[700px] text-[14px] leading-[1.6] font-normal text-white/85 sm:mt-3 sm:text-[17px] sm:leading-[1.65]"
+                    style={{ textShadow: '0 1px 8px rgba(0,0,0,0.8)' }}
+                  >
+                    {post.excerpt}
+                  </p>
+                </StaggerItem>
+              )}
+              <StaggerItem>
+                <div
+                  className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2 sm:mt-4 sm:gap-4"
                   style={{ textShadow: '0 1px 8px rgba(0,0,0,0.8)' }}
                 >
-                  {post.excerpt}
-                </p>
+                  <div className="flex items-center gap-2 sm:gap-2.5">
+                    {post.author_avatar_url && (
+                      <img
+                        src={post.author_avatar_url}
+                        alt={post.author_name}
+                        className="size-8 rounded-full border-2 border-white/40 object-cover sm:size-9"
+                      />
+                    )}
+                    <span className="text-[13px] font-semibold text-white sm:text-[14px]">
+                      {post.author_name}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[12px] text-white/75 sm:text-[13px]">
+                    <Calendar size={13} />
+                    {formattedDate}
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[12px] text-white/75 sm:text-[13px]">
+                    <Clock size={13} />
+                    {post.read_time} min read
+                  </div>
+                </div>
               </StaggerItem>
-            )}
-            <StaggerItem>
-              <div
-                className="mt-4 flex flex-wrap items-center gap-4"
-                style={{ textShadow: '0 1px 8px rgba(0,0,0,0.8)' }}
-              >
-                <div className="flex items-center gap-2.5">
-                  {post.author_avatar_url && (
-                    <img
-                      src={post.author_avatar_url}
-                      alt={post.author_name}
-                      className="size-9 rounded-full border-2 border-white/40 object-cover"
-                    />
-                  )}
-                  <span className="text-[14px] font-semibold text-white">{post.author_name}</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-[13px] text-white/75">
-                  <Calendar size={13} />
-                  {formattedDate}
-                </div>
-                <div className="flex items-center gap-1.5 text-[13px] text-white/75">
-                  <Clock size={13} />
-                  {post.read_time} min read
-                </div>
-              </div>
-            </StaggerItem>
-          </Stagger>
+            </Stagger>
+          </div>
         </div>
       </section>
 
       {/* ══ ARTICLE BODY ══ */}
-      <div className="bg-white">
-        <div className="relative mx-auto max-w-[960px] px-4 py-14">
+      <div className="overflow-x-hidden bg-white">
+        <div className="relative mx-auto max-w-[960px] px-4 py-10 sm:py-14">
           {/* ── Vertical share sidebar (lg+) ── */}
           <div className="absolute inset-y-14 left-4 hidden w-14 lg:block">
             <div className="sticky top-28 flex flex-col items-center gap-3">
@@ -285,10 +293,10 @@ export function BlogArticlePage() {
           </div>
 
           {/* ── Article content ── */}
-          <Reveal className="mx-auto max-w-[800px] px-4">
+          <Reveal className="mx-auto w-full max-w-[800px] min-w-0">
             {/* Article content (rich HTML from TipTap — leading h1 stripped to avoid duplication with hero) */}
             <div
-              className="prose prose-slate prose-headings:font-bold prose-headings:text-navy prose-h2:text-[22px] prose-h2:mt-10 prose-h3:text-[18px] prose-p:mb-6 prose-p:text-[17px] prose-p:leading-[1.9] prose-p:text-[#1a1a2e] prose-a:text-brand prose-a:no-underline hover:prose-a:underline prose-img:my-8 prose-img:mx-auto prose-img:block prose-img:h-auto prose-img:max-w-[600px] prose-img:w-auto prose-img:rounded-xl prose-img:shadow-md prose-strong:text-navy [&_blockquote]:border-brand max-w-none [&_.blog-pull-quote]:mb-8 [&_.blog-pull-quote]:text-[20px] [&_.blog-pull-quote]:leading-[1.6] [&_.blog-pull-quote]:font-medium [&_.blog-pull-quote]:text-[#005bb2] [&_.blog-pull-quote]:italic [&_blockquote]:my-8 [&_blockquote]:rounded-r-xl [&_blockquote]:border-l-4 [&_blockquote]:bg-[#ebf5ff] [&_blockquote]:px-8 [&_blockquote]:py-6 [&_blockquote]:text-[20px] [&_blockquote]:text-[#45455b] [&_blockquote]:not-italic [&_blockquote_p]:my-0 [&_blockquote_p]:leading-[1.7] [&_p:last-child]:mb-0"
+              className="prose prose-slate prose-headings:font-bold prose-headings:text-navy prose-h2:text-[20px] prose-h2:mt-8 prose-h3:text-[17px] prose-p:mb-6 prose-p:text-[16px] prose-p:leading-[1.85] prose-p:text-[#1a1a2e] prose-a:break-words prose-a:text-brand prose-a:no-underline hover:prose-a:underline prose-img:my-6 prose-img:mx-auto prose-img:block prose-img:h-auto prose-img:w-full prose-img:max-w-full prose-img:rounded-xl prose-img:shadow-md prose-strong:text-navy sm:prose-h2:text-[22px] sm:prose-h2:mt-10 sm:prose-h3:text-[18px] sm:prose-p:text-[17px] sm:prose-p:leading-[1.9] sm:prose-img:my-8 sm:prose-img:w-auto sm:prose-img:max-w-[min(100%,600px)] [&_blockquote]:border-brand max-w-none overflow-x-hidden [&_.blog-pull-quote]:mb-6 [&_.blog-pull-quote]:text-[18px] [&_.blog-pull-quote]:leading-[1.6] [&_.blog-pull-quote]:font-medium [&_.blog-pull-quote]:text-[#005bb2] [&_.blog-pull-quote]:italic sm:[&_.blog-pull-quote]:mb-8 sm:[&_.blog-pull-quote]:text-[20px] [&_blockquote]:my-6 [&_blockquote]:rounded-r-xl [&_blockquote]:border-l-4 [&_blockquote]:bg-[#ebf5ff] [&_blockquote]:px-4 [&_blockquote]:py-5 [&_blockquote]:text-[17px] [&_blockquote]:text-[#45455b] [&_blockquote]:not-italic sm:[&_blockquote]:my-8 sm:[&_blockquote]:px-8 sm:[&_blockquote]:py-6 sm:[&_blockquote]:text-[20px] [&_blockquote_p]:my-0 [&_blockquote_p]:leading-[1.7] [&_img]:!h-auto [&_img]:w-full [&_img]:!max-w-full sm:[&_img]:w-auto sm:[&_img]:!max-w-[min(100%,600px)] [&_p:last-child]:mb-0"
               dangerouslySetInnerHTML={{ __html: articleContent }}
             />
 
@@ -371,7 +379,7 @@ export function BlogArticlePage() {
 
       {/* ══ MORE STORIES ══ */}
       {relatedPosts.length > 0 && (
-        <Reveal as="section" className="bg-surface px-8 py-16">
+        <Reveal as="section" className="bg-surface overflow-x-hidden px-4 py-12 sm:px-8 sm:py-16">
           <div className="mx-auto max-w-[1280px]">
             <h2 className="text-navy mb-8 text-[26px] font-extrabold">More Stories Like This</h2>
             <Stagger className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -384,6 +392,6 @@ export function BlogArticlePage() {
           </div>
         </Reveal>
       )}
-    </>
+    </div>
   )
 }

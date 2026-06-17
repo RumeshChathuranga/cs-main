@@ -86,7 +86,11 @@ export function RichTextEditor({ content, onChange, placeholder }: RichTextEdito
       Underline,
       Highlight,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
-      Image.configure({ inline: false, allowBase64: true }),
+      Image.configure({
+        inline: false,
+        allowBase64: true,
+        HTMLAttributes: { class: 'max-w-full h-auto' },
+      }),
       Link.configure({ openOnClick: false, HTMLAttributes: { class: 'text-brand underline' } }),
       Placeholder.configure({
         placeholder: placeholder ?? 'Start writing your story…',
