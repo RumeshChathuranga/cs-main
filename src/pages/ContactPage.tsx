@@ -85,7 +85,7 @@ function ContactHero() {
         </StaggerItem>
 
         <StaggerItem>
-          <h1 className="text-[52px] leading-[1.1] font-black tracking-[-0.02em] text-white">
+          <h1 className="max-w-full text-4xl leading-[1.1] font-black tracking-[-0.02em] text-white sm:text-[52px]">
             Get In Touch.
           </h1>
         </StaggerItem>
@@ -171,7 +171,7 @@ function ContactForm() {
       {/* Gradient top accent bar */}
       <div className="from-brand to-violet absolute inset-x-0 top-0 h-1 rounded-t-2xl bg-linear-to-r" />
 
-      <div className="px-9 pt-10 pb-9">
+      <div className="px-5 pt-8 pb-8 sm:px-9 sm:pt-10 sm:pb-9">
         {/* Card header */}
         <div className="mb-7">
           <h2 className="text-navy text-[22px] font-extrabold">Send Us a Message.</h2>
@@ -313,16 +313,16 @@ function InfoCard({
   sub: string
 }) {
   return (
-    <div className="flex gap-[18px] rounded-2xl border border-[#eef1f5] bg-white px-[25px] py-[23px] shadow-[0px_2px_6px_rgba(0,0,0,0.05)]">
+    <div className="flex min-w-0 gap-[18px] rounded-2xl border border-[#eef1f5] bg-white px-4 py-5 shadow-[0px_2px_6px_rgba(0,0,0,0.05)] sm:px-[25px] sm:py-[23px]">
       <div className="bg-brand/[0.07] flex size-[46px] shrink-0 items-center justify-center rounded-[12px]">
         <Icon size={20} className="text-brand" />
       </div>
-      <div>
+      <div className="min-w-0">
         <p className="mb-1.5 text-[12px] font-bold tracking-[1.2px] text-[#9ca3af] uppercase">
           {label}
         </p>
-        <p className="text-navy text-[14px] font-semibold">{value}</p>
-        <p className="text-[14px] text-[#6b7280]">{sub}</p>
+        <p className="text-navy text-[14px] font-semibold break-words">{value}</p>
+        <p className="text-[14px] break-words text-[#6b7280]">{sub}</p>
       </div>
     </div>
   )
@@ -422,13 +422,13 @@ function ContactInfoPanel() {
 
 function ContactSection() {
   return (
-    <section className="bg-white py-[72px]">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
-          <Reveal delay={0}>
+    <section className="bg-white py-12 sm:py-[72px]">
+      <div className="mx-auto w-full max-w-7xl min-w-0 px-4 sm:px-6 lg:px-8">
+        <div className="grid min-w-0 gap-8 lg:grid-cols-2 lg:gap-12">
+          <Reveal delay={0} className="min-w-0">
             <ContactForm />
           </Reveal>
-          <Reveal delay={0.1}>
+          <Reveal delay={0.1} className="min-w-0">
             <ContactInfoPanel />
           </Reveal>
         </div>
@@ -441,8 +441,8 @@ function ContactSection() {
 
 function MapSection() {
   return (
-    <section className="bg-white py-16">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section className="overflow-x-hidden bg-white py-12 sm:py-16">
+      <div className="mx-auto w-full max-w-7xl min-w-0 px-4 sm:px-6 lg:px-8">
         {/* Section label */}
         <Reveal className="mb-8 flex items-center gap-3">
           <div className="bg-brand/8 flex size-10 items-center justify-center rounded-[10px]">
@@ -459,10 +459,10 @@ function MapSection() {
         {/* Two-column layout: map + details */}
         <Reveal
           delay={0.08}
-          className="grid overflow-hidden rounded-2xl border border-[#eef1f5] shadow-[0px_4px_24px_rgba(0,0,0,0.07)] lg:grid-cols-[1fr_300px]"
+          className="grid min-w-0 overflow-hidden rounded-2xl border border-[#eef1f5] shadow-[0px_4px_24px_rgba(0,0,0,0.07)] lg:grid-cols-[1fr_300px]"
         >
           {/* Map */}
-          <div className="relative h-[280px] lg:h-[300px]">
+          <div className="relative h-[280px] min-w-0 lg:h-[300px]">
             <iframe
               title="University of Moratuwa location"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8236893484136!2d79.9007!3d6.7964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2451c3a1ac44d%3A0x6e2d0b87caf08c47!2sUniversity%20of%20Moratuwa!5e0!3m2!1sen!2slk!4v1718000000000!5m2!1sen!2slk"
@@ -541,8 +541,8 @@ const stats = [
 
 function FaqSection() {
   return (
-    <section className="bg-surface py-[80px]">
-      <Stagger className="mx-auto flex max-w-3xl flex-col items-center px-6 text-center">
+    <section className="bg-surface overflow-x-hidden py-12 sm:py-[80px]">
+      <Stagger className="mx-auto flex w-full max-w-3xl min-w-0 flex-col items-center px-4 text-center sm:px-6">
         <StaggerItem>
           <div className="bg-brand/[0.07] mb-6 flex size-16 items-center justify-center rounded-[18px]">
             <HelpCircle size={30} className="text-brand" />
@@ -550,7 +550,7 @@ function FaqSection() {
         </StaggerItem>
 
         <StaggerItem>
-          <h2 className="text-navy text-[36px] leading-[1.2] font-extrabold">
+          <h2 className="text-navy text-[28px] leading-[1.2] font-extrabold sm:text-[36px]">
             Have More Questions?
           </h2>
         </StaggerItem>
@@ -600,11 +600,11 @@ function FaqSection() {
 
 export function ContactPage() {
   return (
-    <>
+    <div className="overflow-x-hidden">
       <ContactHero />
       <ContactSection />
       <MapSection />
       <FaqSection />
-    </>
+    </div>
   )
 }
